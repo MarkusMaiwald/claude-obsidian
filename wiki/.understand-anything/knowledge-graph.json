@@ -1,0 +1,2462 @@
+{
+  "version": "1.0.0",
+  "kind": "knowledge",
+  "project": {
+    "name": "Wiki Index",
+    "languages": [
+      "markdown"
+    ],
+    "frameworks": [
+      "karpathy-wiki"
+    ],
+    "description": "Knowledge graph for Wiki Index",
+    "analyzedAt": "2026-05-04T19:40:34.078401+00:00",
+    "gitCommitHash": "d78b9f1422ce0b8408fe64718a334654bf2689af"
+  },
+  "nodes": [
+    {
+      "id": "article:comparisons/Wiki vs RAG",
+      "type": "article",
+      "name": "Wiki vs RAG",
+      "filePath": "comparisons/Wiki vs RAG.md",
+      "summary": "Both approaches let you query a large document collection. They differ fundamentally in when synthesis happens.",
+      "tags": [
+        "comparisons"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "LLM Wiki Pattern",
+          "Compounding Knowledge",
+          "index",
+          "How does the LLM Wiki pattern work",
+          "LLM Wiki Pattern",
+          "Compounding Knowledge"
+        ],
+        "category": "Comparisons",
+        "content": "---\ntype: comparison\ntitle: \"Wiki vs RAG\"\nsubjects:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"RAG (Retrieval-Augmented Generation)\"\ndimensions:\n  - \"How knowledge is stored\"\n  - \"Query cost\"\n  - \"Infrastructure\"\n  - \"Maintenance\"\n  - \"Scale limit\"\nverdict: \"Wiki wins at <1000 pages. RAG wins at enterprise scale.\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - comparison\n  - llm-wiki\n  - knowledge-management\nstatus: mature\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Compounding Knowledge]]\"\n  - \"[[index]]\"\n  - \"[[How does the LLM Wiki pattern work]]\"\nsources: []\n---\n\n# Wiki vs RAG\n\n## Overview\n\nBoth approaches let you query a large document collection. They differ fundamentally in when synthesis happens.\n\n## Comparison\n\n| Dimension | LLM Wiki | Semantic RAG |\n|-----------|----------|-------------|\n| **How knowledge is stored** | Pre-compiled markdown pages with cross-references already built | Raw chunks in a vector database |\n| **Finding answers** | Read index → follow links → synthesize | Embed query → similarity search → assemble |\n| **Query cost** | Low — synthesis already done | Higher — re-derives on every query |\n| **Infrastructure** | Just markdown files | Embedding model + vector DB + chunking pipeline |\n| **Maintenance** | Run a lint pass | Re-embed when content changes |\n| **Scale limit** | ~hundreds of pages (index file navigation) | Millions of documents |\n| **Setup time** | 5 minutes | Hours to days |\n| **Contradiction detection** | Built in — LLM flags on ingest | Manual |\n\n## Verdict\n\n**Under 1000 pages → LLM Wiki.** The index file is sufficient for navigation, token cost is low, setup is minimal, and the pre-compiled synthesis means every query benefits from everything ever read.\n\n**Over 100K pages → RAG.** The index file becomes too large to read, and embedding-based retrieval becomes more efficient than full-index scanning.\n\nThe sweet spot: run the wiki pattern for active research (where things are being added, synthesized, and connected), then export to a vector store if the collection grows beyond the index threshold.\n\n(Source: [[LLM Wiki Pattern]], [[Compounding Knowledge]])\n",
+        "backlinks": [
+          "article:getting-started",
+          "article:getting-started",
+          "article:questions/How does the LLM Wiki pattern work"
+        ]
+      }
+    },
+    {
+      "id": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "article",
+      "name": "Claude + Obsidian Ecosystem: Feature Matrix",
+      "filePath": "comparisons/claude-obsidian-ecosystem.md",
+      "summary": "- ✅ Has it - ❌ Missing - 🟡 Partial - ⭐ Best-in-class implementation",
+      "tags": [
+        "comparisons"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "cherry-picks",
+          "LLM Wiki Pattern",
+          "Andrej Karpathy",
+          "claude-obsidian-ecosystem-research",
+          "cherry-picks",
+          "cherry-picks"
+        ],
+        "category": "Comparisons",
+        "content": "---\ntype: comparison\ntitle: \"Claude + Obsidian Ecosystem: Feature Matrix\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - ecosystem\n  - competitive-analysis\n  - claude-obsidian\n  - cherry-picks\nstatus: current\nrelated:\n  - \"[[cherry-picks]]\"\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Andrej Karpathy]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# Claude + Obsidian Ecosystem: Feature Matrix\n\n> Researched 2026-04-08 | 16+ projects analyzed | See [[cherry-picks]] for action items\n\n---\n\n## Legend\n- ✅ Has it\n- ❌ Missing\n- 🟡 Partial\n- ⭐ Best-in-class implementation\n\n---\n\n## LLM Wiki Pattern Projects (Claude Code Skills)\n\n| Feature | claude-obsidian | claudesidian | llm-knowledge-bases | llm-wiki | obsidian-wiki | obsidian-claude-pkm |\n|---------|:-:|:-:|:-:|:-:|:-:|:-:|\n| /wiki setup & scaffold | ✅ | 🟡 `/init-bootstrap` | 🟡 `/kb-init` | ✅ | ✅ setup.sh | 🟡 `/onboard` |\n| Source ingestion | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ |\n| Wiki query | ✅ | ❌ | ✅ 3 depths | 🟡 | ✅ | ❌ |\n| Wiki lint | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |\n| /save conversation | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |\n| Autoresearch loop | ✅ | ❌ | 🟡 | ❌ | ❌ | ❌ |\n| Canvas / visual layer | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |\n| Hot cache | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |\n| **Delta tracking** | ❌ | ❌ | ❌ | ❌ | ✅⭐ | ❌ |\n| **Multi-depth query** | ❌ | ❌ | ✅⭐ | ❌ | ❌ | ❌ |\n| **URL ingestion** | ❌ | 🟡 firecrawl | ❌ | ✅ | ✅ | ❌ |\n| **Vision / image ingest** | ❌ | 🟡 gemini | ❌ | ❌ | ✅⭐ | ❌ |\n| **Auto-commit hooks** | ❌ | ❌ | ❌ | ✅ git | ❌ | ✅⭐ |\n| **Marp / slides output** | ❌ | ❌ | ✅⭐ | ✅ | ❌ | ❌ |\n| **Chart output** | ❌ | ❌ | ✅ matplotlib | ❌ | ❌ | ❌ |\n| **Hybrid search (BM25+vec)** | ❌ | ❌ | ❌ | ✅⭐ qmd | ❌ | ❌ |\n| **Goal cascade (PKM)** | ❌ | 🟡 PARA | ❌ | ❌ | ❌ | ✅⭐ |\n| **Daily/weekly review** | ❌ | 🟡 | ❌ | ❌ | ❌ | ✅⭐ |\n| **Adopt existing vault** | ❌ | ✅⭐ | ❌ | ❌ | ❌ | ✅⭐ |\n| **Multi-agent compat.** | ❌ | ❌ | ❌ | ❌ | ✅⭐ | ❌ |\n| **X/Twitter ingest** | ❌ | ❌ | ✅⭐ smaug | ❌ | ❌ | ❌ |\n| Marketplace install | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |\n| Public repo | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |\n\n---\n\n## Native Obsidian Plugins (Embedded UI)\n\n| Feature | Claudian | Nexus (claudesidian-mcp) | infio-copilot |\n|---------|:-:|:-:|:-:|\n| Sidebar chat in Obsidian | ✅ | ✅ | ✅ |\n| Inline edit w/ diff | ✅⭐ word-level | ✅ | ✅ |\n| Plan mode | ✅⭐ Shift+Tab | ❌ | ❌ |\n| @mention files/agents | ✅⭐ | ❌ | 🟡 |\n| MCP server support | ✅ | ✅⭐ external | ❌ |\n| Multi-tab conversations | ✅ | ❌ | ❌ |\n| Workspace memory | ❌ | ✅⭐ JSONL | ✅ workspaces |\n| Task management | ❌ | ✅⭐ | ❌ |\n| Semantic search | ❌ | ✅ | ✅⭐ local embed |\n| PDF → Markdown | ❌ | ✅ | ❌ |\n| Web page capture | ❌ | ✅ | ❌ |\n| Mobile support | ❌ | ✅⭐ | ❌ |\n| Obsidian Sync compatible | N/A | ✅⭐ | N/A |\n| Stars / popularity | ~200 est. | ~800 est. | ~300 est. |\n\n---\n\n## MCP Servers\n\n| Server | Key Differentiator | Requires |\n|--------|-------------------|----------|\n| obsidian-mcp-tools | Templater execution + SLSA attestation | Local REST API + Smart Connections |\n| obsidian-memory-mcp | AI memories as Markdown in graph view | Node 18+",
+        "backlinks": [
+          "article:concepts/cherry-picks",
+          "article:entities/Ar9av-obsidian-wiki",
+          "article:entities/Claudian-YishenTu",
+          "article:entities/Nexus-claudesidian-mcp",
+          "article:entities/ballred-obsidian-claude-pkm",
+          "article:entities/kepano-obsidian-skills",
+          "article:entities/rvk7895-llm-knowledge-bases",
+          "article:hot",
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:sources/claude-obsidian-ecosystem-research",
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:concepts/Agent Architecture Takeaways from OpenAI Agents SDK",
+      "type": "article",
+      "name": "Agent Architecture Takeaways from OpenAI Agents SDK",
+      "filePath": "concepts/Agent Architecture Takeaways from OpenAI Agents SDK.md",
+      "summary": "**Source**: OpenAI's Agents SDK documentation (developers.openai.com), reviewed April 2026 after Cameron Wolfe's X post. Our framework already covers the core concepts (agent definition, orchestrat...",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index"
+        ],
+        "category": "Concepts",
+        "content": "---\ntype: concept\ntitle: \"Agent Architecture Takeaways from OpenAI Agents SDK\"\ncreated: 2026-04-29\nupdated: 2026-04-29\ntags:\n  - agents\n  - architecture\n  - patterns\n  - openai\nstatus: developing\nrelated:\n  - \"[[index]]\"\nsources:\n  - \"OpenAI Agents SDK guide at developers.openai.com/api/docs/guides/agents\"\n  - \"Cameron Wolfe (@cwolferesearch) X post 2026-04-28\"\n---\n\n# Agent Architecture Takeaways from OpenAI Agents SDK\n\n**Source**: OpenAI's Agents SDK documentation (developers.openai.com), reviewed April 2026 after Cameron Wolfe's X post. Our framework already covers the core concepts (agent definition, orchestration, runtime loop, guardrails, state). These are the *genuinely interesting* architectural patterns worth stealing.\n\n---\n\n## 1. `agent.asTool()` — Manager-Style Bounded Delegation\n\nOpenAI distinguishes between **handoffs** (specialist takes over conversation ownership) and **agents as tools** (manager stays in control, calls specialist as a stateless bounded capability).\n\nOur `delegate_task` always spawns a full sovereign sub-agent session. We lack a clean \"call specialist, get answer, stay in control\" primitive for lightweight bounded queries where the manager retains full ownership of the conversation.\n\n**Why it matters**: Not every specialist call needs a full session. Some are just \"ask X, get Y back\" — more like a function call than a delegation. A lightweight `agent.asTool()` equivalent would reduce overhead for bounded queries.\n\n---\n\n## 2. Four-Tier State Strategy Taxonomy\n\nOpenAI explicitly categorizes conversation state into four strategies:\n\n| Strategy | Where state lives | Continuation mechanism |\n|---|---|---|\n| `result.history` | Application-local | Replay full history each turn |\n| `session` | SDK-managed storage | Pass same session object |\n| `conversationId` | Server-managed (Conversations API) | Pass conversation ID + new turn only |\n| `previousResponseId` | Server-managed (Responses API) | Pass last response ID + new turn only |\n\nWe mix all of these without clear separation. Having explicit state strategies could clean up our state management architecture.\n\n**Why it matters**: Mixing local replay with server-managed state can duplicate context. Explicit strategy choice per conversation prevents this.\n\n---\n\n## 3. `lastAgent` Tracking After Handoffs\n\nAfter a delegation, OpenAI tracks which specialist should own the *next* turn via `lastAgent`. This enables \"sticky specialist\" behavior — once a user is routed to the billing agent, they stay with billing until explicitly handed back.\n\nWe don't persist delegation routing. After `delegate_task` completes, the result returns but no ownership state carries forward.\n\n**Why it matters**: For multi-turn specialist workflows, re-routing on every turn is wasteful and can lose context.\n\n---\n\n## 4. Interruptible Runs with Resumable State\n\nOpenAI's approval flows produce a serializable `state` snapshot when a run pauses for human review. The snapshot can be stored and the run resumed l",
+        "backlinks": []
+      }
+    },
+    {
+      "id": "article:concepts/Compounding Knowledge",
+      "type": "article",
+      "name": "Compounding Knowledge",
+      "filePath": "concepts/Compounding Knowledge.md",
+      "summary": "The central insight behind the [[LLM Wiki Pattern]]: knowledge in a wiki compounds like interest in a bank. Every source added, every question answered, every analysis filed makes the wiki more val...",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "Hot Cache",
+          "Andrej Karpathy",
+          "concepts/_index",
+          "LLM Wiki Pattern",
+          "LLM Wiki Pattern",
+          "Hot Cache",
+          "Andrej Karpathy"
+        ],
+        "category": "Concepts",
+        "content": "---\ntype: concept\ntitle: \"Compounding Knowledge\"\ncomplexity: basic\ndomain: knowledge-management\naliases:\n  - \"Knowledge Compounding\"\n  - \"Persistent Synthesis\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - concept\n  - knowledge-management\nstatus: mature\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Hot Cache]]\"\n  - \"[[Andrej Karpathy]]\"\n  - \"[[concepts/_index]]\"\nsources:\n---\n\n# Compounding Knowledge\n\nThe central insight behind the [[LLM Wiki Pattern]]: knowledge in a wiki compounds like interest in a bank. Every source added, every question answered, every analysis filed makes the wiki more valuable — not just by adding pages, but by enriching the connections between existing pages.\n\n---\n\n## Why Normal AI Chats Don't Compound\n\nIn a standard chat, knowledge is ephemeral. Each session starts fresh. Even if you upload the same documents repeatedly, the LLM re-derives the same insights from scratch. Nothing accumulates.\n\nThe same is true of most RAG systems: they index raw documents and retrieve chunks at query time. The retrieval gets the right fragments, but no synthesis is built up. Nothing is compiled. Ask the same complex question twice and you get the same assembly process twice.\n\n---\n\n## How Wiki Knowledge Compounds\n\nWhen a new source arrives, the LLM doesn't just index it. It integrates it:\n- Updates entity pages with new information\n- Flags contradictions with existing claims\n- Strengthens or challenges the evolving synthesis\n- Adds cross-references from the new source to existing pages and back\n\nThe cross-references are already there next time. The contradictions have already been flagged. The synthesis already reflects everything that was read.\n\n**The wiki is pre-compiled knowledge.** RAG re-compiles on every query.\n\n---\n\n## The Maintenance Problem\n\nWikis maintained by humans decay. The maintenance burden grows faster than the value — updating cross-references, keeping summaries current, noting when new data contradicts old claims. Humans abandon wikis because no one wants to do the bookkeeping.\n\nLLMs don't get bored. They don't forget to update a cross-reference. The cost of maintenance is near zero. This is the practical reason the wiki pattern works: the entity that's best at the tedious maintenance work is the same entity that reads and writes the wiki.\n\n---\n\n## In Practice\n\nOne X user turned 383 scattered files and over 100 meeting transcripts into a compact wiki and dropped token usage by 95% when querying with Claude. The drop came from two sources: better navigation (index + hot cache vs. full document search) and pre-compiled synthesis (no re-deriving the same insights from scratch).\n\n---\n\n## Connections\n\nSee [[LLM Wiki Pattern]] for the full architecture.\nSee [[Hot Cache]] for the session context mechanism.\nSee [[Andrej Karpathy]] for the origin of this framing.\n",
+        "backlinks": [
+          "article:comparisons/Wiki vs RAG",
+          "article:comparisons/Wiki vs RAG",
+          "article:concepts/Hot Cache",
+          "article:concepts/LLM Wiki Pattern",
+          "article:concepts/LLM Wiki Pattern",
+          "article:concepts/_index",
+          "article:concepts/_index",
+          "article:concepts/_index",
+          "article:entities/Andrej Karpathy",
+          "article:entities/Andrej Karpathy",
+          "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+          "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+          "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+          "article:meta/dashboard",
+          "article:overview",
+          "article:questions/How does the LLM Wiki pattern work",
+          "article:questions/How does the LLM Wiki pattern work"
+        ]
+      }
+    },
+    {
+      "id": "article:concepts/Hot Cache",
+      "type": "article",
+      "name": "Hot Cache",
+      "filePath": "concepts/Hot Cache.md",
+      "summary": "A ~500-word summary of the most recent context in the wiki vault. Stored in `wiki/hot.md`. Updated at the end of every session and after every significant ingest or query.",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "Compounding Knowledge",
+          "index",
+          "hot",
+          "concepts/_index",
+          "LLM Wiki Pattern",
+          "index"
+        ],
+        "category": "Concepts",
+        "content": "---\ntype: concept\ntitle: \"Hot Cache\"\ncomplexity: basic\ndomain: knowledge-management\naliases:\n  - \"hot.md\"\n  - \"Session Cache\"\n  - \"Context Cache\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - concept\n  - knowledge-management\n  - context\nstatus: mature\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Compounding Knowledge]]\"\n  - \"[[index]]\"\n  - \"[[hot]]\"\n  - \"[[concepts/_index]]\"\nsources:\n---\n\n# Hot Cache\n\nA ~500-word summary of the most recent context in the wiki vault. Stored in `wiki/hot.md`. Updated at the end of every session and after every significant ingest or query.\n\nThe hot cache exists to answer one question: \"where did we leave off?\" A new session reads `hot.md` first. If the answer is there, it skips crawling the rest of the wiki.\n\n---\n\n## What It Stores\n\n- What was most recently ingested or discussed\n- Key recent facts and takeaways\n- Pages recently created or updated\n- Active threads and open questions\n- What the user is currently focused on\n\n---\n\n## Format\n\n```markdown\n---\ntype: meta\ntitle: \"Hot Cache\"\nupdated: YYYY-MM-DDTHH:MM:SS\n---\n\n# Recent Context\n\n## Last Updated\nYYYY-MM-DD — [what happened]\n\n## Key Recent Facts\n- [Most important recent takeaway]\n- [Second]\n\n## Recent Changes\n- Created: new wiki pages from this ingest\n- Updated: existing pages with new connections\n- Flagged: contradictions between sources where found\n\n## Active Threads\n- User is researching [topic]\n- Open question: [thing being investigated]\n```\n\n---\n\n## Rules\n\n- Keep it under 500 words. It is a cache, not a journal.\n- Overwrite it completely each time. Not append-only.\n- One file. Not split by date.\n- Updated after every ingest, significant query, and at the end of each session.\n\n---\n\n## Why It Matters\n\nWithout the hot cache, every session starts cold: read the index (1000 tokens), read several domain sub-indexes, read several individual pages. With the hot cache, the first 500 tokens often have everything needed.\n\nIn practice, adding `hot.md` to an executive assistant vault dramatically reduces the token cost of session startup compared to crawling multiple wiki pages.\n\nThe hot cache is especially valuable in cross-project setups: another Claude Code project can point at this vault and read `hot.md` first to get recent context at minimal token cost.\n\n---\n\n## Connections\n\nThe hot cache is part of the [[LLM Wiki Pattern]] token discipline strategy. See [[index]] for how the broader navigation works.\n",
+        "backlinks": [
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/LLM Wiki Pattern",
+          "article:concepts/LLM Wiki Pattern",
+          "article:concepts/_index",
+          "article:concepts/_index",
+          "article:concepts/_index",
+          "article:overview",
+          "article:questions/How does the LLM Wiki pattern work",
+          "article:questions/How does the LLM Wiki pattern work"
+        ]
+      }
+    },
+    {
+      "id": "article:concepts/LLM Wiki Pattern",
+      "type": "article",
+      "name": "LLM Wiki Pattern",
+      "filePath": "concepts/LLM Wiki Pattern.md",
+      "summary": "A pattern for building persistent, compounding knowledge bases using LLMs. Originated by [[Andrej Karpathy]]. The key insight: instead of re-deriving knowledge from raw documents on every query (RA...",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "Hot Cache",
+          "Compounding Knowledge",
+          "Andrej Karpathy",
+          "index",
+          "concepts/_index",
+          "Andrej Karpathy",
+          "Compounding Knowledge",
+          "Hot Cache",
+          "Andrej Karpathy"
+        ],
+        "category": "Concepts",
+        "content": "---\ntype: concept\ntitle: \"LLM Wiki Pattern\"\ncomplexity: intermediate\ndomain: knowledge-management\naliases:\n  - \"LLM Knowledge Base\"\n  - \"Karpathy Wiki\"\n  - \"Persistent Wiki\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - concept\n  - knowledge-management\n  - llm\n  - obsidian\nstatus: mature\nrelated:\n  - \"[[Hot Cache]]\"\n  - \"[[Compounding Knowledge]]\"\n  - \"[[Andrej Karpathy]]\"\n  - \"[[index]]\"\n  - \"[[concepts/_index]]\"\nsources:\n---\n\n# LLM Wiki Pattern\n\nA pattern for building persistent, compounding knowledge bases using LLMs. Originated by [[Andrej Karpathy]]. The key insight: instead of re-deriving knowledge from raw documents on every query (RAG), the LLM incrementally builds and maintains a structured wiki that gets richer with every source added.\n\n---\n\n## The Core Idea\n\nMost AI knowledge tools work like RAG: index raw documents, retrieve chunks at query time, generate an answer. Nothing accumulates. Ask a question that needs five documents and the LLM reassembles fragments every time.\n\nThe wiki pattern is different. When a new source arrives, the LLM reads it, extracts what matters, and integrates it into the wiki: updating entity pages, noting contradictions, strengthening the synthesis. The cross-references are already there. The knowledge is compiled once and kept current.\n\n**The wiki is a persistent, compounding artifact.** The human curates sources and asks questions. The LLM writes and maintains everything.\n\n---\n\n## Three Layers\n\n```\n.raw/       Layer 1 — immutable source documents\nwiki/       Layer 2 — LLM-generated knowledge base\nCLAUDE.md   Layer 3 — schema that tells the LLM how to maintain it\n```\n\nThe LLM owns Layer 2 entirely. It creates pages, updates them when new sources arrive, maintains cross-references, and keeps everything consistent. The human reads; the LLM writes.\n\n---\n\n## Operations\n\n**Ingest** — drop a source into `.raw/`, tell the LLM to process it. The LLM reads the source, discusses key takeaways, writes a summary page, updates entity and concept pages, and logs the operation. One source typically touches 8-15 wiki pages.\n\n**Query** — ask a question. The LLM reads the index to find relevant pages, synthesizes an answer with citations. Good answers get filed back into the wiki.\n\n**Lint** — periodic health check. Find orphan pages, dead links, stale claims, missing cross-references.\n\n---\n\n## Index and Log\n\n**index.md** — content-oriented. A catalog of all pages with one-line summaries, organized by category. The LLM reads this first on every query to find relevant pages.\n\n**log.md** — chronological. Append-only record of every ingest, query, and lint pass. Parseable: `grep \"^## \\[\" log.md | head -10`\n\n---\n\n## Why It Works\n\nThe tedious part of maintaining a knowledge base is bookkeeping: updating cross-references, noting when new data contradicts old claims, keeping summaries current. Humans abandon wikis because the maintenance burden grows faster than the value. LLMs don't get bored. The wiki stays maintained because ",
+        "backlinks": [
+          "article:comparisons/Wiki vs RAG",
+          "article:comparisons/Wiki vs RAG",
+          "article:comparisons/Wiki vs RAG",
+          "article:comparisons/claude-obsidian-ecosystem",
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/Hot Cache",
+          "article:concepts/Hot Cache",
+          "article:concepts/_index",
+          "article:concepts/_index",
+          "article:concepts/_index",
+          "article:concepts/cherry-picks",
+          "article:entities/Andrej Karpathy",
+          "article:entities/Andrej Karpathy",
+          "article:entities/Andrej Karpathy",
+          "article:entities/Andrej Karpathy",
+          "article:entities/Ar9av-obsidian-wiki",
+          "article:entities/_index",
+          "article:entities/ballred-obsidian-claude-pkm",
+          "article:entities/kepano-obsidian-skills",
+          "article:entities/rvk7895-llm-knowledge-bases",
+          "article:getting-started",
+          "article:getting-started",
+          "article:meta/claude-obsidian-v1.2.0-release-session",
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:overview",
+          "article:overview",
+          "article:overview",
+          "article:questions/How does the LLM Wiki pattern work",
+          "article:questions/How does the LLM Wiki pattern work",
+          "article:questions/How does the LLM Wiki pattern work",
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:concepts/_index",
+      "type": "article",
+      "name": "Concepts Index",
+      "filePath": "concepts/_index.md",
+      "summary": "Navigation: [[index]] | [[entities/_index|Entities]] | [[sources/_index|Sources]]",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "dashboard",
+          "Wiki Map",
+          "Hot Cache",
+          "LLM Wiki Pattern",
+          "Compounding Knowledge",
+          "LLM Wiki Pattern",
+          "Hot Cache",
+          "Compounding Knowledge",
+          "index",
+          "entities/_index",
+          "sources/_index",
+          "LLM Wiki Pattern",
+          "Hot Cache",
+          "Compounding Knowledge"
+        ],
+        "category": null,
+        "content": "---\ntype: meta\ntitle: \"Concepts Index\"\nupdated: 2026-04-07\ntags:\n  - meta\n  - index\n  - concept\ndomain: knowledge-management\nstatus: evergreen\nrelated:\n  - \"[[index]]\"\n  - \"[[dashboard]]\"\n  - \"[[Wiki Map]]\"\n  - \"[[Hot Cache]]\"\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Compounding Knowledge]]\"\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Hot Cache]]\"\n  - \"[[Compounding Knowledge]]\"\n---\n\n# Concepts Index\n\nNavigation: [[index]] | [[entities/_index|Entities]] | [[sources/_index|Sources]]\n\nAll concept pages — ideas, patterns, and frameworks extracted from sources.\n\n---\n\n## Knowledge Management\n\n- [[LLM Wiki Pattern]] — the core architecture for persistent, compounding knowledge bases\n- [[Hot Cache]] — ~500-word session context file, updated after every ingest\n- [[Compounding Knowledge]] — why the wiki grows more valuable over time, unlike RAG\n\n---\n\n## Add new concepts here as they are extracted from sources.\n",
+        "backlinks": [
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/Hot Cache",
+          "article:concepts/LLM Wiki Pattern",
+          "article:entities/_index",
+          "article:meta/dashboard",
+          "article:sources/_index"
+        ]
+      }
+    },
+    {
+      "id": "article:concepts/android-reverse-engineering-skill",
+      "type": "article",
+      "name": "Android Reverse Engineering Skill",
+      "filePath": "concepts/android-reverse-engineering-skill.md",
+      "summary": "Hermes skill for decompiling and analyzing Android APKs, XAPKs, JARs, and AARs. Extracts HTTP API endpoints (Retrofit, OkHttp, Volley), traces call flows from UI to network layer, and produces stru...",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "cube-sandbox-research",
+          "nexusos-hypervisors",
+          "cube-sandbox-research"
+        ],
+        "category": null,
+        "content": "---\ntype: concept\ntitle: \"Android Reverse Engineering Skill\"\ncreated: 2026-04-22\nupdated: 2026-04-22\ntags:\n  - android\n  - reverse-engineering\n  - decompile\n  - APK\n  - jadx\n  - security\n  - skill\nstatus: current\nrelated:\n  - \"[[cube-sandbox-research]]\"\n  - \"[[nexusos-hypervisors]]\"\nsources:\n  - \"https://github.com/SimoneAvogadro/android-reverse-engineering-skill\"\n---\n\n# Android Reverse Engineering Skill\n\n> Adapted from [SimoneAvogadro/android-reverse-engineering-skill](https://github.com/SimoneAvogadro/android-reverse-engineering-skill) — 4.6k GitHub stars\n\n## Overview\n\nHermes skill for decompiling and analyzing Android APKs, XAPKs, JARs, and AARs. Extracts HTTP API endpoints (Retrofit, OkHttp, Volley), traces call flows from UI to network layer, and produces structured API documentation.\n\n## Skill Location\n\n```\n~/.hermes/skills/android-reverse-engineering/\n├── SKILL.md\n├── scripts/\n│   ├── check_deps.py     # Dependency checker\n│   ├── decompile.py       # Decompile APK/JAR/AAR\n│   ├── find_api_calls.py # API endpoint extractor\n│   └── install_dep.py     # Dependency installer\n└── references/\n    ├── setup-guide.md\n    ├── jadx-usage.md\n    ├── fernflower-usage.md\n    ├── api-extraction-patterns.md\n    └── call-flow-analysis.md\n```\n\n## Quick Start\n\n```bash\n# 1. Check dependencies\npython3 ~/.hermes/skills/android-reverse-engineering/scripts/check_deps.py\n\n# 2. Decompile\npython3 ~/.hermes/skills/android-reverse-engineering/scripts/decompile.py app.apk -o ./output\n\n# 3. Find API endpoints\npython3 ~/.hermes/skills/android-reverse-engineering/scripts/find_api_calls.py ./output/sources/\n```\n\n## Why It Matters for Libertaria / NexusOS\n\n- **Security auditing** — audit closed-source apps for security flaws, hardcoded secrets, insecure API endpoints\n- **API extraction** — reverse-engineer proprietary APIs without needing the provider's cooperation\n- **Competitive intelligence** — understand how competitors build their mobile stacks\n- **Supply chain analysis** — inspect third-party SDKs and libraries for malicious behavior\n- **NexusOS integration** — pairs with [[cube-sandbox-research]] for running untrusted APK analysis in isolated microVMs\n\n## Installed Dependencies\n\n| Tool | Status | Purpose |\n|------|--------|---------|\n| Java 26 | ✅ | Runtime |\n| jadx 1.5.0 | ✅ | Primary decompiler |\n| Vineflower | ⬜ | Better Java decompilation (optional) |\n| dex2jar | ⬜ | APK→JAR for Fernflower (optional) |\n| apktool | ⬜ | Resource decoding (optional) |\n| adb | ✅ | Pull APKs from devices (optional) |\n\n## Next Steps\n\n- [ ] Install Vineflower for better decompilation quality\n- [ ] Install dex2jar for Fernflower APK support\n- [ ] Test on a real APK (e.g., a Telegram APK)\n- [ ] Document a complete audit workflow in the wiki\n",
+        "backlinks": []
+      }
+    },
+    {
+      "id": "article:concepts/cherry-picks",
+      "type": "article",
+      "name": "Cherry-Picks: Feature Backlog",
+      "filePath": "concepts/cherry-picks.md",
+      "summary": "**Source**: ekadetov/llm-wiki, Ar9av/obsidian-wiki **What it is**: Pass a URL directly to ingest instead of a file path. Agent fetches the page, cleans it, saves to `.raw/`, then ingests. **Current...",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "claude-obsidian-ecosystem",
+          "LLM Wiki Pattern",
+          "claude-obsidian-ecosystem-research",
+          "wikilinks"
+        ],
+        "category": "Concepts",
+        "content": "---\ntype: concept\ntitle: \"Cherry-Picks: Feature Backlog from Ecosystem Research\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - backlog\n  - cherry-picks\n  - product-roadmap\n  - claude-obsidian\nstatus: current\nrelated:\n  - \"[[claude-obsidian-ecosystem]]\"\n  - \"[[LLM Wiki Pattern]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# Cherry-Picks: Feature Backlog\n\n> Sourced from ecosystem research 2026-04-08 | 16+ projects analyzed\n> Prioritized by: impact × implementation ease × uniqueness\n\n---\n\n## Tier 1 — Quick Wins (High Impact, Low Effort)\n\n### 1. URL Ingestion in /wiki-ingest\n**Source**: ekadetov/llm-wiki, Ar9av/obsidian-wiki\n**What it is**: Pass a URL directly to ingest instead of a file path. Agent fetches the page, cleans it, saves to `.raw/`, then ingests.\n**Current state**: Users must manually copy-paste web content.\n**How to add**: Detect `https://` prefix in ingest skill → WebFetch → save to `.raw/articles/` → proceed with normal ingest.\n**Bonus**: Pair with **defuddle** (kepano's web cleaner) for clean token-efficient extraction.\n\n### 2. Auto-Commit PostToolUse Hook\n**Source**: ballred/obsidian-claude-pkm, ekadetov/llm-wiki\n**What it is**: Every Write/Edit tool call in the vault triggers `git add -A && git commit -m \"auto: [filename] [timestamp]\"`.\n**Current state**: No auto-commit. Users must manually push.\n**How to add**: PostToolUse hook in hooks.json targeting Write + Edit tools, scoped to wiki/ directory.\n**Note**: Makes vault a proper version-controlled knowledge base automatically.\n\n### 3. defuddle Web Cleaning Skill\n**Source**: kepano/obsidian-skills\n**What it is**: A skill that wraps `defuddle-cli` — strips ads, nav, clutter from web pages before ingest. Reduces token usage ~40-60% on typical web articles.\n**How to add**: New `defuddle` sub-skill or reference in wiki-ingest. Requires `defuddle-cli` npm package.\n\n---\n\n## Tier 2 — Medium Effort, High Value\n\n### 4. Delta Tracking Manifest\n**Source**: Ar9av/obsidian-wiki\n**What it is**: `.raw/.manifest.json` tracking every ingested source — path, hash, timestamp, which wiki pages it produced. Re-ingest only processes new/changed files.\n**Current state**: Every `/wiki-ingest` call re-processes everything.\n**How to add**:\n  - On ingest: compute MD5 hash of source → check manifest → skip if unchanged\n  - On ingest: record `{path, hash, ingested_at, pages_created}` in manifest\n  - On update: re-process if hash changed, merge changes into existing pages\n\n### 5. Multi-Depth Query Modes\n**Source**: rvk7895/llm-knowledge-bases\n**What it is**: 3 query tiers in `/wiki-query`:\n  - **Quick** — hot.md + index.md only (~3 pages read)\n  - **Standard** — full wiki cross-reference + optional web search supplement\n  - **Deep** — parallel sub-agents, each researching a different angle\n**Current state**: One depth level.\n**How to add**: `/wiki-query quick <question>`, `/wiki-query deep <question>` flags in SKILL.md.\n\n### 6. /wiki-ingest Vision Support\n**Source**: Ar9av/obsidian-wiki\n**Wha",
+        "backlinks": [
+          "article:comparisons/claude-obsidian-ecosystem",
+          "article:comparisons/claude-obsidian-ecosystem",
+          "article:comparisons/claude-obsidian-ecosystem",
+          "article:entities/Ar9av-obsidian-wiki",
+          "article:entities/Claudian-YishenTu",
+          "article:entities/Nexus-claudesidian-mcp",
+          "article:entities/ballred-obsidian-claude-pkm",
+          "article:entities/kepano-obsidian-skills",
+          "article:entities/rvk7895-llm-knowledge-bases",
+          "article:hot",
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:sources/claude-obsidian-ecosystem-research",
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:concepts/cube-sandbox-research",
+      "type": "article",
+      "name": "CubeSandbox — Lightweight VM Sandboxes for AI Agents",
+      "filePath": "concepts/cube-sandbox-research.md",
+      "summary": "| Metric | CubeSandbox | Typical VM | Improvement | |--------|-------------|------------|-------------| | Cold start | <60ms | 2–30s | **up to 50× faster** | | RAM per instance | 5 MB | 256 MB+ | *...",
+      "tags": [
+        "concepts"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "nexusos-hypervisors",
+          "nexusos-kernels",
+          "nexusos-containers"
+        ],
+        "category": null,
+        "content": "---\ntype: concept\ntitle: \"CubeSandbox — Lightweight VM Sandboxes for AI Agents\"\ncreated: 2026-04-22\nupdated: 2026-04-22\ntags:\n  - research\n  - sandbox\n  - security\n  - ai-agents\n  - nexusos\n  - infrastructure\n  - virtualization\nstatus: current\nrelated:\n  - \"[[nexusos-hypervisors]]\"\n  - \"[[nexusos-kernels]]\"\n  - \"[[nexusos-containers]]\"\nsources:\n  - \"https://github.com/TencentCloud/CubeSandbox\"\n---\n\n# CubeSandbox — Lightweight VM Sandboxes for AI Agents\n\n> Instant, Concurrent, Secure & Lightweight Sandbox for AI Agents\n> ⭐ 1.8k · Active today · 115 forks\n\n---\n\n## What It Claims\n\n| Metric | CubeSandbox | Typical VM | Improvement |\n|--------|-------------|------------|-------------|\n| Cold start | <60ms | 2–30s | **up to 50× faster** |\n| RAM per instance | 5 MB | 256 MB+ | **50× lighter** |\n| Density | 2,000+ per server | 10–50 | **40× denser** |\n\n**Architecture:**\n- **CubeMaster** — orchestration layer (scheduling, lifecycle)\n- **CubeAPI** — API service (agent-facing interface)\n- **CubeNet** — networking (isolation + connectivity)\n- **MicroVM core** — KVM + RustVMM-based hypervisor\n\n---\n\n## Why It Matters for NexusOS / Libertaria\n\nLibertaria needs sovereign, self-hosted infrastructure that attracts developers and projects. A sandboxing layer that can:\n1. Run untrusted agent code **securely and isolated**\n2. Start/stop in **milliseconds** (not seconds)\n3. Scale to **thousands of concurrent agents** on commodity hardware\n\n…is a compelling differentiator. It makes NexusOS viable as a **platform** for AI agent deployments — not just a kernel/hypervisor.\n\n**Key selling points we could match or exceed:**\n- No cloud dependency — run entirely on Hetzner VPS\n- Hardware virtualization (KVM) — genuine security, not container escaping\n- Rust-based hypervisor core — memory safety, no C/C++ CVEs\n- Agent-native API — not just sysadmin tooling\n\n---\n\n## NexusOS Position\n\nWe already have:\n- **Hypervisors** — KVM-based, hardware virtualization\n- **Kernels** — custom/vanilla Linux kernels\n- **Containers** — isolation primitives\n\nWhat's missing for an agent sandbox product:\n1. **Fast snapshot/restore** — current VM boot is seconds, not ms\n2. **In-kernel page sharing** — KSM for memory deduplication (like CubeSandbox's 5MB/instance)\n3. **Agent-facing API** — REST/gRPC interface for spawning sandboxes\n4. **Network micro-segmentation** — per-sandbox virtual NICs with automatic cleanup\n5. **Quota/billing layer** — multi-tenant awareness (resource limits per user/project)\n\n---\n\n## Threat Model\n\nCubeSandbox uses **microVMs** (KVM + RustVMM). This is meaningfully more secure than:\n- Docker containers (shared kernel, breakout possible)\n- gVisor (still kernel-based, smaller attack surface but not hardware-isolated)\n\nRustVMM is the same tech underlying **Amazon Firecracker** (AWS Lambda's sandbox). Proven at scale.\n\n**For Libertaria:** A RustVMM-based sandbox layer means agents can run arbitrary code with nearbare-metal performance AND hardware isolation. This is what \"sovereign",
+        "backlinks": [
+          "article:concepts/android-reverse-engineering-skill",
+          "article:concepts/android-reverse-engineering-skill"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/Andrej Karpathy",
+      "type": "article",
+      "name": "Andrej Karpathy",
+      "filePath": "entities/Andrej Karpathy.md",
+      "summary": "AI researcher and educator. Former Director of AI at Tesla, founding member of OpenAI. Known for deep learning education (Neural Networks: Zero to Hero series, micrograd, nanoGPT) and for publishin...",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "LLM Wiki Pattern",
+          "Compounding Knowledge",
+          "entities/_index",
+          "LLM Wiki Pattern",
+          "LLM Wiki Pattern",
+          "Compounding Knowledge"
+        ],
+        "category": "Entities",
+        "content": "---\ntype: entity\ntitle: \"Andrej Karpathy\"\nentity_type: person\nrole: \"AI researcher, educator, founder\"\nfirst_mentioned: \"[[LLM Wiki Pattern]]\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - entity\n  - person\n  - ai-researcher\nstatus: mature\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Compounding Knowledge]]\"\n  - \"[[entities/_index]]\"\nsources:\n---\n\n# Andrej Karpathy\n\nAI researcher and educator. Former Director of AI at Tesla, founding member of OpenAI. Known for deep learning education (Neural Networks: Zero to Hero series, micrograd, nanoGPT) and for publishing practical AI patterns.\n\n---\n\n## Key Contributions to This Wiki\n\nKarpathy originated the [[LLM Wiki Pattern]] — the idea of using LLMs to build and maintain a persistent, compounding knowledge base rather than re-deriving knowledge from raw documents on every query.\n\nHe published the idea as an \"idea file\" — intentionally abstract, designed to be copy-pasted into a Claude Code or similar session and built out collaboratively. The claude-obsidian plugin is a production implementation of this pattern.\n\nHis framing: \"The wiki is a persistent, compounding artifact. The cross-references are already there. The contradictions have already been flagged. The synthesis already reflects everything you've read.\"\n\n---\n\n## Notable Quote\n\n\"I thought that I had to reach for fancy RAG, but the LLM has been pretty good at auto-maintaining index files and brief summaries of all documents and reads all the important related data fairly easily at this small scale.\"\n\n---\n\n## Connections\n\n- [[LLM Wiki Pattern]] — his core contribution to knowledge management\n- [[Compounding Knowledge]] — the central insight he articulated\n- claude-obsidian plugin — this repo is a production implementation of his pattern\n",
+        "backlinks": [
+          "article:comparisons/claude-obsidian-ecosystem",
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/Compounding Knowledge",
+          "article:concepts/LLM Wiki Pattern",
+          "article:concepts/LLM Wiki Pattern",
+          "article:concepts/LLM Wiki Pattern",
+          "article:entities/_index",
+          "article:entities/_index",
+          "article:entities/rvk7895-llm-knowledge-bases",
+          "article:overview",
+          "article:sources/_index"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/Ar9av-obsidian-wiki",
+      "type": "article",
+      "name": "Ar9av/obsidian-wiki",
+      "filePath": "entities/Ar9av-obsidian-wiki.md",
+      "summary": "**Type**: Claude Code plugin (skill-based) **URL**: https://github.com/Ar9av/obsidian-wiki **Pattern**: Karpathy LLM Wiki **Unique claim**: Works with any AI coding agent via `setup.sh`",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "cherry-picks",
+          "claude-obsidian-ecosystem",
+          "claude-obsidian-ecosystem-research",
+          "cherry-picks#4. Delta Tracking Manifest",
+          "cherry-picks#6. /wiki-ingest Vision Support",
+          "cherry-picks#9. Multi-Agent Compatibility (Cursor, Windsurf, Codex)",
+          "cherry-picks#13. Schema-Emergent Vault Mode"
+        ],
+        "category": "Entities",
+        "content": "---\ntype: entity\ntitle: \"Ar9av/obsidian-wiki\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - github-repo\n  - llm-wiki-pattern\n  - multi-agent\nstatus: current\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[cherry-picks]]\"\n  - \"[[claude-obsidian-ecosystem]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# Ar9av/obsidian-wiki\n\n**Type**: Claude Code plugin (skill-based)\n**URL**: https://github.com/Ar9av/obsidian-wiki\n**Pattern**: Karpathy LLM Wiki\n**Unique claim**: Works with any AI coding agent via `setup.sh`\n\n## What It Does\n\nFramework for AI agents to build and maintain an Obsidian wiki using the Karpathy LLM Wiki pattern. The key differentiator: a single `setup.sh` deploys the skills to 7 different agents simultaneously.\n\n## Agent Compatibility Matrix\n\n| Agent | Bootstrap | Skills Dir |\n|-------|-----------|-----------|\n| Claude Code | CLAUDE.md | `.claude/skills/` |\n| Cursor | `.cursor/rules/obsidian-wiki.mdc` | `.cursor/skills/` |\n| Windsurf | `.windsurf/rules/` | `.windsurf/skills/` |\n| Codex (OpenAI) | AGENTS.md | `~/.codex/skills/` |\n| Gemini/Antigravity | GEMINI.md | `~/.gemini/antigravity/skills/` |\n| OpenClaw | AGENTS.md | `.agents/skills/` |\n| GitHub Copilot | `.github/copilot-instructions.md` | — |\n\n## Key Innovations\n\n### Delta Tracking Manifest\n`.manifest.json` tracks every ingested source: path, hash, timestamp, which wiki pages produced. Only processes new/changed files. Solves the \"re-ingest everything\" problem.\n\n### 4-Stage Pipeline\n1. **Ingest** — reads source (PDF, JSONL, text, conversation exports, images)\n2. **Extract** — pulls concepts, entities, claims, relationships, open questions\n3. **Resolve** — merges new knowledge against existing wiki (no duplication)\n4. **Schema** — structure emerges from sources, not predefined\n\n### Vision Support\nImages, screenshots, whiteboard photos ingestable with vision-capable model. Each page gets 1-2 sentence `summary:` in frontmatter for preview without opening.\n\n## Cherry-Picks for claude-obsidian\n\n- [[cherry-picks#4. Delta Tracking Manifest]]\n- [[cherry-picks#6. /wiki-ingest Vision Support]]\n- [[cherry-picks#9. Multi-Agent Compatibility (Cursor, Windsurf, Codex)]]\n- [[cherry-picks#13. Schema-Emergent Vault Mode]]\n",
+        "backlinks": [
+          "article:hot",
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/Claudian-YishenTu",
+      "type": "article",
+      "name": "Claudian (YishenTu/claudian)",
+      "filePath": "entities/Claudian-YishenTu.md",
+      "summary": "**Type**: Native Obsidian plugin (TypeScript, embedded Claude Code/Codex) **URL**: https://github.com/YishenTu/claudian **Install**: BRAT or manual (not yet in community store)",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "cherry-picks",
+          "claude-obsidian-ecosystem",
+          "claude-obsidian-ecosystem-research"
+        ],
+        "category": "Entities",
+        "content": "---\ntype: entity\ntitle: \"Claudian (YishenTu/claudian)\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - github-repo\n  - native-obsidian-plugin\n  - embedded-ai\nstatus: current\nrelated:\n  - \"[[cherry-picks]]\"\n  - \"[[claude-obsidian-ecosystem]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# Claudian (YishenTu/claudian)\n\n**Type**: Native Obsidian plugin (TypeScript, embedded Claude Code/Codex)\n**URL**: https://github.com/YishenTu/claudian\n**Install**: BRAT or manual (not yet in community store)\n\n## What It Does\n\nEmbeds Claude Code (or Codex CLI) directly inside Obsidian as a sidebar chat. The vault becomes the agent's working directory — all Claude Code tools work natively inside Obsidian.\n\n## Key Features\n\n### Inline Edit with Word-Level Diff\nSelect text in a note + hotkey → Claude proposes edit with word-level diff preview → one-click apply. Best-in-class inline editing in the Obsidian AI ecosystem.\n\n### Plan Mode (Shift+Tab)\nAgent explores and designs before implementing. Presents a plan for approval before any file changes. Mirrors Claude Code's own plan mode.\n\n### @mention System\nType `@` to reference:\n- Vault files\n- Sub-agents\n- MCP servers\n- Files in external directories (outside vault)\n\n### Instruction Mode (#)\nAdd refined custom instructions directly from chat input — persisted for the session.\n\n### MCP Server Integration\nConnect external tools via stdio, SSE, or HTTP. Claude manages vault MCP in-app; Codex uses CLI-managed config.\n\n### Multi-Tab Conversations\nMultiple chat tabs, conversation history, fork, resume, compact mode.\n\n## Privacy\n- No telemetry\n- Settings stored in `vault/.claudian/`\n- Claude files in `vault/.claude/`\n- Transcripts in `~/.claude/projects/`\n\n## Relevance to claude-obsidian\nClaudian is a native plugin (different category) but its Plan Mode, @mention, and inline edit patterns could inspire new features in claude-obsidian skills — particularly for the canvas and wiki-query workflows.\n",
+        "backlinks": [
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/Nexus-claudesidian-mcp",
+      "type": "article",
+      "name": "Nexus (formerly Claudesidian MCP)",
+      "filePath": "entities/Nexus-claudesidian-mcp.md",
+      "summary": "**Type**: Native Obsidian plugin + MCP bridge **URL**: https://github.com/ProfSynapse/claudesidian-mcp **Current name**: Nexus MCP for Obsidian **Install**: `.obsidian/plugins/nexus/`",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "cherry-picks",
+          "claude-obsidian-ecosystem",
+          "claude-obsidian-ecosystem-research",
+          "cherry-picks#11. obsidian-memory-mcp Integration"
+        ],
+        "category": "Entities",
+        "content": "---\ntype: entity\ntitle: \"Nexus (ProfSynapse/claudesidian-mcp)\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - github-repo\n  - obsidian-plugin\n  - mcp-server\n  - native-plugin\nstatus: current\nrelated:\n  - \"[[cherry-picks]]\"\n  - \"[[claude-obsidian-ecosystem]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# Nexus (formerly Claudesidian MCP)\n\n**Type**: Native Obsidian plugin + MCP bridge\n**URL**: https://github.com/ProfSynapse/claudesidian-mcp\n**Current name**: Nexus MCP for Obsidian\n**Install**: `.obsidian/plugins/nexus/`\n\n## What It Does\n\nFull Obsidian plugin with two modes:\n1. **Native chat inside Obsidian** — connect any AI provider\n2. **MCP bridge** — expose vault to Claude Desktop, Claude Code, Codex CLI, Gemini CLI, Cursor, Cline\n\n## Key Features\n\n- **Workspace memory** — persistent context across sessions stored as JSONL, automatically included in Obsidian Sync\n- **Task management** — projects, tasks, blockers, dependencies tracked within vault\n- **Semantic search** — search notes + past conversations by meaning\n- **Inline editing** — edit selected text in notes\n- **PDF + audio → Markdown** — conversion on right-click or auto-on-add\n- **Web page capture** — open URL in Obsidian, save as Markdown/PNG/PDF\n- **Mobile support** — native chat works on iOS/Android\n- **Two-tool architecture** — dedicated tools for read vs write actions\n\n## Storage Architecture\n\nData stored as JSONL files in `.obsidian/plugins/nexus/data/`. This is included in Obsidian Sync automatically (unlike the `.nexus/` folder of v1). SQLite cache is local-only, rebuilt from JSONL on each device.\n\n## Relevance to claude-obsidian\n\nNexus is in a different category — it's a native TypeScript Obsidian plugin, not a Claude Code skill plugin. The two don't compete directly, but its workspace memory and task management patterns are cherry-pickable.\n\n## Cherry-Picks for claude-obsidian\n\n- [[cherry-picks#11. obsidian-memory-mcp Integration]] (different implementation, same concept)\n",
+        "backlinks": [
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/_index",
+      "type": "article",
+      "name": "Entities Index",
+      "filePath": "entities/_index.md",
+      "summary": "Navigation: [[index]] | [[concepts/_index|Concepts]] | [[sources/_index|Sources]]",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "Andrej Karpathy",
+          "hot",
+          "LLM Wiki Pattern",
+          "index",
+          "concepts/_index",
+          "sources/_index",
+          "Andrej Karpathy"
+        ],
+        "category": null,
+        "content": "---\ntype: meta\ntitle: \"Entities Index\"\nupdated: 2026-04-07\ntags:\n  - meta\n  - index\n  - entity\nstatus: evergreen\nrelated:\n  - \"[[index]]\"\n  - \"[[Andrej Karpathy]]\"\n  - \"[[hot]]\"\n  - \"[[LLM Wiki Pattern]]\"\n---\n\n# Entities Index\n\nNavigation: [[index]] | [[concepts/_index|Concepts]] | [[sources/_index|Sources]]\n\nAll entity pages — people, organizations, products, and tools.\n\n---\n\n## People\n\n- [[Andrej Karpathy]] — AI researcher, educator; originated the LLM Wiki pattern\n\n---\n\n## Organizations\n\n<!-- Add organization pages here -->\n\n---\n\n## Products & Tools\n\n<!-- Add tool and product pages here -->\n\n---\n\n## Add new entities here as they are identified during ingests.\n",
+        "backlinks": [
+          "article:concepts/_index",
+          "article:entities/Andrej Karpathy",
+          "article:sources/_index",
+          "article:sources/_index"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/ballred-obsidian-claude-pkm",
+      "type": "article",
+      "name": "ballred/obsidian-claude-pkm",
+      "filePath": "entities/ballred-obsidian-claude-pkm.md",
+      "summary": "**Type**: Claude Code plugin (skill-based PKM system) **URL**: https://github.com/ballred/obsidian-claude-pkm **Version**: 3.1 **Tagline**: \"Not another PKM starter kit. An execution system.\"",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "cherry-picks",
+          "claude-obsidian-ecosystem",
+          "claude-obsidian-ecosystem-research",
+          "cherry-picks#2. Auto-Commit PostToolUse Hook",
+          "cherry-picks#7. /adopt — Import Existing Vault",
+          "cherry-picks#8. Productivity Wrapper (Daily/Weekly Reviews)"
+        ],
+        "category": "Entities",
+        "content": "---\ntype: entity\ntitle: \"ballred/obsidian-claude-pkm\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - github-repo\n  - llm-wiki-pattern\n  - pkm\n  - productivity\nstatus: current\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[cherry-picks]]\"\n  - \"[[claude-obsidian-ecosystem]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# ballred/obsidian-claude-pkm\n\n**Type**: Claude Code plugin (skill-based PKM system)\n**URL**: https://github.com/ballred/obsidian-claude-pkm\n**Version**: 3.1\n**Tagline**: \"Not another PKM starter kit. An execution system.\"\n\n## What It Does\n\nConnects a 3-year vision cascade to daily task execution, using Claude as an accountability partner. Every layer is linked — daily notes surface the weekly ONE Big Thing, which links to active projects, which link to yearly goals.\n\n## Goal Cascade\n\n```\n3-Year Vision → Yearly Goals → Projects → Monthly Goals → Weekly Review → Daily Tasks\n```\n\nEach layer has a dedicated skill: `/goal-tracking`, `/project`, `/monthly`, `/weekly`, `/daily`, `/review`.\n\n## Key Innovations\n\n### Auto-Commit via PostToolUse Hook\nEvery Write/Edit tool call triggers `git add -A && git commit` automatically. Vault is always versioned.\n\n### /adopt Command\nScans an existing Obsidian vault, detects its organization method (PARA, Zettelkasten, LYT, plain folders), maps folders interactively to the PKM layers, generates config files. Non-destructive.\n\n### 4 Specialized Agents with Memory\n- `goal-aligner` — audits activity vs. stated goals, flags misalignment\n- `weekly-reviewer` — facilitates 3-phase weekly review, learns reflection style\n- `note-organizer` — fixes broken links, consolidates duplicates\n- `inbox-processor` — GTD-style inbox processing\n\nUses `memory: project` so agents remember patterns across sessions.\n\n### Productivity Coach Output Style\n`/output-style coach` transforms Claude into an accountability partner — challenges assumptions, asks powerful questions, points out goal-action misalignment.\n\n## Architecture\n\nZero dependencies (bash + markdown only). Path-specific rules loaded contextually. Session init surfaces ONE Big Thing, active project count, days since last review.\n\n## Cherry-Picks for claude-obsidian\n\n- [[cherry-picks#2. Auto-Commit PostToolUse Hook]]\n- [[cherry-picks#7. /adopt — Import Existing Vault]]\n- [[cherry-picks#8. Productivity Wrapper (Daily/Weekly Reviews)]]\n",
+        "backlinks": [
+          "article:hot",
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/kepano-obsidian-skills",
+      "type": "article",
+      "name": "kepano/obsidian-skills",
+      "filePath": "entities/kepano-obsidian-skills.md",
+      "summary": "**Type**: Agent Skills (Agent Skills standard) **URL**: https://github.com/kepano/obsidian-skills **Author**: **Linus Kepano** — creator of Obsidian + Minimal theme **Install**: `/plugin marketplac...",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "cherry-picks",
+          "claude-obsidian-ecosystem",
+          "claude-obsidian-ecosystem-research",
+          "cherry-picks#1. URL Ingestion in /wiki-ingest",
+          "cherry-picks#3. defuddle Web Cleaning Skill",
+          "cherry-picks#12. obsidian-bases Skill (from kepano)",
+          "cherry-picks#9. Multi-Agent Compatibility"
+        ],
+        "category": "Entities",
+        "content": "---\ntype: entity\ntitle: \"kepano/obsidian-skills\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - github-repo\n  - official\n  - agent-skills\n  - obsidian-creator\nstatus: current\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[cherry-picks]]\"\n  - \"[[claude-obsidian-ecosystem]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# kepano/obsidian-skills\n\n**Type**: Agent Skills (Agent Skills standard)\n**URL**: https://github.com/kepano/obsidian-skills\n**Author**: **Linus Kepano** — creator of Obsidian + Minimal theme\n**Install**: `/plugin marketplace add kepano/obsidian-skills`\n\n## Why This Matters\n\nThis repo is from the creator of Obsidian. It:\n1. Validates that the Agent Skills standard is the right format for Obsidian AI tools\n2. Provides the canonical reference for how to teach Claude about Obsidian-specific syntax\n3. Covers Obsidian Bases — a new core Obsidian feature that no other AI project supports yet\n\n## Skills\n\n| Skill | What It Teaches Claude |\n|-------|----------------------|\n| `obsidian-markdown` | Full Obsidian Flavored Markdown: wikilinks, embeds, callouts, properties, tags |\n| `obsidian-bases` | Obsidian Bases (.base files): views, filters, formulas, summaries |\n| `json-canvas` | JSON Canvas spec: nodes, edges, groups, connections |\n| `obsidian-cli` | Vault management, plugin/theme dev via Obsidian CLI |\n| `defuddle` | Extract clean Markdown from web pages — removes ads, nav, clutter |\n\n## defuddle\n\nThe `defuddle` skill wraps `defuddle-cli`. When ingesting web content, running defuddle first:\n- Strips ads, navigation, footers\n- Reduces token usage ~40-60% on typical web pages\n- Produces cleaner Markdown that fits better in context window\n\nThis is a direct cherry-pick for claude-obsidian's ingest pipeline.\n\n## Multi-Platform\n\nWorks with Claude Code, Codex CLI, and OpenCode out of the box.\n\n## Cherry-Picks for claude-obsidian\n\n- [[cherry-picks#1. URL Ingestion in /wiki-ingest]] (pair with defuddle)\n- [[cherry-picks#3. defuddle Web Cleaning Skill]]\n- [[cherry-picks#12. obsidian-bases Skill (from kepano)]]\n- [[cherry-picks#9. Multi-Agent Compatibility]] (format already compatible)\n",
+        "backlinks": [
+          "article:hot",
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:entities/rvk7895-llm-knowledge-bases",
+      "type": "article",
+      "name": "rvk7895/llm-knowledge-bases",
+      "filePath": "entities/rvk7895-llm-knowledge-bases.md",
+      "summary": "**Type**: Claude Code plugin (Marketplace) **URL**: https://github.com/rvk7895/llm-knowledge-bases **Install**: `/plugin marketplace add rvk7895/llm-knowledge-bases`",
+      "tags": [
+        "entities"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "cherry-picks",
+          "claude-obsidian-ecosystem",
+          "Andrej Karpathy",
+          "claude-obsidian-ecosystem-research",
+          "cherry-picks#5. Multi-Depth Query Modes",
+          "cherry-picks#10. Marp Presentation Output"
+        ],
+        "category": "Entities",
+        "content": "---\ntype: entity\ntitle: \"rvk7895/llm-knowledge-bases\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - github-repo\n  - llm-wiki-pattern\n  - deep-research\nstatus: current\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[cherry-picks]]\"\n  - \"[[claude-obsidian-ecosystem]]\"\n  - \"[[Andrej Karpathy]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# rvk7895/llm-knowledge-bases\n\n**Type**: Claude Code plugin (Marketplace)\n**URL**: https://github.com/rvk7895/llm-knowledge-bases\n**Install**: `/plugin marketplace add rvk7895/llm-knowledge-bases`\n\n## What It Does\n\nTurns raw research material into an LLM-maintained Obsidian wiki with multi-depth querying and rich output formats. Adds a deep research pipeline with parallel agents on top of the Karpathy pattern.\n\n## Key Innovations\n\n### 3-Depth Query System\n- **Quick** — answers from wiki indexes and summaries only (minimal reads)\n- **Standard** — cross-references full wiki, supplements with web search\n- **Deep** — multi-agent parallel web search pipeline\n\n### Output Formats\nBeyond Markdown: Marp slides, matplotlib charts. All outputs saved to `output/` and optionally filed back into wiki.\n\n### Skills Set\n| Skill | Purpose |\n|-------|---------|\n| `/kb-init` | One-time setup |\n| `/kb compile` | Raw → wiki |\n| `/kb query` | Query with depth |\n| `/kb lint` | Health check |\n| `/kb evolve` | Maintenance pass |\n| `/research <topic>` | Structured research outline |\n| `/research-deep` | Parallel agents per outline item |\n| `/research-report` | Compile deep results → Markdown |\n\n### X/Twitter Integration\nVia Smaug tool (`npm install -g @steipete/bird`). Ingests tweets, threads, bookmarks from X/Twitter by pasting URL. Uses session cookies (read-only, personal use).\n\n## Attribution\nBuilt on Karpathy pattern + Weizhena's Deep Research skills adapted for the research pipeline.\n\n## Cherry-Picks for claude-obsidian\n\n- [[cherry-picks#5. Multi-Depth Query Modes]]\n- [[cherry-picks#10. Marp Presentation Output]]\n",
+        "backlinks": [
+          "article:hot",
+          "article:sources/claude-obsidian-ecosystem-research"
+        ]
+      }
+    },
+    {
+      "id": "article:getting-started",
+      "type": "article",
+      "name": "Getting Started with claude-obsidian",
+      "filePath": "getting-started.md",
+      "summary": "Welcome. This vault is your compounding knowledge base — a persistent second brain built with Claude and Obsidian.",
+      "tags": [],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "overview",
+          "LLM Wiki Pattern",
+          "Wiki vs RAG",
+          "Wiki Map",
+          "Wiki Map",
+          "index",
+          "overview",
+          "LLM Wiki Pattern",
+          "Wiki vs RAG",
+          "dashboard"
+        ],
+        "category": null,
+        "content": "---\ntype: meta\ntitle: \"Getting Started\"\nupdated: 2026-04-07\ntags:\n  - meta\n  - onboarding\nstatus: evergreen\nrelated:\n  - \"[[index]]\"\n  - \"[[overview]]\"\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Wiki vs RAG]]\"\n  - \"[[Wiki Map]]\"\n---\n\n# Getting Started with claude-obsidian\n\nWelcome. This vault is your compounding knowledge base — a persistent second brain built with Claude and Obsidian.\n\nEvery source you add gets processed into 8–15 cross-referenced wiki pages. Every question you ask pulls from everything that's been ingested. Knowledge compounds like interest.\n\n---\n\n## Three-Step Quick Start\n\n### 1. Drop a source\n\nPut any document into the `.raw/` folder:\n- PDFs, markdown files, transcripts, articles\n- Or paste a URL and ask Claude to fetch it\n\n### 2. Ingest it\n\nTell Claude in any Claude Code session:\n\n```\ningest [filename]\n```\n\nClaude reads the source, creates 8–15 wiki pages under `wiki/`, cross-references everything, and updates `wiki/index.md`, `wiki/log.md`, and `wiki/hot.md`.\n\n### 3. Ask questions\n\n```\nwhat do you know about [topic]?\n```\n\nClaude reads the hot cache, scans the index, drills into relevant pages, and gives you a synthesized answer — citing specific wiki pages, not training data.\n\n---\n\n## How the Hot Cache Works\n\n`wiki/hot.md` is a ~500-word summary of recent vault context. It loads automatically at the start of every session (via the SessionStart hook).\n\nYou don't need to recap. Claude starts every session knowing what you've been working on.\n\nUpdate it manually at any time: `update hot cache`\n\n---\n\n## Your First Ingest — Walkthrough\n\n1. Create a file in `.raw/` — copy a transcript, paste an article, or save a PDF\n2. Open Claude Code in this vault folder\n3. Type: `ingest [your-filename]`\n4. Watch the wiki grow — Claude will report which pages it created\n5. Open `wiki/index.md` — you'll see the new pages listed\n6. Open Graph View in Obsidian — a new cluster of connected nodes appears\n\nAfter 3–5 ingests, the graph starts to look like a real knowledge network. Cross-references emerge automatically.\n\n---\n\n## Key Commands\n\n| You say | Claude does |\n|---------|-------------|\n| `ingest [file]` | Creates 8–15 wiki pages from a source |\n| `what do you know about X?` | Queries the wiki, cites pages |\n| `/save` | Files this conversation as a wiki note |\n| `/autoresearch [topic]` | Searches the web, ingests results autonomously |\n| `lint the wiki` | Health check — finds orphans, gaps, stale links |\n| `update hot cache` | Refreshes the session context summary |\n\n---\n\n## Navigate the Vault\n\n- **[[Wiki Map]]** — visual Fibonacci graph of all wiki pages\n- **[[index]]** — master catalog, all pages by type\n- **[[overview]]** — executive summary of vault contents\n- **[[LLM Wiki Pattern]]** — the pattern this vault is built on\n- **[[Wiki vs RAG]]** — why a wiki beats RAG at human scale\n- **[[dashboard]]** — live Dataview queries (requires Dataview plugin)\n\n---\n\n*Built on the [LLM Wiki pattern](https://github.com/karpathy) by Andrej Karpathy.*\n",
+        "backlinks": [
+          "article:hot",
+          "article:meta/claude-obsidian-v1.2.0-release-session",
+          "article:meta/full-audit-and-system-setup-session"
+        ]
+      }
+    },
+    {
+      "id": "article:hot",
+      "type": "article",
+      "name": "Recent Context",
+      "filePath": "hot.md",
+      "summary": "Navigation: [[index]] | [[log]] | [[overview]]",
+      "tags": [],
+      "complexity": "complex",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "log",
+          "Wiki Map",
+          "getting-started",
+          "claude-obsidian-v1.4-release-session",
+          "index",
+          "log",
+          "overview",
+          "claude-obsidian-v1.4-release-session",
+          "claude-obsidian-ecosystem",
+          "cherry-picks",
+          "Ar9av-obsidian-wiki",
+          "rvk7895-llm-knowledge-bases",
+          "ballred-obsidian-claude-pkm",
+          "kepano-obsidian-skills",
+          "2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+          "2026-05-01-exitarian-way-of-building-technology-and-languages",
+          "2026-04-30-sovereign-virtue-realism-philosophical-stack",
+          "2026-04-30-existentialism-as-detox-not-foundation",
+          "2026-04-30-objectivism-as-solvent-not-operating-system",
+          "2026-04-30-dao-themes-for-libertaria-rubric",
+          "2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership"
+        ],
+        "category": null,
+        "content": "---\ntype: meta\ntitle: \"Hot Cache\"\nupdated: 2026-04-08T19:00:00\ntags:\n  - meta\n  - hot-cache\nstatus: evergreen\nrelated:\n  - \"[[index]]\"\n  - \"[[log]]\"\n  - \"[[Wiki Map]]\"\n  - \"[[getting-started]]\"\n  - \"[[claude-obsidian-v1.4-release-session]]\"\n---\n\n# Recent Context\n\nNavigation: [[index]] | [[log]] | [[overview]]\n\n## Last Updated\n2026-05-01: Added writing-backlog note on Wilber fourfold axis for Exitarian civilizational design, with anti-ranking and anti-cult guardrails.\n2026-05-01: Added Exitarian engineering doctrine note on how to build technology and languages (exit-first, explicit power, host sovereignty, institutional mortality).\n2026-04-30: Added Sovereign Virtue Realism / Covenantal stack writing backlog note for Libertaria doctrinal architecture.\n2026-04-30: Added Existentialism-for-Libertaria writing backlog note (detox vs foundation framing).\n2026-04-30: Added Objectivism-for-Libertaria writing backlog note (solvent vs operating system synthesis).\n2026-04-30: Added Dao-to-Libertaria future writing rubric note with 10 mapped themes and expansion template.\n2026-04-30: Added later-topic writing seed on Exitarianism, sex slavery framing, and covenant-vs-ownership doctrine.\n\n## Plugin State\n- **Version**: 1.4.1 (installed, enabled, user scope)\n- **Install ID**: `claude-obsidian@claude-obsidian-marketplace`\n- **Releases**: v1.1, v1.4.0, v1.4.1 on GitHub\n- **Skills**: 10 (wiki, wiki-ingest, wiki-query, wiki-lint, save, autoresearch, canvas, defuddle, obsidian-bases, obsidian-markdown)\n- **Hooks**: 4 (SessionStart, PostCompact, PostToolUse, Stop)\n- **Multi-agent**: bootstrap files for Codex, OpenCode, Gemini, Cursor, Windsurf, GitHub Copilot\n\n## Install Command (Correct Two-Step Flow)\n```bash\nclaude plugin marketplace add AgriciDaniel/claude-obsidian\nclaude plugin install claude-obsidian@claude-obsidian-marketplace\n```\n\nThere is no `claude plugin install github:owner/repo` shortcut. Both steps are required. Full session note: [[claude-obsidian-v1.4-release-session]].\n\n## Recent Release Cycle (v1.1 → v1.4.1)\n- **v1.1**: URL ingestion, vision ingestion, delta tracking manifest, 3 new skills (defuddle, obsidian-bases, obsidian-markdown), multi-depth query modes, PostToolUse auto-commit, removed invalid `allowed-tools` frontmatter field\n- **v1.4.0**: Dataview to Bases migration (new `wiki/meta/dashboard.base`), Canvas JSON 1.0 spec completeness, PostCompact hook, Obsidian CLI MCP option, 6 multi-agent bootstrap files, 249 em dashes scrubbed, security git history rewrite to remove placeholder email\n- **v1.4.1**: hotfix for wrong plugin install command syntax in README and install-guide.md\n\n## Key Lessons (Recent)\n1. Plugin install is always two-step: `marketplace add` then `install plugin@marketplace`\n2. `allowed-tools` is NOT valid in skill frontmatter. Use only `name` and `description` (kepano convention).\n3. Obsidian Bases uses `filters/views/formulas`, not Dataview `from/where`\n4. Canvas edges have asymmetric defaults: `fromEnd=\"none\"`, `toEnd=\"arr",
+        "backlinks": [
+          "article:concepts/Hot Cache",
+          "article:entities/_index",
+          "article:meta/dashboard",
+          "article:meta/program",
+          "article:overview",
+          "article:overview"
+        ]
+      }
+    },
+    {
+      "id": "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+      "type": "article",
+      "name": "The Exitarian Way of Building Technology and Languages",
+      "filePath": "libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages.md",
+      "summary": "Exitarianism is not a religion and not a moral lecture. It is a **mechanical doctrine of exit**.",
+      "tags": [
+        "domains",
+        "libertaria/concepts"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "2026-04-30-dao-themes-for-libertaria-rubric",
+          "2026-04-30-sovereign-virtue-realism-philosophical-stack",
+          "Compounding Knowledge"
+        ],
+        "category": "Domains",
+        "content": "---\ntype: concept\ntitle: \"The Exitarian Way of Building Technology and Languages\"\ncreated: 2026-05-01\nupdated: 2026-05-01\ntags:\n  - exitarianism\n  - libertaria\n  - technology\n  - language-design\n  - governance\nstatus: developing\nrelated:\n  - \"[[2026-04-30-dao-themes-for-libertaria-rubric]]\"\n  - \"[[2026-04-30-sovereign-virtue-realism-philosophical-stack]]\"\n  - \"[[Compounding Knowledge]]\"\n---\n\n# The Exitarian Way of Building Technology and Languages\n\n## Core thesis\n\nExitarianism is not a religion and not a moral lecture. It is a **mechanical doctrine of exit**.\n\nTechnology and language design are successful in Exitarian terms when they reduce coercive dependency and increase reversible sovereignty for ordinary builders.\n\n## Foundational law\n\n> Freedom scales when survival and production can run outside permission monopolies.\n\nSo the design target is not novelty, elegance, or ideological purity alone. The target is **practical exit capacity**.\n\n## Design principles\n\n1. **Exit first**\n   - Every layer must preserve voluntary departure with portable identity, data, and reputation.\n   - If leaving means social or economic death, the system failed.\n\n2. **Protocol over ruler mood**\n   - Rules should be cryptographically anchored and auditable.\n   - Governance decisions must be contestable and reversible.\n\n3. **Capability transparency**\n   - Expensive powers (network, compute, cluster authority) must be explicit at call-site and policy boundaries.\n   - Hidden privilege is domination surface.\n\n4. **Local autonomy, federated interop**\n   - Local communities choose local politics.\n   - Shared protocol defines interoperability, not centralized ideology.\n\n5. **Legible contribution**\n   - Valuable work must be visible, attributable, and portable.\n   - Invisible labor becomes extractive labor.\n\n6. **Institutional mortality**\n   - Every module, policy, and organization needs a clean replacement path.\n   - Systems without death become capture engines.\n\n## Language-building implications (Janus-shaped)\n\n### 1) Profiles as political boundaries\n\nMultiple profiles (`:core`, `:script`, `:service`, `:compute`, `:cluster`) are not just technical convenience. They are sovereignty boundaries.\n\n- Simpler profiles reduce accidental power.\n- Escalation makes power jumps explicit.\n- Tooling can enforce capability restrictions per host/community.\n\n### 2) Honest escalation model\n\nEscalation syntax should stay explicit and grep-friendly, because cost and authority must be inspectable.\n\n- \"Easy to use\" must not mean \"hard to audit\".\n- Ergonomic sugar is acceptable when it preserves semantic honesty.\n\n### 3) Host control and sandbox supremacy\n\nEmbedding APIs should let hosts deny capabilities by default and whitelist what scripts may touch.\n\n- The host must always be able to say no.\n- Mod/script ecosystems fail when the runtime can bypass host policy.\n\n### 4) Hot reload with state discipline\n\nReload architecture should separate code and state.\n\n- Code can swap atomically.\n- State co",
+        "backlinks": [
+          "article:hot",
+          "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design"
+        ]
+      }
+    },
+    {
+      "id": "article:libertaria/writing/2026-04-29-sovereign-child-in-age-of-capture-ideas",
+      "type": "article",
+      "name": "2026-04-29-sovereign-child-in-age-of-capture-ideas",
+      "filePath": "libertaria/writing/2026-04-29-sovereign-child-in-age-of-capture-ideas.md",
+      "summary": "- Primary frame: **anti-capture**, not generic antifascism. - Capture vectors: state, algorithm, resentment, ideology, loneliness, counterfeit masculinity, bureaucracy, cult dynamics. - Thesis: the...",
+      "tags": [
+        "libertaria/writing"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [],
+        "category": null,
+        "content": "---\ntitle: The Sovereign Child in the Age of Capture — Idea Bank\ndate: 2026-04-29\ndomain: libertaria.app\ntype: writing-ideas\nstatus: draft\n---\n\n## Core frame\n- Primary frame: **anti-capture**, not generic antifascism.\n- Capture vectors: state, algorithm, resentment, ideology, loneliness, counterfeit masculinity, bureaucracy, cult dynamics.\n- Thesis: the cure is sovereignty, initiation, skill, belonging, moral courage, and exit rights.\n\n## Book concept\n- Working title: **Raising Sovereigns: A Parent’s Field Manual for the Post-Captive Era**\n- Spine: belonging vacuum + maintenance economy + family/bond-layer governance + anti-capture stack.\n\n## Flagship article series (libertaria.app)\nSeries title: **The Sovereign Child in the Age of Capture**\n\n1. The Algorithmic Father\n2. The Manosphere Is Counterfeit Masculinity\n3. The Feed Is a Cult Without a Prophet\n4. The Family Is the First Firewall\n5. Status Hunger and the Politics of Humiliation\n6. Why Obedience Creates Authoritarians\n7. The Guild Must Replace the Feed\n8. The Body Is Not Content\n9. Predator Logic: How Ideologies Groom Children\n10. Beyond Antifascism: Anti-Capture as Libertaria Doctrine\n11. Rites of Passage for a Post-Institutional Age\n12. Exitarian School: Exit From Capture, Enter Sovereignty\n\n## High-value essay angles\n- Belonging vacuum as root condition (not “algorithm-only” explanation).\n- Manosphere + explainer industry as mirror maintenance economy.\n- Parenting as governance altitude: bond-layer violations produce tyranny/abdication.\n- Schoolyard as captured chapter (compulsory association, no true exit).\n- Why authoritarian aesthetics feel good when liberal atomization feels empty.\n- Anti-capture as structural doctrine; not moral branding.\n- Family as first sovereign institution and anti-cult immune layer.\n- Cult mechanics as political infrastructure.\n- Status hunger as radicalization fuel.\n- Decentralized mentorship cells as practical countermeasure.\n\n## Exitarian School modules\n- The Feed Is Not Your Soul\n- How Smart People Join Stupid Movements\n- The Poison That Feels Like Justice\n- Rules, Conscience, and Courage to Disobey\n- When Everything Becomes Content, You Become Prey\n- Brotherhood Without Chains\n- Skill Is the Antidote to Propaganda\n\n## Explicit do-not-do\n- No NGO-style “extremism bad” wallpaper.\n- No “masculinity toxic” cliché framing.\n- No pure censorship/therapy/state paternalism framing.\n- No paramilitary cosplay as “community defense.”\n\n## Positioning notes\n- Keep Odin/Janus lesson: design quality can still die from onboarding/culture failure.\n- Keep dual-lane pedagogy: novice lane + pro lateral lane.\n- Keep doctrine split: docs reference vs teaching curriculum.\n\n## Mirror extension: Twin Books / flipped-pole canon\n- Structural claim: \"Antifascist Dad\" and \"Anticommunist Dad\" are same publisher logic in opposite uniforms.\n- Diagnostic: if opposite poles produce near-identical pedagogy, ideology content was not root variable; **capture mechanics** were.\n- Use this as op",
+        "backlinks": []
+      }
+    },
+    {
+      "id": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "type": "article",
+      "name": "Dao Themes for Libertaria (Future Rubric)",
+      "filePath": "libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric.md",
+      "summary": "This page captures Dao-aligned themes that fit Libertaria and should be expanded into future long-form writing.",
+      "tags": [
+        "domains",
+        "libertaria/writing"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+          "Compounding Knowledge"
+        ],
+        "category": "Domains",
+        "content": "---\ntype: concept\ntitle: \"Dao Themes for Libertaria (Future Rubric)\"\ncreated: 2026-04-30\nupdated: 2026-04-30\ntags:\n  - libertaria\n  - dao\n  - philosophy\n  - governance\n  - writing-rubric\nstatus: developing\nrelated:\n  - \"[[2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership]]\"\n  - \"[[Compounding Knowledge]]\"\n---\n\n# Dao Themes for Libertaria (Future Rubric)\n\nThis page captures Dao-aligned themes that fit Libertaria and should be expanded into future long-form writing.\n\n## Core Themes\n\n1. **Non-coercive action (Wu Wei)**\n   - Libertaria translation: governance minimizes force and maximizes voluntary coordination.\n   - Design implication: protocol-first systems with low-friction opt-in and opt-out paths.\n\n2. **Natural order over imposed order**\n   - Libertaria translation: self-organizing local systems outperform rigid central command.\n   - Design implication: federation primitives, chapter autonomy, minimal central choke points.\n\n3. **Anti-dogmatism and adaptive pluralism**\n   - Libertaria translation: doctrine is a compass, not a cage.\n   - Design implication: reversible policy, contestable governance, continuous protocol refinement.\n\n4. **Relativity of perspective**\n   - Libertaria translation: no single actor owns absolute epistemic authority.\n   - Design implication: multi-agent review, auditable dissent, layered verification.\n\n5. **Simplicity as sovereignty**\n   - Libertaria translation: complexity is capture surface.\n   - Design implication: fewer moving parts, explicit boundaries, lean interfaces.\n\n6. **Local autonomy + federated coordination**\n   - Libertaria translation: local decisions local; interop global.\n   - Design implication: chapter-level policy with shared protocol contracts.\n\n7. **Power-through-restraint**\n   - Libertaria translation: authority is strongest when narrow, explicit, and revocable.\n   - Design implication: scoped capabilities, delegation certs, expiry and revocation everywhere.\n\n8. **Humility of knowledge**\n   - Libertaria translation: uncertainty is structural, not failure.\n   - Design implication: fallback paths, transparent assumptions, observable error handling.\n\n9. **Softness over rigidity (anti-fragile bend)**\n   - Libertaria translation: resilient systems adapt under stress instead of shattering.\n   - Design implication: graceful degradation, decentralization, no single trust root.\n\n10. **Naming skepticism**\n    - Libertaria translation: labels can fossilize thought.\n    - Design implication: keep semantic room for evolution; separate identity from current implementation.\n\n## Writing Expansion Pattern (for future essays)\n\nFor each theme, future essays should include:\n- Dao principle\n- Libertaria translation\n- Protocol / architecture implication\n- Anti-pattern to reject\n- Concrete ecosystem example\n\n## Suggested Primary Source Lane\n\n- *Dao De Jing* (governance minimalism, restraint, natural order)\n- *Zhuangzi* (perspective pluralism, anti-dogmatism, semantic looseness)\n\n## Positioning Note\n\nThis rubric is",
+        "backlinks": [
+          "article:hot",
+          "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+          "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+          "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+          "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+          "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design"
+        ]
+      }
+    },
+    {
+      "id": "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+      "type": "article",
+      "name": "Existentialism as Detox, Not Foundation",
+      "filePath": "libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation.md",
+      "summary": "Existentialism is strong as personal anti-slavery medicine and weak as full civilizational operating doctrine.",
+      "tags": [
+        "domains",
+        "libertaria/writing"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "2026-04-30-objectivism-as-solvent-not-operating-system",
+          "2026-04-30-dao-themes-for-libertaria-rubric"
+        ],
+        "category": "Domains",
+        "content": "---\ntype: concept\ntitle: \"Existentialism as Detox, Not Foundation\"\ncreated: 2026-04-30\nupdated: 2026-04-30\ntags:\n  - libertaria\n  - existentialism\n  - political-philosophy\n  - governance\n  - writing-backlog\nstatus: developing\nrelated:\n  - \"[[2026-04-30-objectivism-as-solvent-not-operating-system]]\"\n  - \"[[2026-04-30-dao-themes-for-libertaria-rubric]]\"\n---\n\n# Existentialism as Detox, Not Foundation\n\n## Core thesis\n\nExistentialism is strong as personal anti-slavery medicine and weak as full civilizational operating doctrine.\n\nIt can awaken agency; it struggles to ground durable shared obligations.\n\n## What it contributes (Libertaria-compatible)\n\n- Rejection of passive herd identity\n- Personal authorship and responsibility\n- Anti-bureaucratic self-recovery\n- Refusal to outsource moral agency to institutions\n\n## Core fracture\n\nIf meaning is purely self-created, existentialism has weak tools to rank competing life projects without importing external value systems.\n\nThat creates a gap between:\n- authentic but constructive lives (family, craft, duty)\n- authentic but destructive lives (domination, parasitism, sabotage)\n\nWithout shared standards, authenticity alone cannot carry normative order.\n\n## Why this fails as civilizational base\n\nLibertaria needs load-bearing shared truths and covenant structures, including:\n- family continuity\n- promise-keeping\n- property and stewardship\n- competence and accountability\n- beauty and symbolic order\n- sacrifice with purpose\n- children and intergenerational duty\n- truth constraints\n\nA civilization cannot run on atomized self-expression alone.\n\n## Libertaria synthesis\n\n- Use existentialism as **detox** from collectivist possession\n- Do not use existentialism as **nutrition** for law, family, ethics, or long-horizon social architecture\n- Move from liberated individual to sovereign person embedded in durable covenant structures\n\n## Strategic framing for backlog writing\n\n- Existentialism is a solvent for false inherited scripts\n- It is not sufficient to establish binding norms for social reproduction\n- Libertaria requires freedom + duties + durable institutions, not mood-level authenticity\n\n## Future essay expansion structure\n\n1. Where existentialism correctly destroys false authority\n2. Why authenticity is normatively underpowered\n3. What Libertaria must add (covenant, duty, continuity)\n4. Policy/protocol implications for governance and social architecture\n5. Failure modes if existential detachment is mistaken for civilizational design\n",
+        "backlinks": [
+          "article:hot",
+          "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack"
+        ]
+      }
+    },
+    {
+      "id": "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+      "type": "article",
+      "name": "Core Thesis",
+      "filePath": "libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership.md",
+      "summary": "The Exitarian position rejects any property claim over a spouse’s body while affirming reciprocal obligations inside a marital covenant.",
+      "tags": [
+        "domains",
+        "libertaria/writing"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "Compounding Knowledge",
+          "Voltairine de Cleyre"
+        ],
+        "category": "Domains",
+        "content": "---\ntype: concept\ntitle: \"Exitarianism on Sex Slavery: Covenant vs Ownership\"\ncreated: 2026-04-30\nupdated: 2026-04-30\ntags:\n  - libertaria\n  - exitarianism\n  - marriage\n  - writing-topics\n  - later\nstatus: developing\nconfidence: medium\nexplored: false\nrelated:\n  - \"[[Compounding Knowledge]]\"\nsources:\n  - \"[[Voltairine de Cleyre]]\"\n---\n\n# Core Thesis\n\nThe Exitarian position rejects any property claim over a spouse’s body while affirming reciprocal obligations inside a marital covenant.\n\n## Distinction That Must Hold\n\n- **Ownership claim**: \"I have access rights to your body\"; rejected.\n- **Covenantal claim**: \"Sexual intimacy and exclusivity are core promises in marriage\"; affirmed.\n\nBreach remedy is exit, not force.\n\n## Clean Formulation\n\nA traditional marital covenant can include:\n\n- protection\n- provision\n- loyalty\n- responsibility\n- sexual exclusivity\n- intimacy\n- household partnership\n- family continuity\n\nIf one party permanently withdraws core intimacy in bad faith while still demanding full covenant benefits, that is covenant breach.\n\n## Doctrine Framing\n\n- Marriage is **not ownership**.\n- Marriage is **not casual dating**.\n- Marriage is **not prostitution with paperwork**.\n- Marriage is a reciprocal duty-bond with valid exit rights.\n\n## Normative Rule\n\nNo spouse has an enforceable right to the other’s body.\n\nA spouse does have the right to exit a covenant when core promises (intimacy, loyalty, care, partnership, fertility intent) are permanently withdrawn in bad faith.\n\n## Preferred Language\n\nUse:\n\n- conjugal expectation\n- marital duty\n- covenantal obligation\n- condition of the bond\n- grounds for separation/divorce if persistently refused\n- mutual erotic loyalty\n\nAvoid:\n\n- property right\n- access right\n- owed sex\n\n## Rhetorical Anchor\n\n> Sex in marriage is not property. It is covenantal fire. If one party extinguishes it and still demands the house stay warm, the other may leave.\n\n## Writing Prompt for Later\n\nPotential essay seed: connect Voltairine de Cleyre’s \"Sex Slavery\" lecture (1890) with Exitarian covenant theory, showing where anti-coercion and anti-parasitic reciprocity can coexist without collapsing into either ownership logic or moralized dependency.\n",
+        "backlinks": [
+          "article:hot",
+          "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+          "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system"
+        ]
+      }
+    },
+    {
+      "id": "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+      "type": "article",
+      "name": "Objectivism as Solvent, Not Operating System",
+      "filePath": "libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system.md",
+      "summary": "Objectivism is useful as an anti-parasitic solvent but brittle as a full civilizational operating system.",
+      "tags": [
+        "domains",
+        "libertaria/writing"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "2026-04-30-dao-themes-for-libertaria-rubric",
+          "2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership"
+        ],
+        "category": "Domains",
+        "content": "---\ntype: concept\ntitle: \"Objectivism as Solvent, Not Operating System\"\ncreated: 2026-04-30\nupdated: 2026-04-30\ntags:\n  - libertaria\n  - objectivism\n  - political-philosophy\n  - governance\n  - writing-backlog\nstatus: developing\nrelated:\n  - \"[[2026-04-30-dao-themes-for-libertaria-rubric]]\"\n  - \"[[2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership]]\"\n---\n\n# Objectivism as Solvent, Not Operating System\n\n## Core thesis\n\nObjectivism is useful as an anti-parasitic solvent but brittle as a full civilizational operating system.\n\nIt is strong at rejecting coercive collectivist claims over the individual. It is weak when handling dependency, community thickness, symbolic order, and long-horizon social reproduction.\n\n## What to keep (Libertaria-compatible)\n\n- Individual sovereignty\n- Producer dignity\n- Anti-sacrifice ethics (against guilt extraction)\n- Hostility to coercive collectivism\n- Respect for competence and creation\n\n## What to reject (brittle points)\n\n1. **Rationalism worship**\n   - Humans are not pure logic engines; they are biological and symbolic animals.\n   - A doctrine that ignores status, kinship, ritual, fear, and myth fails under real social load.\n\n2. **Contempt for dependency**\n   - Civilizations must account for children, illness, aging, injury, and temporary collapse.\n   - Dependency is a structural reality, not a moral stain.\n\n3. **Thin community model**\n   - Contract-only frameworks cannot fully sustain child-rearing, border defense, intergenerational trust, or sacred continuity.\n   - Durable order requires norms, inherited duties, conflict protocols, and shared symbols.\n\n4. **Market absolutism**\n   - Markets are discovery engines, not moral authorities.\n   - Without civilizational ballast, markets optimize for addictive and corrosive demand.\n\n5. **Naive hero anthropology**\n   - Founder archetypes are mixed, shadowed, and unstable.\n   - Sanitized hero myths produce cult dynamics and delayed governance failure.\n\n## Libertaria synthesis (proposed)\n\n- Self-sovereignty without atomization\n- Markets without soul-liquidation\n- Family without legal ownership\n- Community without collectivist parasitism\n- Hierarchy by competence, not caste\n- Mutual aid by loyalty, not guilt-tax extraction\n- Freedom with consequences\n- Rights with duties\n- Exit with roots\n\n## Strategic framing for backlog writing\n\n- Objectivism is a **blade**: high utility in conflict with parasitic collectivism.\n- Libertaria needs a **civilizational architecture**: household, clan, voluntary order, secure village, builder-citizen continuity.\n- Core warning phrase retained: do not build a house out of blades.\n\n## Future essay expansion structure\n\nFor full article production:\n1. Objectivism’s valid attack surface (what it correctly destroys)\n2. The anthropological and institutional blind spots\n3. Libertaria’s stronger synthesis model\n4. Policy/protocol implications for governance and economic design\n5. Failure modes if Libertaria over-indexes on Randian atomization\n",
+        "backlinks": [
+          "article:hot",
+          "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+          "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack"
+        ]
+      }
+    },
+    {
+      "id": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "type": "article",
+      "name": "Sovereign Virtue Realism (Libertaria Philosophical Stack)",
+      "filePath": "libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack.md",
+      "summary": "Preferred framing for Libertaria is not pure existentialism or pure Objectivism. The stronger backbone is a composite doctrine:",
+      "tags": [
+        "domains",
+        "libertaria/writing"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "2026-04-30-existentialism-as-detox-not-foundation",
+          "2026-04-30-objectivism-as-solvent-not-operating-system",
+          "2026-04-30-dao-themes-for-libertaria-rubric"
+        ],
+        "category": "Domains",
+        "content": "---\ntype: concept\ntitle: \"Sovereign Virtue Realism (Libertaria Philosophical Stack)\"\ncreated: 2026-04-30\nupdated: 2026-04-30\ntags:\n  - libertaria\n  - philosophy\n  - governance\n  - writing-backlog\n  - virtue-ethics\nstatus: developing\nrelated:\n  - \"[[2026-04-30-existentialism-as-detox-not-foundation]]\"\n  - \"[[2026-04-30-objectivism-as-solvent-not-operating-system]]\"\n  - \"[[2026-04-30-dao-themes-for-libertaria-rubric]]\"\n---\n\n# Sovereign Virtue Realism (Libertaria Philosophical Stack)\n\n## Core proposal\n\nPreferred framing for Libertaria is not pure existentialism or pure Objectivism. The stronger backbone is a composite doctrine:\n\n- Covenantal Aristotelian Libertarianism\n- Sovereign Virtue Realism\n- Sovereign Communitarianism\n- Covenantal Anarchy\n- Sovereign Federalism\n\nAll labels point to the same spine: sovereign individuals embedded in durable covenant structures, disciplined by virtue, protected by exit, and guarded against domination.\n\n## Skeleton components\n\n1. **Aristotelian virtue ethics**\n   - Function: defines human flourishing and excellence.\n   - Contribution: objective grounding beyond aesthetic self-authorship.\n\n2. **Stoicism**\n   - Function: inner sovereignty and self-command.\n   - Contribution: psychological substrate for self-rule.\n\n3. **Natural law / moral realism**\n   - Function: moral gravity and anti-nihilism constraints.\n   - Contribution: consent remains necessary but not sufficient for the good.\n\n4. **Anarchism / decentralism**\n   - Function: permanent suspicion of centralized domination.\n   - Contribution: no institution is innocent by default.\n\n5. **Covenantalism**\n   - Function: social architecture via chosen, binding promises.\n   - Contribution: society as durable promise-web, not atomized rights claims.\n\n6. **Classical liberalism**\n   - Function: rights, property, speech, legal restraint of power.\n   - Contribution: anti-tyranny baseline and institutional limits.\n\n7. **Tocquevillian association**\n   - Function: civil society muscle tissue through voluntary institutions.\n   - Contribution: freedom survives in associations, not isolated individuals.\n\n8. **Mutualism / federalism (selective Proudhon line)**\n   - Function: decentralized economic and political power.\n   - Contribution: local reciprocity, federation, and capture resistance.\n\n9. **Ostrom commons governance**\n   - Function: workable shared-resource stewardship without central command.\n   - Contribution: practical bridge between privatize-everything and statize-everything.\n\n10. **Civic republican non-domination**\n    - Function: freedom as absence of arbitrary power.\n    - Contribution: anti-capture lens across state, platform, finance, and local authority.\n\n11. **Austrian / market liberal coordination**\n    - Function: decentralized economic discovery and coordination.\n    - Contribution: planning alternatives without central economic command.\n\n12. **Crypto-anarchist technical doctrine**\n    - Function: enforce sovereignty in code.\n    - Contribution: cryptographic",
+        "backlinks": [
+          "article:hot",
+          "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+          "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design"
+        ]
+      }
+    },
+    {
+      "id": "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+      "type": "article",
+      "name": "Wilber’s Fourfold Axis for Exitarian Civilizational Design",
+      "filePath": "libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design.md",
+      "summary": "Wilber’s useful payload is a four-part developmental axis:",
+      "tags": [
+        "domains",
+        "libertaria/writing"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "2026-05-01-exitarian-way-of-building-technology-and-languages",
+          "2026-04-30-sovereign-virtue-realism-philosophical-stack",
+          "2026-04-30-dao-themes-for-libertaria-rubric"
+        ],
+        "category": "Domains",
+        "content": "---\ntype: concept\ntitle: \"Wilber’s Fourfold Axis for Exitarian Civilizational Design\"\ncreated: 2026-05-01\nupdated: 2026-05-01\ntags:\n  - libertaria\n  - exitarianism\n  - writing-backlog\n  - integral-theory\n  - civilization-design\nstatus: developing\nrelated:\n  - \"[[2026-05-01-exitarian-way-of-building-technology-and-languages]]\"\n  - \"[[2026-04-30-sovereign-virtue-realism-philosophical-stack]]\"\n  - \"[[2026-04-30-dao-themes-for-libertaria-rubric]]\"\n---\n\n# Wilber’s Fourfold Axis for Exitarian Civilizational Design\n\n## Why this belongs in backlog\n\nWilber’s useful payload is a four-part developmental axis:\n\n- **Waking Up**: direct contemplative/spiritual realization\n- **Growing Up**: developmental maturity and stage progression\n- **Cleaning Up**: shadow work, trauma integration, self-deception reduction\n- **Showing Up**: embodied participation across real life domains\n\nThis matters for Libertaria/Exitarianism because sovereign civilization cannot be built from economics and cryptography alone. It also needs rites, maturity ladders, moral immune systems, psychological hygiene, and a metaphysical frame that does not collapse into cult theater.\n\n## Exitarian extraction rule\n\nUse Wilber as a **diagnostic scaffold**, not as a priestly hierarchy.\n\n### Keep\n- Full-stack framing across psyche, culture, body, systems, and spirit\n- Development as a civilizational variable, not just a private wellness hobby\n- Explicit inclusion of shadow and self-deception work\n- Embodied “showing up” as accountability in institutions and production\n\n### Reject\n- Stage narcissism (“I am higher than you” ranking theater)\n- Classification intoxication (quadrants/levels as ends in themselves)\n- Clean synthesis that erases blood, inheritance, scarcity, betrayal, children, territory, and mythic glue\n\n## Writing angle proposal\n\n**Working thesis:**\nA future-proof Exitarian civilization needs inner-tech and institution-tech in one stack; sovereignty fails if either side is missing.\n\n**Possible title seed:**\n*\"Full-Stack Sovereignty: Why Exit Needs Waking, Growing, Cleaning, and Showing Up\"*\n\n## Doctrine guardrail\n\nIf this thread is developed, keep it operational and anti-cult:\n\n> Map reality; do not rank souls.\n\nThe piece should frame Wilber as a tool for civilizational architecture, not as a new orthodoxy.\n",
+        "backlinks": [
+          "article:hot"
+        ]
+      }
+    },
+    {
+      "id": "article:meta/claude-obsidian-v1.2.0-release-session",
+      "type": "article",
+      "name": "claude-obsidian v1.2.0 Release Session",
+      "filePath": "meta/claude-obsidian-v1.2.0-release-session.md",
+      "summary": "Full build, audit, polish, and community release of the claude-obsidian plugin + vault kit. Previously named `cosmic-brain`.",
+      "tags": [
+        "meta"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "getting-started",
+          "index",
+          "overview",
+          "LLM Wiki Pattern"
+        ],
+        "category": null,
+        "content": "---\ntype: session\ntitle: \"claude-obsidian v1.2.0 Release Session\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - session\n  - release\n  - plugin\n  - github\nstatus: evergreen\nrelated:\n  - \"[[getting-started]]\"\n  - \"[[index]]\"\n  - \"[[overview]]\"\n  - \"[[LLM Wiki Pattern]]\"\n---\n\n# claude-obsidian v1.2.0 Release Session\n\nFull build, audit, polish, and community release of the claude-obsidian plugin + vault kit. Previously named `cosmic-brain`.\n\n---\n\n## What Was Built\n\n### Phase 1 — Critical Fixes\n- `marketplace.json`: version corrected `1.0.0→1.2.0`, owner metadata updated\n- `main.canvas`: removed 5 broken file node references (gitignored files that don't exist for community users)\n- `community-plugins.json`: deduplicated from 6→4 canonical entries: `[excalidraw, banners, calendar, thino]`\n\n### Phase 2 — Vault Onboarding\n- `wiki/getting-started.md`: new onboarding page inside the vault (3-step quick start, hot cache explanation, command reference, navigation links)\n- `wiki/index.md`: Entities, Questions, Comparisons sections populated with existing seed pages\n- `wiki/meta/dashboard.md`: Dataview queries fixed — was querying `answer_quality` and `confidence` fields that don't exist in seed pages; replaced with `status` and `updated`\n- `CLAUDE.md`: placeholder text replaced with actual vault description\n- `wiki/canvases/welcome.canvas`: CTA node added pointing to getting-started and `/wiki`\n\n### Phase 3 — README + Docs\n- README: complete pre-installed plugins table, CSS snippets section, Banner usage section, file structure updated\n- `bin/setup-vault.sh`: success message now lists all 4 pre-installed plugins and 3 CSS snippets\n\n### Phase 4 — PDF Install Guide\n- `docs/install-guide.md`: full printable install guide (prerequisites, 3 install options, first steps, command reference, plugin guide, MCP setup, troubleshooting)\n- `docs/install-guide.pdf`: 159KB, generated via `npx md-to-pdf`\n\n### Phase 5 — Version Bump\n- `plugin.json` and `marketplace.json` bumped to `1.2.0`\n\n---\n\n## Rename: cosmic-brain → claude-obsidian\n\nFull project rename executed:\n- GitHub repos renamed: `AgriciDaniel/cosmic-brain` → `AgriciDaniel/claude-obsidian` (public), `avalonreset-pro/cosmic-brain` → `avalonreset-pro/claude-obsidian` (private)\n- Local directory: `~/cosmic-brain/` → `~/claude-obsidian/`\n- All text references updated across 14 files via sed\n- `wiki/meta/cosmic-brain-cover.gif` renamed to `wiki/meta/claude-obsidian-cover.gif`\n\n---\n\n## Legal & Security\n\n### Security Audit\n- No API keys, tokens, or secrets found in any tracked file\n- No private keys or certificates\n- All credential references in docs are placeholder values\n- Excalidraw `main.js` correctly NOT tracked despite audit agent claiming otherwise\n\n### Legal Fixes\n- `LICENSE`: MIT license file created (was declared in plugin.json but file was missing)\n- `ITS-Dataview-Cards.css` + `ITS-Image-Adjustments.css`: GPL-2.0 attribution headers added\n\n### .gitignore Tightened\nAdded rules to prevent future accidental com",
+        "backlinks": [
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:meta/full-audit-and-system-setup-session"
+        ]
+      }
+    },
+    {
+      "id": "article:meta/claude-obsidian-v1.4-release-session",
+      "type": "article",
+      "name": "claude-obsidian v1.4 Release Session",
+      "filePath": "meta/claude-obsidian-v1.4-release-session.md",
+      "summary": "A complete release cycle covering v1.1, v1.4.0, and v1.4.1. Includes ecosystem research, external audit response, multi-agent compatibility rollout, full em-dash style cleanup, git history scrub fo...",
+      "tags": [
+        "meta"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "claude-obsidian-ecosystem",
+          "cherry-picks",
+          "full-audit-and-system-setup-session",
+          "claude-obsidian-v1.2.0-release-session",
+          "LLM Wiki Pattern",
+          "claude-obsidian-ecosystem-research",
+          "claude-obsidian-ecosystem",
+          "cherry-picks",
+          "Ar9av-obsidian-wiki"
+        ],
+        "category": null,
+        "content": "---\ntype: session\ntitle: \"claude-obsidian v1.4 Release Session\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - meta\n  - session\n  - release\n  - audit-response\nstatus: evergreen\nrelated:\n  - \"[[claude-obsidian-ecosystem]]\"\n  - \"[[cherry-picks]]\"\n  - \"[[full-audit-and-system-setup-session]]\"\n  - \"[[claude-obsidian-v1.2.0-release-session]]\"\n  - \"[[LLM Wiki Pattern]]\"\nsources:\n  - \"[[claude-obsidian-ecosystem-research]]\"\n---\n\n# claude-obsidian v1.4 Release Session\n\nA complete release cycle covering v1.1, v1.4.0, and v1.4.1. Includes ecosystem research, external audit response, multi-agent compatibility rollout, full em-dash style cleanup, git history scrub for privacy, and a hotfix for the plugin install command syntax.\n\n## Release Sequence\n\n| Version | What shipped |\n|---|---|\n| v1.1 | URL ingestion, image/vision ingestion, delta tracking manifest, 3 new skills (defuddle, obsidian-bases, obsidian-markdown), multi-depth wiki-query modes, PostToolUse auto-commit hook, removal of invalid `allowed-tools` frontmatter field |\n| v1.4.0 | Dataview to Bases migration, Canvas JSON 1.0 spec completeness, hooks hardening plus PostCompact, MCP setup hardened with Obsidian CLI option, custom callouts documented, 6 multi-agent bootstrap files, 249 em dashes scrubbed, security-rewrote git history to remove a placeholder email |\n| v1.4.1 | Hotfix for the wrong plugin install command syntax in README and docs/install-guide.md |\n\n## v1.1: First Feature Release of This Session\n\nShipped in response to an internal quality check against the wider ecosystem (16+ Claude plus Obsidian projects researched, filed in [[claude-obsidian-ecosystem]]). The highest-value features from competing implementations were cherry-picked and shipped as v1.1.\n\n### New skills (Agent Skills spec compliant)\n\n- `skills/defuddle/SKILL.md`: strips ads, nav, and clutter from web pages before URL ingestion. Saves 40 to 60 percent on tokens for typical articles.\n- `skills/obsidian-markdown/SKILL.md`: full reference for Obsidian Flavored Markdown (wikilinks, embeds, all callout types, properties, math, Mermaid). Cross-references kepano/obsidian-skills as the authoritative source.\n- `skills/obsidian-bases/SKILL.md`: native Obsidian Bases `.base` file syntax. Uses correct `filters/views/formulas` structure (NOT Dataview-style `from/where`). Rewritten mid-session after the first attempt used the wrong syntax.\n\n### wiki-ingest upgrades\n\n- **URL ingestion**: passes any `https://` URL directly. Uses WebFetch, optionally pipes through defuddle, saves to `.raw/articles/`, then runs the normal ingest pipeline.\n- **Image/vision ingestion**: `.png`, `.jpg`, `.gif`, `.webp`, etc. Claude reads the image natively, extracts text via OCR and concepts via vision, saves the description to `.raw/images/`, then ingests.\n- **Delta tracking**: `.raw/.manifest.json` tracks MD5 hash per source, timestamps, and the pages produced. Re-running ingest on unchanged files skips them automatically. Override with \"force ingest\".\n\n",
+        "backlinks": [
+          "article:hot",
+          "article:hot"
+        ]
+      }
+    },
+    {
+      "id": "article:meta/dashboard",
+      "type": "article",
+      "name": "Wiki Dashboard",
+      "filePath": "meta/dashboard.md",
+      "summary": "Navigation: [[index]] | [[overview]] | [[log]] | [[hot]]",
+      "tags": [
+        "meta"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "overview",
+          "log",
+          "concepts/_index",
+          "Compounding Knowledge",
+          "index",
+          "overview",
+          "log",
+          "hot",
+          "dashboard.base",
+          "dashboard.base"
+        ],
+        "category": null,
+        "content": "---\ntype: meta\ntitle: \"Dashboard\"\nupdated: 2026-04-08\ntags:\n  - meta\n  - dashboard\nstatus: evergreen\nrelated:\n  - \"[[index]]\"\n  - \"[[overview]]\"\n  - \"[[log]]\"\n  - \"[[concepts/_index]]\"\n  - \"[[Compounding Knowledge]]\"\n---\n\n# Wiki Dashboard\n\nNavigation: [[index]] | [[overview]] | [[log]] | [[hot]]\n\nThe dashboard uses **Obsidian Bases**. A core Obsidian feature shipped in v1.9.10 (August 2025). No plugin install required.\n\n> [!tip] Embedded Bases view\n> The interactive dashboard lives in [[dashboard.base]]. Open that file directly, or use the embed below.\n\n![[dashboard.base]]\n\n---\n\n## Legacy Dataview Dashboard (Optional)\n\nIf you are on Obsidian < 1.9.10 or prefer Dataview, the queries below still work. Just install the Dataview community plugin.\n\n### Recent Activity\n\n```dataview\nTABLE type, status, updated FROM \"wiki\" SORT updated DESC LIMIT 15\n```\n\n### Seed Pages (Need Development)\n\n```dataview\nLIST FROM \"wiki\" WHERE status = \"seed\" SORT updated ASC\n```\n\n### Entities Missing Sources\n\n```dataview\nLIST FROM \"wiki/entities\" WHERE !sources OR length(sources) = 0\n```\n\n### Open Questions\n\n```dataview\nLIST FROM \"wiki/questions\" WHERE status = \"developing\" OR status = \"seed\" SORT updated DESC\n```\n\n### Comparisons\n\n```dataview\nTABLE verdict FROM \"wiki/comparisons\" SORT updated DESC\n```\n\n### Sources\n\n```dataview\nTABLE author, date_published, updated FROM \"wiki/sources\" WHERE type = \"source\" SORT updated DESC LIMIT 10\n```\n",
+        "backlinks": [
+          "article:concepts/_index",
+          "article:getting-started",
+          "article:overview",
+          "article:overview"
+        ]
+      }
+    },
+    {
+      "id": "article:meta/full-audit-and-system-setup-session",
+      "type": "article",
+      "name": "Full Audit, System Setup & Plugin Installation",
+      "filePath": "meta/full-audit-and-system-setup-session.md",
+      "summary": "Post-release audit session. Covers comprehensive repo audit across 12 areas, 3 issue fixes, plugin installation into the local Claude Code system, folder rename, and memory save.",
+      "tags": [
+        "meta"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "claude-obsidian-v1.2.0-release-session",
+          "getting-started",
+          "index"
+        ],
+        "category": null,
+        "content": "---\ntype: session\ntitle: \"Full Audit, System Setup & Plugin Installation\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - session\n  - audit\n  - setup\n  - plugin-install\nstatus: evergreen\nrelated:\n  - \"[[claude-obsidian-v1.2.0-release-session]]\"\n  - \"[[getting-started]]\"\n  - \"[[index]]\"\n---\n\n# Full Audit, System Setup & Plugin Installation\n\nPost-release audit session. Covers comprehensive repo audit across 12 areas, 3 issue fixes, plugin installation into the local Claude Code system, folder rename, and memory save.\n\n---\n\n## Audit Results (12 Areas)\n\nAll 12 areas audited — 3 issues found, all fixed same session.\n\n### Issues Found and Fixed\n\n| Issue | Fix |\n|-------|-----|\n| `Cosmic Brain Clean.gif` tracked in git (personal asset) | Removed with `git rm --cached`, added `Cosmic Brain*.gif` to .gitignore |\n| `Cosmic Brain Cover.png` tracked in git (personal asset) | Removed with `git rm --cached`, added `Cosmic Brain*.png` to .gitignore |\n| `Welcome.md` tracked in git (Obsidian personal file) | Removed with `git rm --cached`, added `Welcome.md` to .gitignore |\n| `vault-colors.css` comment said \"cosmic-brain vault colors\" | Updated to \"claude-obsidian vault colors\" |\n| `docs/superpowers/plans/` not committed | Committed audit plan file |\n\n### Clean Areas (no issues)\n- Plugin manifests: all fields correct, version 1.2.0 consistent\n- All 7 SKILL.md files: valid frontmatter, correct tools, complete instructions\n- All 4 commands: mapped to correct skills, descriptions accurate\n- Both agents: model/maxTurns/tools correct\n- hooks/hooks.json: valid JSON, SessionStart + Stop hooks correct\n- All .obsidian/*.json: community-plugins.json (4 entries), appearance.json (3 snippets), app.json, graph.json all valid\n- All 4 Obsidian plugin manifests: complete, no personal data in data.json files\n- All 3 CSS snippets: GPL-2.0 headers present, no stale references\n- All 16 wikilinks resolve to valid files\n- All 3 canvases valid JSON, no broken file node references\n- README: all 6 images verified on disk, install commands correct, structure accurate\n- Zero secrets in any tracked file, all API key references are placeholders\n- Install simulation: all 7 skills, 4 commands, 2 agents discoverable, hooks valid\n\n---\n\n## Plugin Installation\n\nclaude-obsidian is now installed in the local Claude Code system:\n\n```bash\n# Registered as marketplace\nclaude plugin marketplace add AgriciDaniel/claude-obsidian\n# → claude-obsidian-marketplace registered (user scope)\n\n# Installed plugin\nclaude plugin install claude-obsidian\n# → claude-obsidian@claude-obsidian-marketplace (scope: user) ✓\n```\n\nTo verify: `claude plugin list | grep claude-obsidian`\n\n---\n\n## System State\n\n- Plugin repo: `~/claude-obsidian/` (git repo, both remotes live)\n- Plugin installed: `claude-obsidian@claude-obsidian-marketplace` (user scope, enabled)\n- Working folder renamed: `~/Desktop/Obsidian & Claude/` → `~/Desktop/claude-obsidian/`\n- Karpathy Gist comment drafted (ready to post at gist.github.com/karpathy/442a6bf5",
+        "backlinks": [
+          "article:meta/claude-obsidian-v1.4-release-session"
+        ]
+      }
+    },
+    {
+      "id": "article:meta/program",
+      "type": "article",
+      "name": "Work Wiki Research Program",
+      "filePath": "meta/program.md",
+      "summary": "This file defines bounded autonomous behavior for the work wiki.",
+      "tags": [
+        "meta"
+      ],
+      "complexity": "simple",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "hot",
+          "log"
+        ],
+        "category": null,
+        "content": "---\ntype: meta\ntitle: \"Work Wiki Research Program\"\ncreated: 2026-04-23\nupdated: 2026-04-23\ntags:\n  - meta\n  - research\n  - work-wiki\nstatus: developing\nrelated:\n  - \"[[index]]\"\n  - \"[[hot]]\"\n  - \"[[log]]\"\n---\n\n# Work Wiki Research Program\n\nThis file defines bounded autonomous behavior for the work wiki.\n\n## Preferred Sources\n1. first-party project docs and repos\n2. RFCs, specs, ADRs, architecture docs\n3. direct implementation files and tests\n4. strong technical secondary analysis\n5. community material only if it adds non-trivial signal\n\n## Confidence Rules\n- high: directly supported by code, docs, or multiple corroborating first-party sources\n- medium: plausible synthesis from limited but solid evidence\n- low: weak or partial evidence\n- uncertain: contradiction or unresolved ambiguity\n\n## Validation Rule\nFor pages using `explored`, AI should set `explored: false` by default.\nHuman review upgrades trust.\n\n## Stop Conditions\n- stop after 3 rounds unless clear value remains\n- stop early when no new concepts/entities/system links are being found\n- stop when remaining gaps are governance/judgment gaps rather than retrievable knowledge gaps\n\n## Filing Rule\nFile back only when the result improves the ecosystem moat:\n- non-trivial\n- reusable\n- connective across projects or architecture layers\n\n## CRISPY Trigger Rule\nCRISPY is optional here.\nUse it when the task is:\n- evaluation of something new\n- long-form paper/spec writing\n- adversarial review\n- multi-angle research requiring explicit role separation\n\n## Search Acceleration\nUse qmd when available, but keep markdown canonical.\n",
+        "backlinks": []
+      }
+    },
+    {
+      "id": "article:overview",
+      "type": "article",
+      "name": "Wiki Overview",
+      "filePath": "overview.md",
+      "summary": "Navigation: [[index]] | [[hot]] | [[log]] | [[dashboard]]",
+      "tags": [],
+      "complexity": "complex",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "hot",
+          "log",
+          "dashboard",
+          "LLM Wiki Pattern",
+          "index",
+          "hot",
+          "log",
+          "dashboard",
+          "LLM Wiki Pattern",
+          "LLM Wiki Pattern",
+          "Hot Cache",
+          "Compounding Knowledge",
+          "Andrej Karpathy",
+          "claude-obsidian-ecosystem-research",
+          "claude-obsidian-presentation",
+          "AI Marketing Hub Cover Images Canvas"
+        ],
+        "category": null,
+        "content": "---\ntype: overview\ntitle: \"Wiki Overview\"\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - meta\n  - overview\nstatus: developing\nrelated:\n  - \"[[index]]\"\n  - \"[[hot]]\"\n  - \"[[log]]\"\n  - \"[[dashboard]]\"\n  - \"[[LLM Wiki Pattern]]\"\nsources:\n---\n\n# Wiki Overview\n\nNavigation: [[index]] | [[hot]] | [[log]] | [[dashboard]]\n\n---\n\n## Purpose\n\nThis is the claude-obsidian demo vault. It demonstrates the [[LLM Wiki Pattern]] — a system for building persistent, compounding knowledge bases using Claude and Obsidian.\n\nRun `/wiki` to scaffold this vault for your own domain and replace this overview.\n\n---\n\n## Current Seed Content\n\n\n**Concepts seeded:**\n- [[LLM Wiki Pattern]] — the core architecture\n- [[Hot Cache]] — session context mechanism\n- [[Compounding Knowledge]] — why the pattern works\n\n**Entities seeded:**\n- [[Andrej Karpathy]] — originated the pattern\n\n**Sources seeded:**\n- [[claude-obsidian-ecosystem-research]] — 16+ projects, 13 cherry-picks identified (2026-04-08)\n\n---\n\n## Current State\n\n- Sources ingested: 2\n- Wiki pages: 26\n- Last activity: 2026-04-08 (v1.4.1 shipped, release session filed)\n\n---\n\n## Canvases\n\n- [[claude-obsidian-presentation]] — Full presentation: hero, overview, skills, architecture, Wiki vs RAG, visual demos (2026-04-07)\n- [[AI Marketing Hub Cover Images Canvas]] — Cover image library for AI Marketing Hub brand assets\n\n---\n\n## Key Themes\n\n**Knowledge compounds.** Unlike RAG, the wiki pre-compiles synthesis. Cross-references are already there. Contradictions are flagged. Every ingest enriches existing pages rather than adding isolated chunks.\n\n**The hot cache is the force multiplier.** A ~500-word file captures recent context. New sessions start with full context at minimal token cost.\n\n**Obsidian is the IDE, Claude is the programmer.** The graph view shows what's connected. The human curates sources and asks questions. Claude writes and maintains everything else.\n",
+        "backlinks": [
+          "article:getting-started",
+          "article:getting-started",
+          "article:hot",
+          "article:meta/claude-obsidian-v1.2.0-release-session",
+          "article:meta/dashboard",
+          "article:meta/dashboard"
+        ]
+      }
+    },
+    {
+      "id": "article:questions/How does the LLM Wiki pattern work",
+      "type": "article",
+      "name": "How does the LLM Wiki pattern work?",
+      "filePath": "questions/How does the LLM Wiki pattern work.md",
+      "summary": "**Question:** How does the LLM Wiki pattern work and why is it better than RAG?",
+      "tags": [
+        "questions"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "LLM Wiki Pattern",
+          "Compounding Knowledge",
+          "Hot Cache",
+          "index",
+          "Wiki vs RAG",
+          "LLM Wiki Pattern",
+          "Compounding Knowledge",
+          "Hot Cache",
+          "LLM Wiki Pattern"
+        ],
+        "category": "Questions",
+        "content": "---\ntype: question\ntitle: \"How does the LLM Wiki pattern work?\"\nquestion: \"How does the LLM Wiki pattern work and why is it better than RAG?\"\nanswer_quality: definitive\ncreated: 2026-04-07\nupdated: 2026-04-07\ntags:\n  - question\n  - llm-wiki\n  - knowledge-management\nstatus: developing\nrelated:\n  - \"[[LLM Wiki Pattern]]\"\n  - \"[[Compounding Knowledge]]\"\n  - \"[[Hot Cache]]\"\n  - \"[[index]]\"\n  - \"[[Wiki vs RAG]]\"\nsources: []\n---\n\n# How does the LLM Wiki pattern work?\n\n**Question:** How does the LLM Wiki pattern work and why is it better than RAG?\n\n## Answer\n\nThe [[LLM Wiki Pattern]] turns an LLM into a knowledge architect rather than a search engine.\n\n**Standard RAG** (Retrieval-Augmented Generation): every query searches raw documents, retrieves chunks, and assembles an answer from scratch. Nothing is built up. Ask the same question twice — it does the same work twice.\n\n**The wiki pattern** is different. When a source arrives, the LLM reads it and integrates it: updating entity pages, noting contradictions, adding cross-references. The synthesis is done once and persists. Every query benefits from all previous ingests.\n\n### The three layers\n\n1. **`.raw/`** — your source documents. Immutable. Claude reads, never modifies.\n2. **`wiki/`** — Claude-generated knowledge. Summaries, entities, concepts, synthesis.\n3. **`CLAUDE.md`** — the schema. Tells Claude how the wiki is structured and what to do.\n\n### Why it compounds\n\nSee [[Compounding Knowledge]] for the full argument. The short version: each new source doesn't just add one page — it enriches 8-15 existing pages. The connections between pages are where the value lives, not the raw content itself.\n\n### The hot cache shortcut\n\n[[Hot Cache]] (wiki/hot.md) is a ~500-word summary of recent context. New sessions read it first. Cross-project references read it first. It prevents re-reading the whole wiki just to answer \"where were we?\"\n\n(Source: [[LLM Wiki Pattern]])\n\n## Confidence\n\ndefinitive — this is the core concept the entire vault demonstrates.\n",
+        "backlinks": [
+          "article:comparisons/Wiki vs RAG"
+        ]
+      }
+    },
+    {
+      "id": "article:sources/_index",
+      "type": "article",
+      "name": "Sources Index",
+      "filePath": "sources/_index.md",
+      "summary": "Navigation: [[index]] | [[concepts/_index|Concepts]] | [[entities/_index|Entities]]",
+      "tags": [
+        "sources"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "index",
+          "log",
+          "entities/_index",
+          "Andrej Karpathy",
+          "index",
+          "concepts/_index",
+          "entities/_index"
+        ],
+        "category": null,
+        "content": "---\ntype: meta\ntitle: \"Sources Index\"\nupdated: 2026-04-07\ntags:\n  - meta\n  - index\n  - source\nstatus: evergreen\nrelated:\n  - \"[[index]]\"\n  - \"[[log]]\"\n  - \"[[entities/_index]]\"\n  - \"[[Andrej Karpathy]]\"\n---\n\n# Sources Index\n\nNavigation: [[index]] | [[concepts/_index|Concepts]] | [[entities/_index|Entities]]\n\nAll source pages — summaries of ingested documents, transcripts, articles, and data.\n\n---\n\n## Transcripts\n\n\n---\n\n## Articles\n\n<!-- Add article source pages here -->\n\n---\n\n## Papers\n\n<!-- Add paper source pages here -->\n\n---\n\n## Add new sources here after each ingest.\n",
+        "backlinks": [
+          "article:concepts/_index",
+          "article:entities/_index"
+        ]
+      }
+    },
+    {
+      "id": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "article",
+      "name": "Source: Claude + Obsidian Ecosystem Research",
+      "filePath": "sources/claude-obsidian-ecosystem-research.md",
+      "summary": "**Type**: Web research (GitHub + web search) **Date**: 2026-04-08 **Queries run**: 6 parallel searches **Repos deep-read**: 12",
+      "tags": [
+        "sources"
+      ],
+      "complexity": "moderate",
+      "knowledgeMeta": {
+        "wikilinks": [
+          "claude-obsidian-ecosystem",
+          "cherry-picks",
+          "LLM Wiki Pattern",
+          "claude-obsidian-ecosystem",
+          "cherry-picks",
+          "Ar9av-obsidian-wiki",
+          "Nexus-claudesidian-mcp",
+          "ballred-obsidian-claude-pkm",
+          "rvk7895-llm-knowledge-bases",
+          "kepano-obsidian-skills",
+          "Claudian-YishenTu"
+        ],
+        "category": "Sources",
+        "content": "---\ntype: source\ntitle: \"Claude + Obsidian Ecosystem Research\"\ncreated: 2026-04-08\nupdated: 2026-04-08\ntags:\n  - research\n  - ecosystem\n  - competitive-analysis\nstatus: current\nrelated:\n  - \"[[claude-obsidian-ecosystem]]\"\n  - \"[[cherry-picks]]\"\n  - \"[[LLM Wiki Pattern]]\"\nraw_file: \".raw/claude-obsidian-ecosystem-research.md\"\n---\n\n# Source: Claude + Obsidian Ecosystem Research\n\n**Type**: Web research (GitHub + web search)\n**Date**: 2026-04-08\n**Queries run**: 6 parallel searches\n**Repos deep-read**: 12\n\n## Summary\n\nComprehensive internet sweep of all Claude + Obsidian projects. Found 16+ active projects across 4 categories. Identified 13 specific features to cherry-pick for claude-obsidian v1.3.0+.\n\n## Pages Created from This Source\n\n- [[claude-obsidian-ecosystem]] — feature matrix comparison\n- [[cherry-picks]] — prioritized feature backlog\n- [[Ar9av-obsidian-wiki]] — entity page\n- [[Nexus-claudesidian-mcp]] — entity page\n- [[ballred-obsidian-claude-pkm]] — entity page\n- [[rvk7895-llm-knowledge-bases]] — entity page\n- [[kepano-obsidian-skills]] — entity page\n- [[Claudian-YishenTu]] — entity page\n\n## Key Findings\n\n1. **16+ projects** found combining Claude/AI with Obsidian\n2. **kepano** (Obsidian creator) validates Agent Skills format with his own skill repo\n3. **ballred/obsidian-claude-pkm** has best auto-commit implementation (PostToolUse hook)\n4. **Ar9av/obsidian-wiki** has best delta tracking (manifest.json)\n5. **rvk7895/llm-knowledge-bases** has best query depth system (3 tiers)\n6. Most popular traditional plugins: obsidian-copilot (5,776 ⭐), smart-connections (4,357 ⭐)\n7. **claude-obsidian unique advantages**: hot cache, canvas skill, /save conversation, marketplace polish\n8. **Top gap**: No URL ingestion — forces manual copy-paste from web\n\n## Raw File\n\n`.raw/claude-obsidian-ecosystem-research.md` — full notes with all sources\n",
+        "backlinks": [
+          "article:comparisons/claude-obsidian-ecosystem",
+          "article:concepts/cherry-picks",
+          "article:entities/Ar9av-obsidian-wiki",
+          "article:entities/Claudian-YishenTu",
+          "article:entities/Nexus-claudesidian-mcp",
+          "article:entities/ballred-obsidian-claude-pkm",
+          "article:entities/kepano-obsidian-skills",
+          "article:entities/rvk7895-llm-knowledge-bases",
+          "article:meta/claude-obsidian-v1.4-release-session",
+          "article:overview"
+        ]
+      }
+    },
+    {
+      "id": "topic:concepts",
+      "type": "topic",
+      "name": "Concepts",
+      "summary": "Category from index: Concepts (5 articles)",
+      "tags": [
+        "category"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "topic:entities",
+      "type": "topic",
+      "name": "Entities",
+      "summary": "Category from index: Entities (7 articles)",
+      "tags": [
+        "category"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "topic:sources",
+      "type": "topic",
+      "name": "Sources",
+      "summary": "Category from index: Sources (1 articles)",
+      "tags": [
+        "category"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "topic:questions",
+      "type": "topic",
+      "name": "Questions",
+      "summary": "Category from index: Questions (1 articles)",
+      "tags": [
+        "category"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "topic:comparisons",
+      "type": "topic",
+      "name": "Comparisons",
+      "summary": "Category from index: Comparisons (2 articles)",
+      "tags": [
+        "category"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "topic:domains",
+      "type": "topic",
+      "name": "Domains",
+      "summary": "Category from index: Domains (7 articles)",
+      "tags": [
+        "category"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "article:comparisons/Wiki vs RAG",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:comparisons/Wiki vs RAG",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:comparisons/Wiki vs RAG",
+      "target": "article:questions/How does the LLM Wiki pattern work",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:comparisons/claude-obsidian-ecosystem",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:comparisons/claude-obsidian-ecosystem",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:comparisons/claude-obsidian-ecosystem",
+      "target": "article:entities/Andrej Karpathy",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:comparisons/claude-obsidian-ecosystem",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Compounding Knowledge",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Compounding Knowledge",
+      "target": "article:concepts/Hot Cache",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Compounding Knowledge",
+      "target": "article:entities/Andrej Karpathy",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Compounding Knowledge",
+      "target": "article:concepts/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Hot Cache",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Hot Cache",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Hot Cache",
+      "target": "article:hot",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Hot Cache",
+      "target": "article:concepts/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/LLM Wiki Pattern",
+      "target": "article:concepts/Hot Cache",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/LLM Wiki Pattern",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/LLM Wiki Pattern",
+      "target": "article:entities/Andrej Karpathy",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/LLM Wiki Pattern",
+      "target": "article:concepts/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/_index",
+      "target": "article:meta/dashboard",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/_index",
+      "target": "article:concepts/Hot Cache",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/_index",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/_index",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/_index",
+      "target": "article:entities/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/_index",
+      "target": "article:sources/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/android-reverse-engineering-skill",
+      "target": "article:concepts/cube-sandbox-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/cherry-picks",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/cherry-picks",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/cherry-picks",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Andrej Karpathy",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Andrej Karpathy",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Andrej Karpathy",
+      "target": "article:entities/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Ar9av-obsidian-wiki",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Ar9av-obsidian-wiki",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Ar9av-obsidian-wiki",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Ar9av-obsidian-wiki",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Claudian-YishenTu",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Claudian-YishenTu",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Claudian-YishenTu",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Nexus-claudesidian-mcp",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Nexus-claudesidian-mcp",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/Nexus-claudesidian-mcp",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/_index",
+      "target": "article:entities/Andrej Karpathy",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/_index",
+      "target": "article:hot",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/_index",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/_index",
+      "target": "article:concepts/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/_index",
+      "target": "article:sources/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/ballred-obsidian-claude-pkm",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/ballred-obsidian-claude-pkm",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/ballred-obsidian-claude-pkm",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/ballred-obsidian-claude-pkm",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/kepano-obsidian-skills",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/kepano-obsidian-skills",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/kepano-obsidian-skills",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/kepano-obsidian-skills",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/rvk7895-llm-knowledge-bases",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/rvk7895-llm-knowledge-bases",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/rvk7895-llm-knowledge-bases",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/rvk7895-llm-knowledge-bases",
+      "target": "article:entities/Andrej Karpathy",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:entities/rvk7895-llm-knowledge-bases",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:getting-started",
+      "target": "article:overview",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:getting-started",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:getting-started",
+      "target": "article:comparisons/Wiki vs RAG",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:getting-started",
+      "target": "article:meta/dashboard",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:getting-started",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:meta/claude-obsidian-v1.4-release-session",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:overview",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:entities/Ar9av-obsidian-wiki",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:entities/rvk7895-llm-knowledge-bases",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:entities/ballred-obsidian-claude-pkm",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:entities/kepano-obsidian-skills",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:hot",
+      "target": "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+      "target": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+      "target": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "target": "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+      "target": "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+      "target": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+      "target": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+      "target": "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "target": "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "target": "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "target": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+      "target": "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+      "target": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+      "target": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.2.0-release-session",
+      "target": "article:getting-started",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.2.0-release-session",
+      "target": "article:overview",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.2.0-release-session",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.4-release-session",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.4-release-session",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.4-release-session",
+      "target": "article:meta/full-audit-and-system-setup-session",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.4-release-session",
+      "target": "article:meta/claude-obsidian-v1.2.0-release-session",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.4-release-session",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.4-release-session",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/claude-obsidian-v1.4-release-session",
+      "target": "article:entities/Ar9av-obsidian-wiki",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/dashboard",
+      "target": "article:overview",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/dashboard",
+      "target": "article:concepts/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/dashboard",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/dashboard",
+      "target": "article:hot",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/full-audit-and-system-setup-session",
+      "target": "article:meta/claude-obsidian-v1.2.0-release-session",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/full-audit-and-system-setup-session",
+      "target": "article:getting-started",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:meta/program",
+      "target": "article:hot",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:overview",
+      "target": "article:hot",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:overview",
+      "target": "article:meta/dashboard",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:overview",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:overview",
+      "target": "article:concepts/Hot Cache",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:overview",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:overview",
+      "target": "article:entities/Andrej Karpathy",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:overview",
+      "target": "article:sources/claude-obsidian-ecosystem-research",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:questions/How does the LLM Wiki pattern work",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:questions/How does the LLM Wiki pattern work",
+      "target": "article:concepts/Compounding Knowledge",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:questions/How does the LLM Wiki pattern work",
+      "target": "article:concepts/Hot Cache",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:questions/How does the LLM Wiki pattern work",
+      "target": "article:comparisons/Wiki vs RAG",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/_index",
+      "target": "article:entities/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/_index",
+      "target": "article:entities/Andrej Karpathy",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/_index",
+      "target": "article:concepts/_index",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:comparisons/claude-obsidian-ecosystem",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:concepts/cherry-picks",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:concepts/LLM Wiki Pattern",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:entities/Ar9av-obsidian-wiki",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:entities/Nexus-claudesidian-mcp",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:entities/ballred-obsidian-claude-pkm",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:entities/rvk7895-llm-knowledge-bases",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:entities/kepano-obsidian-skills",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "article:entities/Claudian-YishenTu",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "article:concepts/Agent Architecture Takeaways from OpenAI Agents SDK",
+      "target": "topic:concepts",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:concepts/LLM Wiki Pattern",
+      "target": "topic:concepts",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:concepts/Hot Cache",
+      "target": "topic:concepts",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:concepts/Compounding Knowledge",
+      "target": "topic:concepts",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:concepts/cherry-picks",
+      "target": "topic:concepts",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:entities/Andrej Karpathy",
+      "target": "topic:entities",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:entities/Ar9av-obsidian-wiki",
+      "target": "topic:entities",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:entities/Nexus-claudesidian-mcp",
+      "target": "topic:entities",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:entities/ballred-obsidian-claude-pkm",
+      "target": "topic:entities",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:entities/rvk7895-llm-knowledge-bases",
+      "target": "topic:entities",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:entities/kepano-obsidian-skills",
+      "target": "topic:entities",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:entities/Claudian-YishenTu",
+      "target": "topic:entities",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:sources/claude-obsidian-ecosystem-research",
+      "target": "topic:sources",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:questions/How does the LLM Wiki pattern work",
+      "target": "topic:questions",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:comparisons/Wiki vs RAG",
+      "target": "topic:comparisons",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:comparisons/claude-obsidian-ecosystem",
+      "target": "topic:comparisons",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+      "target": "topic:domains",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+      "target": "topic:domains",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+      "target": "topic:domains",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+      "target": "topic:domains",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+      "target": "topic:domains",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+      "target": "topic:domains",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+      "target": "topic:domains",
+      "type": "categorized_under",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:concepts",
+      "name": "Concepts",
+      "description": "Concepts (6 nodes)",
+      "nodeIds": [
+        "article:concepts/Agent Architecture Takeaways from OpenAI Agents SDK",
+        "article:concepts/LLM Wiki Pattern",
+        "article:concepts/Hot Cache",
+        "article:concepts/Compounding Knowledge",
+        "article:concepts/cherry-picks",
+        "topic:concepts"
+      ]
+    },
+    {
+      "id": "layer:entities",
+      "name": "Entities",
+      "description": "Entities (8 nodes)",
+      "nodeIds": [
+        "article:entities/Andrej Karpathy",
+        "article:entities/Ar9av-obsidian-wiki",
+        "article:entities/Nexus-claudesidian-mcp",
+        "article:entities/ballred-obsidian-claude-pkm",
+        "article:entities/rvk7895-llm-knowledge-bases",
+        "article:entities/kepano-obsidian-skills",
+        "article:entities/Claudian-YishenTu",
+        "topic:entities"
+      ]
+    },
+    {
+      "id": "layer:sources",
+      "name": "Sources",
+      "description": "Sources (2 nodes)",
+      "nodeIds": [
+        "article:sources/claude-obsidian-ecosystem-research",
+        "topic:sources"
+      ]
+    },
+    {
+      "id": "layer:questions",
+      "name": "Questions",
+      "description": "Questions (2 nodes)",
+      "nodeIds": [
+        "article:questions/How does the LLM Wiki pattern work",
+        "topic:questions"
+      ]
+    },
+    {
+      "id": "layer:comparisons",
+      "name": "Comparisons",
+      "description": "Comparisons (3 nodes)",
+      "nodeIds": [
+        "article:comparisons/Wiki vs RAG",
+        "article:comparisons/claude-obsidian-ecosystem",
+        "topic:comparisons"
+      ]
+    },
+    {
+      "id": "layer:domains",
+      "name": "Domains",
+      "description": "Domains (8 nodes)",
+      "nodeIds": [
+        "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+        "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+        "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack",
+        "article:libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation",
+        "article:libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system",
+        "article:libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric",
+        "article:libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership",
+        "topic:domains"
+      ]
+    },
+    {
+      "id": "layer:other",
+      "name": "Other",
+      "description": "Uncategorized nodes (14)",
+      "nodeIds": [
+        "article:concepts/_index",
+        "article:concepts/android-reverse-engineering-skill",
+        "article:concepts/cube-sandbox-research",
+        "article:entities/_index",
+        "article:getting-started",
+        "article:hot",
+        "article:libertaria/writing/2026-04-29-sovereign-child-in-age-of-capture-ideas",
+        "article:meta/claude-obsidian-v1.2.0-release-session",
+        "article:meta/claude-obsidian-v1.4-release-session",
+        "article:meta/dashboard",
+        "article:meta/full-audit-and-system-setup-session",
+        "article:meta/program",
+        "article:overview",
+        "article:sources/_index"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Concepts",
+      "description": "Explore the Concepts section (5 articles)",
+      "nodeIds": [
+        "article:concepts/Agent Architecture Takeaways from OpenAI Agents SDK",
+        "article:concepts/LLM Wiki Pattern",
+        "article:concepts/Hot Cache"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Entities",
+      "description": "Explore the Entities section (7 articles)",
+      "nodeIds": [
+        "article:entities/Andrej Karpathy",
+        "article:entities/Ar9av-obsidian-wiki",
+        "article:entities/Nexus-claudesidian-mcp"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Sources",
+      "description": "Explore the Sources section (1 articles)",
+      "nodeIds": [
+        "article:sources/claude-obsidian-ecosystem-research"
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Questions",
+      "description": "Explore the Questions section (1 articles)",
+      "nodeIds": [
+        "article:questions/How does the LLM Wiki pattern work"
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Comparisons",
+      "description": "Explore the Comparisons section (2 articles)",
+      "nodeIds": [
+        "article:comparisons/Wiki vs RAG",
+        "article:comparisons/claude-obsidian-ecosystem"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Domains",
+      "description": "Explore the Domains section (7 articles)",
+      "nodeIds": [
+        "article:libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design",
+        "article:libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages",
+        "article:libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack"
+      ]
+    }
+  ]
+}
