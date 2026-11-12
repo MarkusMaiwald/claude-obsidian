@@ -271,10 +271,13 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   §S5A), SPEC-243 `std.session` inventory amendment, A2/A3 ratification.
 - Status: direction ratified; nothing implemented, active queue untouched.
   Implementation lanes follow Plans.md rules when scheduled.
-- Knowledge: this page + AKF candidate in the LIQUID_COMPUTE shared store
-  (`agents/akf`): revision `janus-spec-271-adoption-20261112-r5`, parent-bound
-  to r2, one curated topic (`knowledge/janus-spec-271-clojure-adoption.md`)
-  + five exact factory-x86 source captures. Isolated native readback 17/17
-  authenticated, 0 omissions; Mnemos `propose` accepted (`outcome: proposed`,
-  digest `blake3:3316ca43…df0fc7`). Grant is propose-only — publication needs
-  separate authorization; head stays r2.
+- Knowledge: this page + AKF revision `janus-spec-271-adoption-20261112-r5`
+  **PUBLISHED** in the LIQUID_COMPUTE shared store (`agents/akf`) under
+  Founder authorization ("commit merge and publish"). One curated topic
+  (`knowledge/janus-spec-271-clojure-adoption.md`) + five exact factory-x86
+  source captures; parent r2. Isolated readback 17/17 authenticated, 0
+  omissions; Mnemos `publish` `outcome: committed`, digest
+  `blake3:3316ca43…df0fc7`; live status/get verified. r5 is the active head;
+  per-user grant restored to propose-only. Repo records committed: Janus
+  agents repo `unstable` e9acca5 (pushed to forge), wiki main 2a481bd,
+  LIQUID_COMPUTE agents graf checkpoint 3c9d33a1.

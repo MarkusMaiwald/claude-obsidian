@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] decision | SPEC-271 package committed, merged, AKF r5 PUBLISHED (Founder)
+- Type: publication record (commit + merge + publish)
+- Decision: Markus Maiwald "commit merge and publish" — executed 2026-11-12.
+- Commits: Janus agents repo (factory-x86 JANUS/.agents) `unstable` e9acca5 pushed to git.sovereign-society.org/janus/agents (SPEC-271 + plan + A2/A3 amendments + registrations; other lanes' edits untouched). Wiki main 2a481bd (synthesis + records). LIQUID_COMPUTE agents graf checkpoint 3c9d33a1 (published revision, head, receipt, README).
+- AKF publication: `janus-spec-271-adoption-20261112-r5` committed via Mnemos owner (`outcome: committed`, digest blake3:3316ca43…df0fc7). Sovereign one-candidate policy: pinned curator signer as actor + local Founder approval key (markus-maiwald-approval-20261112) signing the operation-bound approval; no self-approval; key material machine-local only. Live status/get readback verified; trust re-attested after head move. Per-user grant restored to propose-only; publication policy removed.
+- Rebase debt: fabric-r3-draft and x86-preemption-r6 candidates remain parent-bound to r2; next publication rebases on r5.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (AKF → PUBLISHED), [[hot]]
+
 ## [2026-11-12] decision | SPEC-271 + Clojure/Grain adoption program RATIFIED (Founder)
 - Type: ratification record (repo state change + wiki update)
 - Decision: Markus Maiwald "APPROVED and RATIFIED!!" — SPEC-271 v0.1.0 (Live Evaluation Session) and the Clojure/Grain adoption program plan ratified as direction, 2026-11-12.
