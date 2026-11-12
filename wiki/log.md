@@ -20,6 +20,11 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] save | AKF r12 PUBLISHED: option-B execution-foundation knowledge head
+- Type: publication record
+- AKF: janus-optionb-foundation-20261112-r12 published (parent r11; outcome committed; digest blake3:c0243bd8…fea63ce; 22/22 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-optionb-foundation.md + refreshed SPEC-271/plan/index captures + three AOT in-process foundation test sources. Graf checkpoint cd0c9d11. Native/fabric candidates owe rebase on r12.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (r12 head), [[hot]]
+
 ## [2026-11-12] decision | SPEC-271 Phase 1 execution foundation PROVEN (option B, Founder)
 - Type: foundation record (execution mechanism)
 - Decision: Founder chose B (build AOT in-process execution) over amending the never-JIT clause. The ratified SPEC-271 presupposed an in-process AOT mechanism that did not exist — only the forbidden graph interpreter returned values in-process; AOT exec'd a subprocess.
