@@ -342,20 +342,21 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
 - Pending: SPEC-243 `std.session` inventory, remaining SPEC-271 Phase 1 body,
   behavior-level held-out case. Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
-  **Active head: `janus-optionb-foundation-20261112-r12`** (published 2026-11-12,
-  parent r11): records the option-B execution foundation — new decision page
-  `knowledge/janus-optionb-foundation.md`, refreshed SPEC-271/plan/index
-  captures, three AOT in-process foundation test sources. Isolated readback
-  22/22 authenticated, 0 omissions; Mnemos `publish` `outcome: committed`,
-  digest `blake3:c0243bd8…fea63ce`; live status/get verified; grant restored
-  to propose-only. Chain: r5 → r7 → r9 → r10 → r11 → r12. Native/fabric
-  lanes' candidates owe rebase on r12. Repo records: Janus agents repo
+  **Active head: `janus-rt-resolution-20261112-r13`** (published 2026-11-12,
+  parent r12): records the Phase-1 runtime-symbol resolution — new decision
+  page `knowledge/janus-rt-resolution.md`, refreshed SPEC-271/plan/index
+  captures, three runtime-resolution test sources. Isolated readback 23/23
+  authenticated, 0 omissions; Mnemos `publish` `outcome: committed`, digest
+  `blake3:d25cc46e…8eb7bcf`; live status/get verified; grant restored to
+  propose-only. Chain: r5 → r7 → r9 → r10 → r11 → r12 → r13. Native/fabric
+  lanes' candidates owe rebase on r13. Repo records: Janus agents repo
   `unstable` e9acca5 + 772e1b4 (A2/A3) + 8da1f37 (batch 2 filed) + 671ee0a
   (batch 2 ratified) + 552877b (execution) + b3445ad (gap CLOSED) + 81698d6
-  (index/plan) + 44ecf4d (option-B foundation), all pushed to forge; janus-lang
-  active branch de3fc589 (promotion merge, pushed), lanes 4b66d6aa (citation),
-  4520ddbe (taxonomy), 59269406 (comment cleanup), 84c559f9 (option-B
-  foundation, pushed); wiki main (pushed to fork branch
-  wiki-knowledge-20261112); LIQUID_COMPUTE agents graf checkpoints 3c9d33a1
-  (r5) + 97af9503 (r7) + 1e625257 (r9) + 117af3f1 (r10) + bdd8ef28 (r11)
-  + cd0c9d11 (r12).
+  (index/plan) + 44ecf4d (option-B foundation) + 0f5306b (runtime-resolution),
+  all pushed to forge; janus-lang active branch de3fc589 (promotion merge,
+  pushed), lanes 4b66d6aa (citation), 4520ddbe (taxonomy), 59269406 (comment
+  cleanup), 84c559f9 (option-B foundation), 34aecc29 (runtime-resolution,
+  pushed); wiki main (pushed to fork branch wiki-knowledge-20261112);
+  LIQUID_COMPUTE agents graf checkpoints 3c9d33a1 (r5) + 97af9503 (r7)
+  + 1e625257 (r9) + 117af3f1 (r10) + bdd8ef28 (r11) + cd0c9d11 (r12)
+  + df122e3c (r13).

@@ -20,6 +20,11 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] save | AKF r13 PUBLISHED: runtime-resolution knowledge head
+- Type: publication record
+- AKF: janus-rt-resolution-20261112-r13 published (parent r12; outcome committed; digest blake3:d25cc46e…8eb7bcf; 23/23 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-rt-resolution.md + refreshed SPEC-271/plan/index captures + three runtime-resolution test sources. Graf checkpoint df122e3c. Native/fabric candidates owe rebase on r13.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (r13 head), [[hot]]
+
 ## [2026-11-12] decision | SPEC-271 Phase-1 runtime-symbol resolution PROVEN (first body increment)
 - Type: foundation record (execution mechanism, Phase-1 body)
 - Extended the option-B pure-export foundation to runtime-touching units (janus_alloc/janus_free). Two root causes found + fixed, verified green under Zig 0.17.1 BOTH directly and via the registered test-session-rt-smoke zb step (sess_pure(21)=42, sess_alloc_roundtrip(1234)=1234, exit 0).
