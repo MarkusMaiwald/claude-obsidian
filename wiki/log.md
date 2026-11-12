@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] decision | Batch 2 RATIFIED (SPEC-272, A5/A7, STD-GAP-083 ruling); AKF r9 PUBLISHED
+- Type: ratification + publication record
+- Decision: Markus Maiwald "batch 2 is ratified! approved. continue" — executed 2026-11-12.
+- Canon: SPEC-272 v0.1.0 promoted _PROPOSED → _CURRENT (all four §9 questions resolved). A5 ratified + merge rule executed (FEATURE-ADMISSION/ai-alignment citations → janus desugar; SPEC-221/229 binding correction notices; SPEC-271 [SES-12] debt closed; stub-comment cleanup rides next compiler lane). A7 ratified + merge rule executed (propagation doctrine now FIVE layers; first asset janus-session skill, drafting unscheduled). STD-GAP-083 Founder ruling: session block 0x0050–0x0057 APPROVED (SPEC-064 minor), status OPEN execution-pickable; codes not yet in taxonomy.jan.
+- Commits: janus/agents unstable 671ee0a pushed to forge (13 files; STDLIB_GAPS foreign-lane edits preserved via index-level select); janus-lang feature lane 4b66d6aa (ai-alignment citation, rides lane integration).
+- AKF: r9 janus-batch2-ratified-20261112-r9 published (parent r7; outcome committed; digest blake3:6757865f…59baa342; 19/19 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-batch2-ratified.md + 3 refreshed captures + 5 ratified sources. Graf checkpoint 1e625257. Native/fabric candidates owe rebase on r9.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (batch 2 ratified, r9 head), [[hot]]
+
 ## [2026-11-12] save | Adoption program batch 2 filed (PROPOSED): SPEC-272, A5/A7, STD-GAP-083
 - Type: spec-filing record
 - From: "ok continue" — next program batch after the ratified session stack. Four parallel scouts (taxonomy, desugar, conformance, skills surfaces), then drafting.

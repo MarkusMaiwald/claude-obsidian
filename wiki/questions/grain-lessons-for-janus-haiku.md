@@ -266,39 +266,44 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   per its merge rule. Session contract stack ratified end-to-end.
   A4 STL domain-event layer + projections and A8 app-kit topology (SPEC-264)
   remain consumer-triggered seeds.
-- **Batch 2 filed 2026-11-12 (PROPOSED, commit 8da1f37)**: A5 →
+- **Batch 2 RATIFIED 2026-11-12** ("batch 2 is ratified! approved"; filed
+  8da1f37, ratified 671ee0a): A5 →
   `_AMENDMENT/SPEC-221-229-amendment-A-desugar-surface-reconciliation.md`
-  (canonical `janus desugar`; query-desugar reserved for the future analysis
-  axis; doctrine corrections + binding correction lists for both bases);
-  A6 → **SPEC-272 Backend Conformance Corpus** (`_PROPOSED/`, [CONF-01]–[08]:
-  one corpus, independent oracles, LLVM AOT + QTJIR interpreter matrix, WASM
-  frozen/excluded, SPEC-053-knob divergence registry); A7 →
-  `_AMENDMENT/PROPAGATION-amendment-A-skill-assets.md` (fifth propagation
-  layer, cold-agent held-out acceptance). Taxonomy request filed as
-  **STD-GAP-083** (NEEDS_RULING; suggested session block 0x0050–0x0057 via
-  SPEC-064 §S5A; the cited "SPEC-088 §S5A" does not exist in the shipped
-  stub — citation correction recorded). All await Founder ratification.
+  RATIFIED, merge rule executed (FEATURE-ADMISSION + ai-alignment citations
+  corrected to `janus desugar`; SPEC-221/229 headers carry binding correction
+  lists; SPEC-271 [SES-12] debt CLOSED; stale-comment cleanup rides the next
+  compiler lane). A6 → **SPEC-272 Backend Conformance Corpus v0.1.0
+  RATIFIED**, promoted to `_CURRENT/` ([CONF-01]–[08]: one corpus,
+  independent oracles, LLVM AOT + QTJIR interpreter matrix, WASM
+  frozen/excluded, SPEC-053-knob divergence registry; all four §9 questions
+  resolved). A7 → `_AMENDMENT/PROPAGATION-amendment-A-skill-assets.md`
+  RATIFIED, merge rule executed — propagation doctrine now has FIVE layers
+  (skill asset + cold-agent held-out receipt); first required asset:
+  `janus-session` skill (drafting unscheduled). **STD-GAP-083 Founder
+  ruling**: session taxonomy block 0x0050–0x0057 APPROVED (SPEC-064 minor
+  update); status OPEN, execution agent-pickable — codes not yet in
+  taxonomy.jan.
 - Registrations updated: SPEC-INDEX.md (Newest update + `_CURRENT` row,
   `_PROPOSED` row removed), `_PROPOSED/README.md` (PROMOTED entry), devlog
   `JANUS/agent-reports/2026-11-12-voxis-devlog-spec-271-clojure-adoption-program.md`
   (ratification addendum).
-- Pending with owners: STD-GAP-083 taxonomy ruling (blocks SPEC-271 Phase 3
-  only), SPEC-243 `std.session` inventory amendment, ratification of
-  SPEC-272 + A5 + A7.
+- Pending execution: STD-GAP-083 taxonomy/codec update (blocks SPEC-271
+  Phase 3 only), `janus-session` skill draft, SPEC-243 `std.session`
+  inventory amendment, stale desugar stub-comment cleanup.
 - Status: direction ratified; nothing implemented, active queue untouched.
   Implementation lanes follow Plans.md rules when scheduled.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
-  **Active head: `janus-session-stack-20261112-r7`** (published 2026-11-12,
-  parent r5): records the A2/A3 ratifications end-to-end — new decision page
-  `knowledge/janus-session-stack-ratified.md`, refreshed Janus captures,
-  merged canons (SPEC-045 v1.6.0, SPEC-096 v0.2.0) as exact sources. Isolated
-  readback 18/18 authenticated, 0 omissions; Mnemos `publish`
-  `outcome: committed`, digest `blake3:9ccccd92…348e7a12451`; live status/get
-  verified; grant restored to propose-only. Prior head r5
-  (`janus-spec-271-adoption-20261112-r5`, digest `blake3:3316ca43…df0fc7`)
-  remains in the chain. Native/fabric lanes' candidates owe rebase on r7.
-  Repo records committed: Janus agents repo `unstable` e9acca5 + 772e1b4
-  (A2/A3 merges) + 8da1f37 (batch 2), all pushed to forge; wiki main (pushed
-  to fork branch wiki-knowledge-20261112); LIQUID_COMPUTE agents graf
-  checkpoints 3c9d33a1 (r5) + 97af9503 (r7). AKF refresh for batch 2 awaits
-  its ratification (propose-only grant).
+  **Active head: `janus-batch2-ratified-20261112-r9`** (published 2026-11-12,
+  parent r7): records the batch-2 ratifications — new decision page
+  `knowledge/janus-batch2-ratified.md`, three refreshed captures, five new
+  ratified sources. Isolated readback 19/19 authenticated, 0 omissions;
+  Mnemos `publish` `outcome: committed`, digest `blake3:6757865f…59baa342`;
+  live status/get verified; grant restored to propose-only. Chain: r5
+  (`janus-spec-271-adoption-20261112-r5`) → r7
+  (`janus-session-stack-20261112-r7`) → r9. Native/fabric lanes' candidates
+  owe rebase on r9. Repo records committed: Janus agents repo `unstable`
+  e9acca5 + 772e1b4 (A2/A3) + 8da1f37 (batch 2 filed) + 671ee0a (batch 2
+  ratified), all pushed to forge; janus-lang feature lane 4b66d6aa
+  (ai-alignment citation); wiki main (pushed to fork branch
+  wiki-knowledge-20261112); LIQUID_COMPUTE agents graf checkpoints 3c9d33a1
+  (r5) + 97af9503 (r7) + 1e625257 (r9).
