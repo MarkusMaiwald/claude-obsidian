@@ -315,7 +315,19 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   feature/voxis/musl-portable-static-20261026 (de3fc589, pushed); session +
   regression smokes re-verified exit 0 on the active branch. SPEC-271 Phase 3
   (STL sink + replay) unblocked. Records b3445ad + 81698d6 pushed.
-- Pending: SPEC-243 `std.session` inventory, SPEC-271 Phases 1+ implementation,
+- **SPEC-271 Phase 1 execution foundation PROVEN 2026-11-12 (option B,
+  Founder decision)**: the ratified contract presupposed an in-process AOT
+  mechanism that did not exist (only the forbidden graph interpreter returned
+  values in-process; AOT exec'd a subprocess). Founder chose B — build AOT
+  in-process execution — over amending the never-JIT clause. Proven + verified
+  green under Zig 0.17.1 via registered `test-aot-inproc-smoke`: Janus unit
+  AOT-compiled → native object → shared artifact → `std.DynLib` in-process
+  load → typed C-ABI call (`janus_double(21)=42`, `janus_add(19,23)=42`), no
+  runtime codegen. Lane `feature/voxis/spec271-session-core` 84c559f9 (pushed);
+  records 44ecf4d pushed. Remaining Phase 1 body (loader service, session-safe
+  panic / runtime-symbol resolution, PIC, CID artifact identity,
+  env/budgets/ledger/`janus session` CLI) builds on this foundation.
+- Pending: SPEC-243 `std.session` inventory, SPEC-271 Phase 1 body,
   behavior-level held-out case. Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
   **Active head: `janus-taxonomy-promoted-20261112-r11`** (published 2026-11-12,

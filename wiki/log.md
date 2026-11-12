@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] decision | SPEC-271 Phase 1 execution foundation PROVEN (option B, Founder)
+- Type: foundation record (execution mechanism)
+- Decision: Founder chose B (build AOT in-process execution) over amending the never-JIT clause. The ratified SPEC-271 presupposed an in-process AOT mechanism that did not exist — only the forbidden graph interpreter returned values in-process; AOT exec'd a subprocess.
+- Proven + verified green under Zig 0.17.1 via registered test-aot-inproc-smoke zb step: Janus unit AOT-compiled → native object → shared artifact → std.DynLib in-process load → typed C-ABI call (janus_double(21)=42, janus_add(19,23)=42), no runtime codegen. Lane feature/voxis/spec271-session-core 84c559f9 (pushed); records 44ecf4d pushed.
+- Mechanism facts: export func already C callconv; scalar i64 return int64_t f(...); std.DynLib.open already used (npu/device.zig); export_smoke.sh is object→C-call precedent, extended here to in-process loading.
+- Remaining Phase 1 body: loader service, session-safe panic / runtime-symbol resolution (janus_panic currently exits host), PIC across linked components, CID artifact identity, env table / budgets / ledger / janus session CLI.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (option B foundation), [[hot]]. AKF refresh pending (propose-only).
+
 ## [2026-11-12] save | AKF r11 PUBLISHED: taxonomy-promotion knowledge head
 - Type: publication record
 - AKF: janus-taxonomy-promoted-20261112-r11 published (parent r10; outcome committed; digest blake3:3e349341…fb06ca7d; 21/21 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-taxonomy-promoted.md + 3 refreshed captures + SPEC-INDEX capture. Graf checkpoint bdd8ef28. Native/fabric candidates owe rebase on r11.
