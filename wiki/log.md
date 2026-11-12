@@ -20,6 +20,11 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] save | AKF r11 PUBLISHED: taxonomy-promotion knowledge head
+- Type: publication record
+- AKF: janus-taxonomy-promoted-20261112-r11 published (parent r10; outcome committed; digest blake3:3e349341…fb06ca7d; 21/21 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-taxonomy-promoted.md + 3 refreshed captures + SPEC-INDEX capture. Graf checkpoint bdd8ef28. Native/fabric candidates owe rebase on r11.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (r11 head), [[hot]]
+
 ## [2026-11-12] decision | STD-GAP-083 CLOSED: taxonomy PROMOTED under Zig 0.17.1
 - Type: promotion record
 - From: "promote the taxonomy lane into the active compiler branch once the worktree build blocker clears. also regard that we are running now Zig 0.17.1".

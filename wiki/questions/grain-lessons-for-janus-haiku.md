@@ -318,16 +318,17 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
 - Pending: SPEC-243 `std.session` inventory, SPEC-271 Phases 1+ implementation,
   behavior-level held-out case. Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
-  **Active head: `janus-execution-landed-20261112-r10`** (published 2026-11-12,
-  parent r9): records the first execution — new decision page
-  `knowledge/janus-execution-landed.md`, four refreshed captures, four new
-  execution sources. Isolated readback 20/20 authenticated, 0 omissions;
-  Mnemos `publish` `outcome: committed`, digest `blake3:4065de44…a50dd9ed`;
-  live status/get verified; grant restored to propose-only. Chain: r5 → r7
-  → r9 → r10. Native/fabric lanes' candidates owe rebase on r10. Repo
-  records: Janus agents repo `unstable` e9acca5 + 772e1b4 (A2/A3) + 8da1f37
-  (batch 2 filed) + 671ee0a (batch 2 ratified) + 552877b (execution), all
-  pushed to forge; janus-lang lanes 4b66d6aa (citation), 4520ddbe (taxonomy,
-  pushed), 59269406 (comment cleanup); wiki main (pushed to fork branch
+  **Active head: `janus-taxonomy-promoted-20261112-r11`** (published 2026-11-12,
+  parent r10): records the promotion — new decision page
+  `knowledge/janus-taxonomy-promoted.md`, three refreshed captures, SPEC-INDEX
+  capture. Isolated readback 21/21 authenticated, 0 omissions; Mnemos `publish`
+  `outcome: committed`, digest `blake3:3e349341…fb06ca7d`; live status/get
+  verified; grant restored to propose-only. Chain: r5 → r7 → r9 → r10 → r11.
+  Native/fabric lanes' candidates owe rebase on r11. Repo records: Janus
+  agents repo `unstable` e9acca5 + 772e1b4 (A2/A3) + 8da1f37 (batch 2 filed)
+  + 671ee0a (batch 2 ratified) + 552877b (execution) + b3445ad (gap CLOSED)
+  + 81698d6 (index/plan), all pushed to forge; janus-lang active branch
+  de3fc589 (promotion merge, pushed), lanes 4b66d6aa (citation), 4520ddbe
+  (taxonomy), 59269406 (comment cleanup); wiki main (pushed to fork branch
   wiki-knowledge-20261112); LIQUID_COMPUTE agents graf checkpoints 3c9d33a1
-  (r5) + 97af9503 (r7) + 1e625257 (r9) + 117af3f1 (r10).
+  (r5) + 97af9503 (r7) + 1e625257 (r9) + 117af3f1 (r10) + bdd8ef28 (r11).
