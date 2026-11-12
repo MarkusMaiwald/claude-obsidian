@@ -336,9 +336,19 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   — on Linux `std.DynLib` uses a custom `ElfDynLib` loader that does not apply
   PLT `JUMP_SLOT` relocations, so internal cross-function calls segfault
   (proven with a plain-C control). Lane commit 34aecc29 (pushed); records
-  0f5306b pushed. Remaining Phase-1 body: session-safe panic (`janus_panic` is
-  `noreturn`+`exit`), loader service, CID artifact identity,
-  env/budgets/ledger/`janus session` CLI.
+  0f5306b pushed.
+- **Session-safe panic PROVEN 2026-11-12 (Phase-1 body, second increment)**:
+  a panicking unit no longer kills the host. `janus_panic` is emitted as an
+  EXTERNAL call and the runtime has no panic hook, so NO compiler change:
+  localize the runtime's fatal panic symbols (`objcopy
+  --localize-symbol=janus_panic` / `janus_rt_panic_uncaught_error`) and
+  resolve the unit's panic calls against a `setjmp`/`longjmp` recovery shim
+  (`session_panic_shim.c`, `sess_try_call`). Verified green under Zig 0.17.1
+  (direct smoke, exit 0): `sess_ok(21)=42`, `sess_alloc_rt(1234)=1234`,
+  `sess_panics` recovered (msg "unwrap called on None optional", rc=1),
+  post-recovery `sess_ok(10)=20` — host survived and kept evaluating. Lane
+  commit cfbad507 (pushed); records 49d86a6 pushed. Remaining Phase-1 body:
+  loader service, CID artifact identity, env/budgets/ledger/`janus session` CLI.
 - Pending: SPEC-243 `std.session` inventory, remaining SPEC-271 Phase 1 body,
   behavior-level held-out case. Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).

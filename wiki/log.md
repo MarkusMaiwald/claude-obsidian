@@ -20,6 +20,13 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] decision | SPEC-271 Phase-1 session-safe panic PROVEN (second body increment)
+- Type: foundation record (execution mechanism, Phase-1 body)
+- A panicking Janus unit no longer kills the session host. janus_panic is emitted as an EXTERNAL call (llvm_emitter.zig:10903) and the runtime has no panic hook, so NO compiler change: localize the runtime's fatal panic symbols (objcopy --localize-symbol=janus_panic / janus_rt_panic_uncaught_error) and resolve the unit's panic calls against a setjmp/longjmp recovery shim (tests/session_panic_shim.c, sess_try_call).
+- Verified green under Zig 0.17.1 (direct smoke, exit 0): sess_ok(21)=42, sess_alloc_rt(1234)=1234, sess_panics recovered (msg "unwrap called on None optional", rc=1), post-recovery sess_ok(10)=20 — host survived and kept evaluating. Satisfies the [SES-07] transactional spirit at the execution layer: a panicking evaluation is contained, not fatal.
+- Lane feature/voxis/spec271-session-core cfbad507 (pushed); records 49d86a6 pushed; build step test-session-panic-smoke registered. Remaining Phase-1 body: loader service, CID artifact identity, env/budgets/ledger/janus session CLI.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (panic milestone), [[hot]]. AKF refresh pending (propose-only).
+
 ## [2026-11-12] save | AKF r13 PUBLISHED: runtime-resolution knowledge head
 - Type: publication record
 - AKF: janus-rt-resolution-20261112-r13 published (parent r12; outcome committed; digest blake3:d25cc46e…8eb7bcf; 23/23 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-rt-resolution.md + refreshed SPEC-271/plan/index captures + three runtime-resolution test sources. Graf checkpoint df122e3c. Native/fabric candidates owe rebase on r13.
