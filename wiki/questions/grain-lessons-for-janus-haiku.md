@@ -287,11 +287,27 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   `_PROPOSED` row removed), `_PROPOSED/README.md` (PROMOTED entry), devlog
   `JANUS/agent-reports/2026-11-12-voxis-devlog-spec-271-clojure-adoption-program.md`
   (ratification addendum).
-- Pending execution: STD-GAP-083 taxonomy/codec update (blocks SPEC-271
-  Phase 3 only), `janus-session` skill draft, SPEC-243 `std.session`
-  inventory amendment, stale desugar stub-comment cleanup.
-- Status: direction ratified; nothing implemented, active queue untouched.
-  Implementation lanes follow Plans.md rules when scheduled.
+- **EXECUTED 2026-11-12 ("ok go", three lanes)**: STD-GAP-083 taxonomy
+  allocation executed + verified in worktree lane
+  `feature/voxis/std-gap-083-session-taxonomy` (commit 4520ddbe, pushed):
+  8 SessionEventKinds 0x0050–0x0057 in taxonomy.jan + flat smoke (negative
+  controls, codec round-trips) + build step test-stl-session-taxonomy;
+  session smoke + event regression exit 0 (musl static). SPEC-064 §S5B
+  minor record; SPEC-271/096 citations updated. Status
+  FIXED_PENDING_PROMOTION (lane merge into active compiler branch pending).
+  `janus-session` skill LANDED (.agents/skills/janus-session/):
+  repo-validated, syntax probe exit 0, cold-agent held-out rerun PASS 4/4
+  (predecessor ambiguity resolved by orchestrator ruling: evaluation
+  outcomes 0x0052–0x0055 take the causing evaluation attempt). Desugar
+  stub-comment cleanup DONE (janus-lang 59269406, comment-only) —
+  [DESUGAR-A4] closed. Records commit 552877b pushed.
+- Environment findings: worktree testing needs JANUS_RUNTIME_DIR=$PWD/runtime
+  (symlinked binary otherwise resolves main-checkout stdlib → LLVM
+  MissingOperand on new variants); NixOS needs musl static or glibc loader;
+  flat-main smoke patterns avoid the emitter crash family.
+- Pending: taxonomy lane promotion, SPEC-243 `std.session` inventory,
+  SPEC-271 Phases 1+ implementation, behavior-level held-out case.
+  Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
   **Active head: `janus-batch2-ratified-20261112-r9`** (published 2026-11-12,
   parent r7): records the batch-2 ratifications — new decision page

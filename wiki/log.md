@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] save | Adoption program EXECUTED: taxonomy allocation, janus-session skill, desugar cleanup
+- Type: execution record
+- From: "ok go" — three parallel lanes + orchestrator verification.
+- STD-GAP-083 EXECUTED: worktree lane feature/voxis/std-gap-083-session-taxonomy (4520ddbe, pushed) — 8 SessionEventKinds 0x0050–0x0057 (enum/wire/admission/actor slots), flat smoke w/ negative controls + codec round-trips, build step test-stl-session-taxonomy. Session smoke + event regression exit 0 (musl static). SPEC-064 §S5B minor record; SPEC-271/096 citations updated. FIXED_PENDING_PROMOTION (lane merge pending).
+- janus-session skill LANDED: repo-validated SKILL.md + syntax probe exit 0 + cold-agent held-out EXECUTED (initial FAIL item 3 → orchestrator predecessor ruling → corrected skill → rerun PASS 4/4). Desugar stub comments cleaned (janus-lang 59269406, comment-only; DESUGAR-A4 closed). Records: janus/agents unstable 552877b pushed.
+- Environment findings: JANUS_RUNTIME_DIR=$PWD/runtime required for worktree stdlib resolution (symlinked binary → main checkout → LLVM MissingOperand on new variants); NixOS needs musl static/glibc loader; flat-main smokes avoid emitter crash family.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (execution section), [[hot]]. AKF refresh for execution pending (propose-only grant).
+
 ## [2026-11-12] decision | Batch 2 RATIFIED (SPEC-272, A5/A7, STD-GAP-083 ruling); AKF r9 PUBLISHED
 - Type: ratification + publication record
 - Decision: Markus Maiwald "batch 2 is ratified! approved. continue" — executed 2026-11-12.
