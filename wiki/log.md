@@ -20,6 +20,11 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] save | AKF r10 PUBLISHED: execution knowledge head
+- Type: publication record
+- AKF: janus-execution-landed-20261112-r10 published (parent r9; outcome committed; digest blake3:4065de44…a50dd9ed; 20/20 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-execution-landed.md + 4 refreshed captures + 4 execution sources (executed gap doc, SPEC-064 §S5B, skill + held-out receipt, SPEC-096 citation). Graf checkpoint 117af3f1. Native/fabric candidates owe rebase on r10.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (r10 head), [[hot]]
+
 ## [2026-11-12] save | Adoption program EXECUTED: taxonomy allocation, janus-session skill, desugar cleanup
 - Type: execution record
 - From: "ok go" — three parallel lanes + orchestrator verification.

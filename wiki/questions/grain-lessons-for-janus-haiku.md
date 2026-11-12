@@ -309,17 +309,16 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   SPEC-271 Phases 1+ implementation, behavior-level held-out case.
   Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
-  **Active head: `janus-batch2-ratified-20261112-r9`** (published 2026-11-12,
-  parent r7): records the batch-2 ratifications — new decision page
-  `knowledge/janus-batch2-ratified.md`, three refreshed captures, five new
-  ratified sources. Isolated readback 19/19 authenticated, 0 omissions;
-  Mnemos `publish` `outcome: committed`, digest `blake3:6757865f…59baa342`;
-  live status/get verified; grant restored to propose-only. Chain: r5
-  (`janus-spec-271-adoption-20261112-r5`) → r7
-  (`janus-session-stack-20261112-r7`) → r9. Native/fabric lanes' candidates
-  owe rebase on r9. Repo records committed: Janus agents repo `unstable`
-  e9acca5 + 772e1b4 (A2/A3) + 8da1f37 (batch 2 filed) + 671ee0a (batch 2
-  ratified), all pushed to forge; janus-lang feature lane 4b66d6aa
-  (ai-alignment citation); wiki main (pushed to fork branch
+  **Active head: `janus-execution-landed-20261112-r10`** (published 2026-11-12,
+  parent r9): records the first execution — new decision page
+  `knowledge/janus-execution-landed.md`, four refreshed captures, four new
+  execution sources. Isolated readback 20/20 authenticated, 0 omissions;
+  Mnemos `publish` `outcome: committed`, digest `blake3:4065de44…a50dd9ed`;
+  live status/get verified; grant restored to propose-only. Chain: r5 → r7
+  → r9 → r10. Native/fabric lanes' candidates owe rebase on r10. Repo
+  records: Janus agents repo `unstable` e9acca5 + 772e1b4 (A2/A3) + 8da1f37
+  (batch 2 filed) + 671ee0a (batch 2 ratified) + 552877b (execution), all
+  pushed to forge; janus-lang lanes 4b66d6aa (citation), 4520ddbe (taxonomy,
+  pushed), 59269406 (comment cleanup); wiki main (pushed to fork branch
   wiki-knowledge-20261112); LIQUID_COMPUTE agents graf checkpoints 3c9d33a1
-  (r5) + 97af9503 (r7) + 1e625257 (r9).
+  (r5) + 97af9503 (r7) + 1e625257 (r9) + 117af3f1 (r10).
