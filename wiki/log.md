@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] save | Adoption program batch 2 filed (PROPOSED): SPEC-272, A5/A7, STD-GAP-083
+- Type: spec-filing record
+- From: "ok continue" — next program batch after the ratified session stack. Four parallel scouts (taxonomy, desugar, conformance, skills surfaces), then drafting.
+- Filed (all PROPOSED, commit 8da1f37 pushed to forge): SPEC-272 Backend Conformance Corpus (_PROPOSED, [CONF-01]–[08]; one corpus + independent oracles + LLVM AOT/QTJIR-interpreter matrix + SPEC-053-knob divergence registry; WASM frozen/excluded); SPEC-221/229 Amendment A desugar reconciliation (_AMENDMENT; canonical janus desugar, query-desugar reserved for future analysis axis); Propagation Doctrine Amendment A skill assets (_AMENDMENT; fifth layer + cold-agent held-out gate); STD-GAP-083 STL session-event taxonomy allocation request (NEEDS_RULING, suggested 0x0050–0x0057 via SPEC-064 §S5A; blocks SPEC-271 Phase 3 only).
+- Findings: cited "SPEC-088 §S5A" absent from shipped stub (allocation text lives in SPEC-064 §S5A); taxonomy is closed 30-variant set, codec rejects unknown kinds; existing ad hoc parity fixtures (g051, checked-cast) fold into the corpus; hinge manifest naming drift (hinge.kdl vs janus.kdl) recorded as F2 debt.
+- Lane hygiene: another lane's uncommitted STDLIB_GAPS edits preserved — only the STD-GAP-083 append staged (index-level select).
+- Pages updated: [[grain-lessons-for-janus-haiku]] (batch 2 section), [[hot]]. AKF refresh awaits ratification (propose-only grant).
+
 ## [2026-11-12] decision | A2/A3 amendments RATIFIED + merged; AKF r7 PUBLISHED (Founder)
 - Type: ratification + publication record
 - Decision: Markus Maiwald "ratify the A2/A3 amendment artifacts when ready. Yes, Approved and ratified" — executed 2026-11-12.

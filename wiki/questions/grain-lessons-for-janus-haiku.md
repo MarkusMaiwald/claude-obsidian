@@ -265,15 +265,26 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   axis 2). Artifacts retained in `_AMENDMENT/`; SPEC-096 stays `_FUTURE/`
   per its merge rule. Session contract stack ratified end-to-end.
   A4 STL domain-event layer + projections and A8 app-kit topology (SPEC-264)
-  remain consumer-triggered seeds; A5 desugar reconciliation (SPEC-221/229),
-  A6 backend conformance corpus (SPEC-241/053/266 patterns), A7
-  skills-with-toolchain remain proposals.
+  remain consumer-triggered seeds.
+- **Batch 2 filed 2026-11-12 (PROPOSED, commit 8da1f37)**: A5 →
+  `_AMENDMENT/SPEC-221-229-amendment-A-desugar-surface-reconciliation.md`
+  (canonical `janus desugar`; query-desugar reserved for the future analysis
+  axis; doctrine corrections + binding correction lists for both bases);
+  A6 → **SPEC-272 Backend Conformance Corpus** (`_PROPOSED/`, [CONF-01]–[08]:
+  one corpus, independent oracles, LLVM AOT + QTJIR interpreter matrix, WASM
+  frozen/excluded, SPEC-053-knob divergence registry); A7 →
+  `_AMENDMENT/PROPAGATION-amendment-A-skill-assets.md` (fifth propagation
+  layer, cold-agent held-out acceptance). Taxonomy request filed as
+  **STD-GAP-083** (NEEDS_RULING; suggested session block 0x0050–0x0057 via
+  SPEC-064 §S5A; the cited "SPEC-088 §S5A" does not exist in the shipped
+  stub — citation correction recorded). All await Founder ratification.
 - Registrations updated: SPEC-INDEX.md (Newest update + `_CURRENT` row,
   `_PROPOSED` row removed), `_PROPOSED/README.md` (PROMOTED entry), devlog
   `JANUS/agent-reports/2026-11-12-voxis-devlog-spec-271-clojure-adoption-program.md`
   (ratification addendum).
-- Pending with owners: STL session-event taxonomy allocation (SPEC-064
-  §S5A), SPEC-243 `std.session` inventory amendment.
+- Pending with owners: STD-GAP-083 taxonomy ruling (blocks SPEC-271 Phase 3
+  only), SPEC-243 `std.session` inventory amendment, ratification of
+  SPEC-272 + A5 + A7.
 - Status: direction ratified; nothing implemented, active queue untouched.
   Implementation lanes follow Plans.md rules when scheduled.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
@@ -287,6 +298,7 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   (`janus-spec-271-adoption-20261112-r5`, digest `blake3:3316ca43…df0fc7`)
   remains in the chain. Native/fabric lanes' candidates owe rebase on r7.
   Repo records committed: Janus agents repo `unstable` e9acca5 + 772e1b4
-  (A2/A3 merges, pushed to forge), wiki main (pushed to fork branch
-  wiki-knowledge-20261112), LIQUID_COMPUTE agents graf checkpoints 3c9d33a1
-  (r5) + 97af9503 (r7).
+  (A2/A3 merges) + 8da1f37 (batch 2), all pushed to forge; wiki main (pushed
+  to fork branch wiki-knowledge-20261112); LIQUID_COMPUTE agents graf
+  checkpoints 3c9d33a1 (r5) + 97af9503 (r7). AKF refresh for batch 2 awaits
+  its ratification (propose-only grant).
