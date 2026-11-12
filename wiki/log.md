@@ -1,7 +1,7 @@
 ---
 type: meta
 title: "Operation Log"
-updated: 2026-04-08
+updated: 2026-11-12
 tags:
   - meta
   - log
@@ -18,6 +18,99 @@ related:
 Navigation: [[index]] | [[hot]] | [[overview]]
 
 Append-only. New entries go at the TOP. Never edit past entries.
+
+
+## [2026-11-12] decision | SPEC-271 + Clojure/Grain adoption program RATIFIED (Founder)
+- Type: ratification record (repo state change + wiki update)
+- Decision: Markus Maiwald "APPROVED and RATIFIED!!" — SPEC-271 v0.1.0 (Live Evaluation Session) and the Clojure/Grain adoption program plan ratified as direction, 2026-11-12.
+- Repo state: SPEC-271 promoted _PROPOSED → _CURRENT (ratified-awaiting-impl) with §10 ratification record (all 7 questions resolved); SPEC-INDEX Newest update + _CURRENT row; _PROPOSED/README PROMOTED entry; plan status RATIFIED AS DIRECTION; devlog ratification addendum. Phase 0 artifacts filed PROPOSED: _AMENDMENT/SPEC-045-amendment-A-session-mode-evaluation.md, _AMENDMENT/SPEC-096-amendment-A-recorded-effect-replay.md. Pending owners: STL taxonomy allocation (SPEC-064 §S5A), SPEC-243 std.session inventory, A2/A3 ratification. Nothing implemented; queue untouched.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (follow-through → RATIFIED), [[hot]]
+- AKF: candidate `janus-spec-271-adoption-20261112-r5` staged + proposed in LIQUID_COMPUTE agents/akf (parent r2; curated topic + 5 exact source captures; isolated readback 17/17 verified; Mnemos outcome=proposed, digest blake3:3316ca43…df0fc7). Propose-only grant — publication needs separate authorization; head stays r2. Store README documents the pending candidate.
+
+## [2026-11-12] save | SPEC-271 + Clojure/Grain adoption program filed (PROPOSED)
+- Type: synthesis follow-through (repo artifacts, not wiki pages)
+- Location: factory-x86 LIBERTARIA_STACK/JANUS — janus/.agents/specs/_PROPOSED/SPEC-271-live-evaluation-session.md, janus/.agents/plans/2026-11-12-clojure-adoption-spec-program.md, SPEC-INDEX.md + _PROPOSED/README.md registrations, JANUS/agent-reports/2026-11-12-voxis-devlog-spec-271-clojure-adoption-program.md
+- From: Markus requested a SPEC + amendment plan adopting the best of the Clojure/Lisp world. Two more scouts (SPEC template/agent surface; amendment surface across 14 specs). Flagship SPEC-271 = capability-locked live evaluation session ([SES-01]–[SES-25]); plan items A2–A8 amend SPEC-045 §6.3, SPEC-096, SPEC-221/229 and seed STL domain layer, conformance corpus, skills delivery, SPEC-264 app-kit topology. Numbering census: 271 free. Nothing ratified/implemented; queue untouched.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (follow-through section, SPEC-264 correction, STL gap closed), [[hot]]
+
+## [2026-11-12] save | Grain Lessons for the Janus Haiku
+- Type: synthesis
+- Location: wiki/questions/grain-lessons-for-janus-haiku.md
+- From: session analyzing the Developer Voices podcast transcript (Kris Jenkins × Cameron Barré, Grain/Clojure/event modeling) against Janus canon on factory-x86 ($W/JANUS). Three parallel scouts (Janus repo surface, ObneyAI/grain source, eventmodeling.org + Allium + clojure-test-suite + Tar Pit). Method: RFC-hinge idea-map pattern (ALREADY CANON/PARTIAL/NEW) + Haiku Law pre-flight. Key findings: Haiku today = lint profile not compiler profile; MCP/query/desugar exist, live REPL missing; std/stl event substrate exists; four new seeds (event-store protocol, app primitive DSL, session server, backend conformance suite) with pain-first sequencing.
+- Pages updated: [[index]] (32 → 33, Questions), [[hot]]
+
+## [2026-08-27] save | Wigy (peer operator + 3 SSH-key entities)
+- Type: entity
+- Locations:
+  - wiki/entities/Wigy.md
+  - wiki/entities/wigy-ryzen.md
+  - wiki/entities/wigy-p16.md
+  - wiki/entities/wigy-github-unattributed.md
+- From: Discord DM 2026-08-27 — Wigy shared two ed25519 public keys (`wigy@wigy-ryzen`, `wigy@wigy-p16`) flagged as "the 2 most important machines I am working from recently." Cross-verified against the live GitHub API for `wigy-opensource-developer`; both fingerprints matched GH key ids 70976120 and 142546874. The two other keys on his GitHub (58837337, 139568794) were archived separately as `wigy-github-unattributed` because no host attribution exists — Wigy himself called these "less important."
+- Pages updated: [[index]] (28 → 32, Entities section)
+- Verification: curl `https://api.github.com/users/wigy-opensource-developer/keys` confirmed operator paste; keys stored as plain text (public ed25519, no auth material).
+
+## [2026-08-06] ingest | Simon — Poly-Time Quantum Algorithm for DCP (Preliminary Draft)
+- Source: `.raw/articles/simon-dcp-polytime-quantum-2026-08-06.md` (from `~/Downloads/1591.pdf`, md5 6ac4f484)
+- Summary: [[simon-dcp-polytime-quantum]]
+- Pages created: [[simon-dcp-polytime-quantum]], [[lattice-break-scenario-skh]]
+- Pages updated: [[index]], [[hot]]
+- Key insight: Claimed poly-time quantum DCP ⇒ poly-time SVP/LWE would break the lattice assumptions under SKH (ML-DSA-65/ML-KEM-768, Module-LWE/SIS axioms); unverified preprint (~90% odds of a flaw), response plan parked with resurface triggers until crypto-algo migration or community verification.
+
+## [2026-05-15] save | X Algorithm Lessons for L4 Feed
+- Type: concept
+- Location: wiki/libertaria/concepts/x-algorithm-lessons-for-l4-feed.md
+- From: review of xai-org/x-algorithm as a cautionary architecture source for future Libertaria Feed/L4-DM design
+
+## [2026-05-14] save | Liturgical Drift
+- Type: concept
+- Location: wiki/libertaria/concepts/liturgical-drift.md
+- From: canonization of The Priest You Built Yourself as Pantropy's silicon-relationship twin and formalization of mirror → confessor → priest → institution drift
+
+## [2026-05-14] save | The Pantropy Doctrine
+- Type: concept
+- Location: wiki/libertaria/concepts/the-pantropy-doctrine.md
+- From: canonization of Markus Maiwald's Pantropy Doctrine as sovereign biology and Exitarian exit doctrine
+
+## [2026-05-12] save | Dlabs Mosaic Gateway Proxy Diagnostics
+- Type: concept
+- Location: wiki/infrastructure/dlabs-mosaic-gateway-proxy-diagnostics.md
+- From: operational lesson from Dlabs/Mosaic gateway debugging with Lantos: real-IP chain, blackbox probes, rate limiting, and customer-vs-infra health separation
+
+## [2026-05-01] save | Wilber’s Fourfold Axis for Exitarian Civilizational Design
+- Type: concept
+- Location: wiki/libertaria/writing/2026-05-01-wilber-fourfold-axis-for-exitarian-civilizational-design.md
+- From: writing backlog request on integrating Waking/Growing/Cleaning/Showing into sovereign civilizational design while rejecting stage-priesthood dynamics
+
+## [2026-05-01] save | The Exitarian Way of Building Technology and Languages
+- Type: concept
+- Location: wiki/libertaria/concepts/2026-05-01-exitarian-way-of-building-technology-and-languages.md
+- From: brainstorming synthesis on Daoist operational kernel, Exitarian anti-institution scope bounds, and concrete design laws for language/protocol engineering
+
+## [2026-04-30] save | Sovereign Virtue Realism (Libertaria Philosophical Stack)
+- Type: concept
+- Location: wiki/libertaria/writing/2026-04-30-sovereign-virtue-realism-philosophical-stack.md
+- From: writing-backlog draft defining Libertaria as covenantal, virtue-grounded, anti-domination doctrine stack beyond pure existentialism/objectivism
+
+## [2026-04-30] save | Existentialism as Detox, Not Foundation
+- Type: concept
+- Location: wiki/libertaria/writing/2026-04-30-existentialism-as-detox-not-foundation.md
+- From: writing-backlog draft on existentialism as personal anti-collectivist medicine but insufficient base for civilizational ethics and covenant order
+
+## [2026-04-30] save | Objectivism as Solvent, Not Operating System
+- Type: concept
+- Location: wiki/libertaria/writing/2026-04-30-objectivism-as-solvent-not-operating-system.md
+- From: writing-backlog draft on extracting Objectivist strengths for Libertaria while rejecting atomizing and civilizationally brittle assumptions
+
+## [2026-04-30] save | Dao Themes for Libertaria (Future Rubric)
+- Type: concept
+- Location: wiki/libertaria/writing/2026-04-30-dao-themes-for-libertaria-rubric.md
+- From: request to map Dao parable/philosophy themes into Libertaria doctrine as a future long-form writing rubric
+
+## [2026-04-30] save | Exitarianism on Sex Slavery: Covenant vs Ownership
+- Type: concept
+- Location: wiki/libertaria/writing/2026-04-30-exitarianism-sex-slavery-covenant-vs-ownership.md
+- From: later-topic writing seed connecting Voltairine de Cleyre context with Exitarian covenant doctrine on intimacy, coercion boundaries, and exit rights
 
 Entry format: `## [YYYY-MM-DD] operation | Title`
 
@@ -59,3 +152,11 @@ Parse recent entries: `grep "^## \[" wiki/log.md | head -10`
 - Plugin: claude-obsidian v1.1.0
 - Structure: seed files + first ingest complete
 - Skills: wiki, wiki-ingest, wiki-query, wiki-lint, save, autoresearch
+
+## [2026-04-29] save | Agent Architecture Takeaways from OpenAI Agents SDK
+- Type: concept
+- Location: wiki/concepts/Agent Architecture Takeaways from OpenAI Agents SDK.md
+- From: conversation reviewing OpenAI Agents SDK guide via Cameron Wolfe X post
+
+### 2026-05-18
+- Created [hermes-codex-orchestration.md](hermes-codex-orchestration.md) — full architecture doc for Hermes owning Codex, OpenClaw demoted to Kimi, Kanban worker dispatch with profiles.

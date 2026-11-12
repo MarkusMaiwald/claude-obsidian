@@ -1,68 +1,13 @@
----
-type: meta
-title: "Hot Cache"
-updated: 2026-04-08T19:00:00
-tags:
-  - meta
-  - hot-cache
-status: evergreen
-related:
-  - "[[index]]"
-  - "[[log]]"
-  - "[[Wiki Map]]"
-  - "[[getting-started]]"
-  - "[[claude-obsidian-v1.4-release-session]]"
----
-
-# Recent Context
-
-Navigation: [[index]] | [[log]] | [[overview]]
-
-## Last Updated
-2026-04-08: v1.4.1 hotfix shipped, plugin confirmed installed and enabled
-
-## Plugin State
-- **Version**: 1.4.1 (installed, enabled, user scope)
-- **Install ID**: `claude-obsidian@claude-obsidian-marketplace`
-- **Releases**: v1.1, v1.4.0, v1.4.1 on GitHub
-- **Skills**: 10 (wiki, wiki-ingest, wiki-query, wiki-lint, save, autoresearch, canvas, defuddle, obsidian-bases, obsidian-markdown)
-- **Hooks**: 4 (SessionStart, PostCompact, PostToolUse, Stop)
-- **Multi-agent**: bootstrap files for Codex, OpenCode, Gemini, Cursor, Windsurf, GitHub Copilot
-
-## Install Command (Correct Two-Step Flow)
-```bash
-claude plugin marketplace add AgriciDaniel/claude-obsidian
-claude plugin install claude-obsidian@claude-obsidian-marketplace
-```
-
-There is no `claude plugin install github:owner/repo` shortcut. Both steps are required. Full session note: [[claude-obsidian-v1.4-release-session]].
-
-## Recent Release Cycle (v1.1 → v1.4.1)
-- **v1.1**: URL ingestion, vision ingestion, delta tracking manifest, 3 new skills (defuddle, obsidian-bases, obsidian-markdown), multi-depth query modes, PostToolUse auto-commit, removed invalid `allowed-tools` frontmatter field
-- **v1.4.0**: Dataview to Bases migration (new `wiki/meta/dashboard.base`), Canvas JSON 1.0 spec completeness, PostCompact hook, Obsidian CLI MCP option, 6 multi-agent bootstrap files, 249 em dashes scrubbed, security git history rewrite to remove placeholder email
-- **v1.4.1**: hotfix for wrong plugin install command syntax in README and install-guide.md
-
-## Key Lessons (Recent)
-1. Plugin install is always two-step: `marketplace add` then `install plugin@marketplace`
-2. `allowed-tools` is NOT valid in skill frontmatter. Use only `name` and `description` (kepano convention).
-3. Obsidian Bases uses `filters/views/formulas`, not Dataview `from/where`
-4. Canvas edges have asymmetric defaults: `fromEnd="none"`, `toEnd="arrow"`
-5. Hook-injected context does not survive compaction. PostCompact hook is required to restore hot cache.
-6. `git filter-repo` needs two passes: `--replace-text` for blobs, `--replace-message` for commit messages
-
-## Style Preferences (Saved to Memory)
-- **No em dashes** (U+2014) or `--` as punctuation anywhere. Use periods, commas, colons, or parentheses. Hyphens in compound words are fine (auto-commit, multi-agent).
-- Keep responses short and direct. No trailing "here's what I did" summaries.
-- Parallel tool calls when independent.
-
-## Ecosystem Research (Done 2026-04-08)
-16+ Claude + Obsidian projects mapped. Full feature matrix at [[claude-obsidian-ecosystem]]. Prioritized backlog at [[cherry-picks]]. Top competitors: [[Ar9av-obsidian-wiki]] (multi-agent + delta tracking), [[rvk7895-llm-knowledge-bases]] (multi-depth query), [[ballred-obsidian-claude-pkm]] (goal cascade + auto-commit), [[kepano-obsidian-skills]] (authoritative Obsidian skills from Obsidian's own creator).
+# Hot Cache
 
 ## Active Threads
-- v1.5.0 backlog: `/adopt` command, vault graph analysis in wiki-lint, semantic search via qmd, Marp output
-- `community` remote (`avalonreset-pro/claude-obsidian`) still has pre-rewrite history. Force-push needed next time that remote is configured.
+- **Grain → Janus Haiku: SPEC-271 RATIFIED (2026-11-12, Founder)** — synthesis at [[grain-lessons-for-janus-haiku]]. SPEC-271 Live Evaluation Session v0.1.0 ratified + promoted to `_CURRENT` on factory-x86 JANUS; Clojure/Grain adoption program ratified as direction. A2/A3 amendments (SPEC-045 §6.3 session mode, SPEC-096 recorded-effect replay) filed PROPOSED in `_AMENDMENT/`; seeds (STL domain layer, conformance corpus, skills delivery, SPEC-264 app-kit topology) consumer-triggered. Pending: STL taxonomy allocation, SPEC-243 std.session inventory, A2/A3 ratification. Nothing implemented; queue untouched. AKF: candidate `janus-spec-271-adoption-20261112-r5` proposed in LIQUID_COMPUTE agents/akf (readback 17/17 verified); publication blocked by propose-only grant — needs Markus's authorization.
+- **Lattice break watch (parked 2026-08-06)** — Simon/AWS poly-time quantum DCP preprint filed at [[simon-dcp-polytime-quantum]]; response plan + resurface triggers at [[lattice-break-scenario-skh]]. Reopen when crypto-algo migration starts or the claim is verified.
+- **Sober routes retuned 2026-08-06 (VPS + laptop)** — frontier: Kimi k3-256k → DeepSeek v4-pro → Qwen3.8-max (new Alibaba provider, QWEN_API_KEY); daily: DeepSeek v4-flash → MiniMax-M3; security: Kimi k3 → Grok-4.5. Qwen quota exhausted until 08-08.
 
-## Repo Locations
-- Working: `~/Desktop/claude-obsidian/`
-- Public: https://github.com/AgriciDaniel/claude-obsidian
-- Community (private): https://github.com/avalonreset-pro/claude-obsidian
+## Active Infrastructure
+- **Hermes + Codex orchestration** — Hermes owns Codex app-server. See [hermes-codex-orchestration.md](hermes-codex-orchestration.md)
+- OpenClaw on kimi-coding/k2p5 (no Codex)
+- Worker profiles: codex-coder, claude-reviewer, zai-glm
+- Kanban board: orchestrator
+- **DNS stack rebuilt 2026-07-03** — 3-layer split: Global (ControlD+Quad9) → NM wlan0 (explicit DNS, ignore-auto-dns) → wg1/wg2 link-scope (PostUp/PreDown). See [[dns-sovereignty-stack]] in wiki/infrastructure/. No more manual `resolvectl dns wlan0 …` ritual.
