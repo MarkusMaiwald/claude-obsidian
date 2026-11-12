@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] decision | SPEC-271 Phase-1 runtime-symbol resolution PROVEN (first body increment)
+- Type: foundation record (execution mechanism, Phase-1 body)
+- Extended the option-B pure-export foundation to runtime-touching units (janus_alloc/janus_free). Two root causes found + fixed, verified green under Zig 0.17.1 BOTH directly and via the registered test-session-rt-smoke zb step (sess_pure(21)=42, sess_alloc_roundtrip(1234)=1234, exit 0).
+- (a) PIC across all linked components: unit via llc -relocation-model=pic (pipeline default llc is non-PIC), runtime via zig build-obj -fPIC, scheduler asm linked to resolve janus_context_switch/janus_fiber_entry.
+- (b) SYSTEM dlopen (std.c.dlopen, -lc), NOT Zig std.DynLib: on Linux Zig 0.17.1 std.DynLib selects a custom ElfDynLib user-space loader that does NOT apply PLT JUMP_SLOT relocations, so internal cross-function calls segfault at the raw stub. Proven with a plain-C control (crashed under std.DynLib, worked under system dlopen). Corrects the foundation's std.DynLib wording: pure exports happened to relocate cleanly; runtime-touching units require the system loader.
+- Lane feature/voxis/spec271-session-core 34aecc29 (pushed); records 0f5306b pushed. Remaining Phase-1 body: session-safe panic (janus_panic is noreturn+exit), loader service, CID artifact identity, env/budgets/ledger/janus session CLI.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (runtime-resolution milestone), [[hot]]. AKF refresh pending (propose-only).
+
 ## [2026-11-12] save | AKF r12 PUBLISHED: option-B execution-foundation knowledge head
 - Type: publication record
 - AKF: janus-optionb-foundation-20261112-r12 published (parent r11; outcome committed; digest blake3:c0243bd8…fea63ce; 22/22 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-optionb-foundation.md + refreshed SPEC-271/plan/index captures + three AOT in-process foundation test sources. Graf checkpoint cd0c9d11. Native/fabric candidates owe rebase on r12.

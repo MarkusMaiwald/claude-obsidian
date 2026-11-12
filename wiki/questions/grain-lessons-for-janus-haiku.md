@@ -324,10 +324,22 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   AOT-compiled → native object → shared artifact → `std.DynLib` in-process
   load → typed C-ABI call (`janus_double(21)=42`, `janus_add(19,23)=42`), no
   runtime codegen. Lane `feature/voxis/spec271-session-core` 84c559f9 (pushed);
-  records 44ecf4d pushed. Remaining Phase 1 body (loader service, session-safe
-  panic / runtime-symbol resolution, PIC, CID artifact identity,
-  env/budgets/ledger/`janus session` CLI) builds on this foundation.
-- Pending: SPEC-243 `std.session` inventory, SPEC-271 Phase 1 body,
+  records 44ecf4d pushed.
+- **Runtime-symbol resolution PROVEN 2026-11-12 (Phase-1 body, first
+  increment)**: extended the pure-export foundation to runtime-touching units
+  (`janus_alloc`/`janus_free`). Two root causes fixed, verified green under
+  Zig 0.17.1 BOTH directly and via the registered `test-session-rt-smoke` zb
+  step (`sess_pure(21)=42`, `sess_alloc_roundtrip(1234)=1234`, exit 0):
+  (a) **PIC across all linked components** — unit via `llc
+  -relocation-model=pic`, runtime via `zig build-obj -fPIC`, scheduler asm
+  linked; (b) **system dlopen** (`std.c.dlopen`, `-lc`), NOT Zig `std.DynLib`
+  — on Linux `std.DynLib` uses a custom `ElfDynLib` loader that does not apply
+  PLT `JUMP_SLOT` relocations, so internal cross-function calls segfault
+  (proven with a plain-C control). Lane commit 34aecc29 (pushed); records
+  0f5306b pushed. Remaining Phase-1 body: session-safe panic (`janus_panic` is
+  `noreturn`+`exit`), loader service, CID artifact identity,
+  env/budgets/ledger/`janus session` CLI.
+- Pending: SPEC-243 `std.session` inventory, remaining SPEC-271 Phase 1 body,
   behavior-level held-out case. Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
   **Active head: `janus-optionb-foundation-20261112-r12`** (published 2026-11-12,
