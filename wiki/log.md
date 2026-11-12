@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] decision | A2/A3 amendments RATIFIED + merged; AKF r7 PUBLISHED (Founder)
+- Type: ratification + publication record
+- Decision: Markus Maiwald "ratify the A2/A3 amendment artifacts when ready. Yes, Approved and ratified" — executed 2026-11-12.
+- Canon merges: A2 → SPEC-045 v1.6.0 §6.3.2 session-mode evaluation ([SCRIPT-6.3.A1]–[A5], record §15.6); A3 → SPEC-096 v0.2.0 §7 recorded-effect replay ([REPLAY-01]–[06], record §7.1; Axis-8 wording → SPEC-100 v0.2 axis 2). Artifacts retained RATIFIED in _AMENDMENT/; SPEC-096 stays _FUTURE/ per merge rule. SPEC-271 Phase 0 COMPLETE; session contract stack ratified end-to-end. Index/plan/SPEC-271/devlog updated. Janus agents repo `unstable` 772e1b4 pushed to forge.
+- AKF publication: `janus-session-stack-20261112-r7` committed via Mnemos (parent r5; outcome committed; digest blake3:9ccccd92…348e7a12451). New decision page janus-session-stack-ratified.md + refreshed captures + merged canons; drifted native-lane sources kept at r5 bytes (recorded in changelog). Isolated readback 18/18 verified; live status/get verified; grant restored propose-only. Graf checkpoint 97af9503.
+- Owner constraints learned: source IDs must match [A-Za-z0-9_-] (dots rejected); supersedes must be same-id@revision or #null. Native/fabric candidates (r3-draft, r6, native-r7, r8) owe rebase on the Janus r7 head.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (A2/A3 ratified, AKF r7 head), [[hot]]
+
 ## [2026-11-12] decision | SPEC-271 package committed, merged, AKF r5 PUBLISHED (Founder)
 - Type: publication record (commit + merge + publish)
 - Decision: Markus Maiwald "commit merge and publish" — executed 2026-11-12.

@@ -257,27 +257,36 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   validation and print-only interpreter as rival surfaces.
 - **Program plan — RATIFIED AS DIRECTION**:
   `janus/.agents/plans/2026-11-12-clojure-adoption-spec-program.md`.
-  A2 SPEC-045 §6.3 Amendment A (session mode) and A3 SPEC-096 Amendment A
-  (recorded-effect replay) filed in `_AMENDMENT/` — PROPOSED, awaiting their
-  own ratification. A4 STL domain-event layer + projections and A8 app-kit
-  topology (SPEC-264) remain consumer-triggered seeds; A5 desugar
-  reconciliation (SPEC-221/229), A6 backend conformance corpus
-  (SPEC-241/053/266 patterns), A7 skills-with-toolchain remain proposals.
+  A2 SPEC-045 Amendment A (session mode) and A3 SPEC-096 Amendment A
+  (recorded-effect replay) **RATIFIED 2026-11-12** ("Yes, Approved and
+  ratified") and merged into canon: SPEC-045 v1.6.0 §6.3.2
+  ([SCRIPT-6.3.A1]–[A5], record §15.6) and SPEC-096 v0.2.0 §7
+  ([REPLAY-01]–[06], record §7.1; Axis-8 wording corrected to SPEC-100 v0.2
+  axis 2). Artifacts retained in `_AMENDMENT/`; SPEC-096 stays `_FUTURE/`
+  per its merge rule. Session contract stack ratified end-to-end.
+  A4 STL domain-event layer + projections and A8 app-kit topology (SPEC-264)
+  remain consumer-triggered seeds; A5 desugar reconciliation (SPEC-221/229),
+  A6 backend conformance corpus (SPEC-241/053/266 patterns), A7
+  skills-with-toolchain remain proposals.
 - Registrations updated: SPEC-INDEX.md (Newest update + `_CURRENT` row,
   `_PROPOSED` row removed), `_PROPOSED/README.md` (PROMOTED entry), devlog
   `JANUS/agent-reports/2026-11-12-voxis-devlog-spec-271-clojure-adoption-program.md`
   (ratification addendum).
 - Pending with owners: STL session-event taxonomy allocation (SPEC-064
-  §S5A), SPEC-243 `std.session` inventory amendment, A2/A3 ratification.
+  §S5A), SPEC-243 `std.session` inventory amendment.
 - Status: direction ratified; nothing implemented, active queue untouched.
   Implementation lanes follow Plans.md rules when scheduled.
-- Knowledge: this page + AKF revision `janus-spec-271-adoption-20261112-r5`
-  **PUBLISHED** in the LIQUID_COMPUTE shared store (`agents/akf`) under
-  Founder authorization ("commit merge and publish"). One curated topic
-  (`knowledge/janus-spec-271-clojure-adoption.md`) + five exact factory-x86
-  source captures; parent r2. Isolated readback 17/17 authenticated, 0
-  omissions; Mnemos `publish` `outcome: committed`, digest
-  `blake3:3316ca43…df0fc7`; live status/get verified. r5 is the active head;
-  per-user grant restored to propose-only. Repo records committed: Janus
-  agents repo `unstable` e9acca5 (pushed to forge), wiki main 2a481bd,
-  LIQUID_COMPUTE agents graf checkpoint 3c9d33a1.
+- Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
+  **Active head: `janus-session-stack-20261112-r7`** (published 2026-11-12,
+  parent r5): records the A2/A3 ratifications end-to-end — new decision page
+  `knowledge/janus-session-stack-ratified.md`, refreshed Janus captures,
+  merged canons (SPEC-045 v1.6.0, SPEC-096 v0.2.0) as exact sources. Isolated
+  readback 18/18 authenticated, 0 omissions; Mnemos `publish`
+  `outcome: committed`, digest `blake3:9ccccd92…348e7a12451`; live status/get
+  verified; grant restored to propose-only. Prior head r5
+  (`janus-spec-271-adoption-20261112-r5`, digest `blake3:3316ca43…df0fc7`)
+  remains in the chain. Native/fabric lanes' candidates owe rebase on r7.
+  Repo records committed: Janus agents repo `unstable` e9acca5 + 772e1b4
+  (A2/A3 merges, pushed to forge), wiki main (pushed to fork branch
+  wiki-knowledge-20261112), LIQUID_COMPUTE agents graf checkpoints 3c9d33a1
+  (r5) + 97af9503 (r7).
