@@ -20,6 +20,14 @@ Navigation: [[index]] | [[hot]] | [[overview]]
 Append-only. New entries go at the TOP. Never edit past entries.
 
 
+## [2026-11-12] decision | STD-GAP-083 CLOSED: taxonomy PROMOTED under Zig 0.17.1
+- Type: promotion record
+- From: "promote the taxonomy lane into the active compiler branch once the worktree build blocker clears. also regard that we are running now Zig 0.17.1".
+- Blocker cleared: Zig 0.17.0 build-exe SIGSEGV linking libLLVM → Zig 0.17.1 (released 2026-11-02). Installed official zig-x86_64-linux-0.17.1 to ~/opt/zig-0.17.1 (sha256 3581863e…7e9b17a verified vs ziglang.org/index.json). Fleet nixpkgs pin (2026-10-20) predates 0.17.1 → PATH zig still 0.17.0; build used local 0.17.1 explicitly.
+- With LLVM_CONFIG + JANUS_DYNAMIC_LINKER + ZB_NO_SYSTEMD=1: worktree compiler builds clean + NixOS-runnable; registered test-stl-session-taxonomy zb step GREEN (exit 0). Merged taxonomy lane into active compiler branch feature/voxis/musl-portable-static-20261026 (de3fc589, pushed). Session + regression smokes re-verified exit 0 on active branch. SPEC-271 Phase 3 unblocked.
+- Records: janus/agents unstable b3445ad (gap CLOSED) + 81698d6 (index/plan) pushed. Gap status FIXED_PENDING_PROMOTION → CLOSED.
+- Pages updated: [[grain-lessons-for-janus-haiku]] (promotion), [[hot]]. AKF refresh pending (propose-only).
+
 ## [2026-11-12] save | AKF r10 PUBLISHED: execution knowledge head
 - Type: publication record
 - AKF: janus-execution-landed-20261112-r10 published (parent r9; outcome committed; digest blake3:4065de44…a50dd9ed; 20/20 isolated readback; live status/get verified; grant restored propose-only). New decision page janus-execution-landed.md + 4 refreshed captures + 4 execution sources (executed gap doc, SPEC-064 §S5B, skill + held-out receipt, SPEC-096 citation). Graf checkpoint 117af3f1. Native/fabric candidates owe rebase on r10.

@@ -305,9 +305,18 @@ Markus requested a SPEC + amendment plan, then approved it the same day:
   (symlinked binary otherwise resolves main-checkout stdlib → LLVM
   MissingOperand on new variants); NixOS needs musl static or glibc loader;
   flat-main smoke patterns avoid the emitter crash family.
-- Pending: taxonomy lane promotion, SPEC-243 `std.session` inventory,
-  SPEC-271 Phases 1+ implementation, behavior-level held-out case.
-  Active queue untouched.
+- **PROMOTED 2026-11-12 (Zig 0.17.1)**: STD-GAP-083 CLOSED. The worktree
+  compiler-bootstrap blocker (Zig 0.17.0 build-exe SIGSEGV linking libLLVM)
+  cleared by Zig 0.17.1 (official tarball sha256-verified to ~/opt/zig-0.17.1;
+  fleet nixpkgs pin predates it, PATH zig still 0.17.0). With LLVM_CONFIG +
+  JANUS_DYNAMIC_LINKER + ZB_NO_SYSTEMD=1 the worktree compiler builds clean
+  and NixOS-runnable; registered test-stl-session-taxonomy zb step green
+  (exit 0). Taxonomy lane merged into active compiler branch
+  feature/voxis/musl-portable-static-20261026 (de3fc589, pushed); session +
+  regression smokes re-verified exit 0 on the active branch. SPEC-271 Phase 3
+  (STL sink + replay) unblocked. Records b3445ad + 81698d6 pushed.
+- Pending: SPEC-243 `std.session` inventory, SPEC-271 Phases 1+ implementation,
+  behavior-level held-out case. Active queue untouched.
 - Knowledge: this page + AKF in the LIQUID_COMPUTE shared store (`agents/akf`).
   **Active head: `janus-execution-landed-20261112-r10`** (published 2026-11-12,
   parent r9): records the first execution — new decision page
